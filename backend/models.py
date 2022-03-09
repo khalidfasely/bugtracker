@@ -2,6 +2,18 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+
+class Project(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=120)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    admins = models.ManyToManyField(User, related_name='admins_project')
+    users_with = models.ManyToManyField(User, related_name='users_project')
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name} ** {self.id}'
+
 class Classification(models.Model):
     id = models.AutoField(primary_key=True)
     description = models.CharField(max_length=25)
@@ -13,9 +25,11 @@ class Bugs(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=120)
     description = models.CharField(max_length=255)
+    on_project = models.ForeignKey(Project, on_delete=models.CASCADE, default=None, related_name='project_on')
     active = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='creater')
-    users_with = models.ManyToManyField(User, related_name='group_users')
+    admins = models.ManyToManyField(User, related_name='admins_bug')
+    users_with = models.ManyToManyField(User, related_name='users_bug')
     classification = models.ForeignKey(Classification, on_delete=models.PROTECT)
     time = models.DateTimeField(auto_now_add=True)
 
