@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Home = () => {
+import { startLogout } from '../actions/auth';
+
+const Home = ({ startLogout }) => {
   const history = useNavigate();
   
   const logout = async () => {
-    const res = await fetch('/api/logout');
-    
-    const data = await res.json();
+    const data = await startLogout();
     
     console.log(data);
 
@@ -20,4 +21,8 @@ const Home = () => {
   );
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => ({
+  startLogout: () => dispatch(startLogout())
+});
+
+export default connect(undefined, mapDispatchToProps)(Home);

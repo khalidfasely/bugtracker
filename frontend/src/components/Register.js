@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { startRegister } from '../actions/auth';
 
-const Register = () => {
+const Register = ({ startRegister }) => {
     const history = useNavigate();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -9,47 +11,48 @@ const Register = () => {
     const [confirmation, setConfirmation] = useState('');
     const [error, setError] = useState('');
 
-    const register = async (e) => {
+    const onFormSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
         const availabeValues = username && email && password && confirmation;
 
+        // Check all fields
         if (!availabeValues) {
             setError('Must set all fields!');
             return;
         };
 
+        // Compare passwords
         if (password !== confirmation) {
             setError('Password and Confirmation must match!');
             return;
         };
-    
-        const res = await fetch('/api/register', {
-          method: "POST",
-          body: JSON.stringify({
+
+        // Start register with redux
+        const result = await startRegister({
             username,
             email,
             password,
             confirmation
-          })
         });
-    
-        const data = await res.json();
 
-        if (!data.user) {
-            setError(data.message);
-            return;
-        }
-    
-        console.log(data);
+        // Check result from backend
+        if (result.message !== "Register correctly.") {
+            setError(result.message);
+        } else {
+            setUsername('');
+            setEmail('');
+            setPassword('');
+            setConfirmation('');
 
-        history('/');
+            history('/');
+        };
     };
 
     return (
         <div>
-            <form onSubmit={register}>
+            <form onSubmit={onFormSubmit}>
                 {error && <p>{error}</p>}
                 <input
                     type='text'
@@ -82,4 +85,8 @@ const Register = () => {
     );
 };
 
-export default Register;
+const mapDispatchToProps = (dispatch) => ({
+    startRegister: (newUserData) => dispatch(startRegister(newUserData))
+});
+
+export default connect(undefined, mapDispatchToProps)(Register);

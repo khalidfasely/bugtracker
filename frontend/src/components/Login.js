@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Login = () => {
+import { startLogin } from '../actions/auth';
+
+const Login = ({ startLogin }) => {
     const history = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const login = async (e) => {
+    const onFormSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
@@ -16,30 +19,24 @@ const Login = () => {
             setError('Must set all fields!');
             return;
         };
-    
-        const res = await fetch('/api/login', {
-          method: "POST",
-          body: JSON.stringify({
-            username,
-            password
-          })
-        });
-    
-        const data = await res.json();
 
-        if (!data.user) {
-            setError(data.message);
-            return;
-        }
-    
-        console.log(data);
+        // Start login with redux
+        const result = await startLogin({ username, password });
 
-        history('/');
+        // Check result from backend
+        if (result.message !== "Login Successfully.") {
+            setError(result.message);
+        } else {
+            setUsername('');
+            setPassword('');
+
+            history('/');
+        };
     };
 
     return (
         <div>
-            <form onSubmit={login}>
+            <form onSubmit={onFormSubmit}>
             {error && <p>{error}</p>}
                 <input
                     type='text'
@@ -60,4 +57,8 @@ const Login = () => {
     );
 };
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+    startLogin: ({ username, password }) => dispatch(startLogin({ username, password }))
+});
+
+export default connect(undefined, mapDispatchToProps)(Login);
