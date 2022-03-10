@@ -15,8 +15,20 @@ from .models import User
 def index(request):
     return HttpResponse("Hello, world!")
 
+def user(request):
+
+    #Check if any user logged in
+    if request.user.username:
+        return JsonResponse({"message": "Login Successfully.", "user": {
+            "username": f"{request.user}", "uid": f"{request.user.id}"}
+        }, status=201)
+
+    return JsonResponse({"message": "No User!"}, status=201)    
+
+
 @csrf_exempt
 def login_route(request):
+
     # Check the method request
     if request.method == "POST":
         
@@ -80,7 +92,7 @@ def register(request):
             new_user = User.objects.create_user(username, email, password)
             new_user.save()
         except IntegrityError:
-            return JsonResponse({"message": "Username already token."}, status=201)
+            return JsonResponse({"message": "Username already taken."}, status=201)
 
         # Login new user
         login(request, new_user)

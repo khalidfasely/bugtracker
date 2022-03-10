@@ -1,6 +1,30 @@
 import loginApi from '../api/login';
 import logoutApi from '../api/logout';
 import registerApi from '../api/register';
+import userApi from '../api/user';
+
+export const setUser = ({ uname, uid }) => ({
+    type: 'SET_USER',
+    uname,
+    uid
+});
+
+export const startSetUser = () => {
+    return (dispatch) => {
+        return userApi().then((result) => {
+            if (!result.user) {
+                return result;
+            };
+
+            dispatch(setUser({
+                uname: result.user?.username,
+                uid: result.user?.uid
+            }));
+
+            return result;
+        });
+    };
+};
 
 export const login = ({ uname, uid }) => ({
     type: 'LOGIN',
@@ -11,7 +35,6 @@ export const login = ({ uname, uid }) => ({
 export const startLogin = ({ username, password }) => {
     return (dispatch) => {
         return loginApi({ username, password }).then((result) => {
-            console.log(result);
             if (!result.user) {
                 return result;
             };

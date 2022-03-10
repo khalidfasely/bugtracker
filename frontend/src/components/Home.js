@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { startLogout } from '../actions/auth';
@@ -17,6 +17,8 @@ const Home = ({ startLogout }) => {
   return (
     <div>
       <button onClick={logout}>Logout</button>
+      <Link to='/login'>login</Link>
+      <Link to='/register'>signup</Link>
     </div>
   );
 }
