@@ -3,28 +3,38 @@ import { connect } from 'react-redux';
 
 import { startLogout } from '../actions/auth';
 
-const Home = ({ startLogout }) => {
-  const history = useNavigate();
+const Home = ({ uname, startLogout }) => {
+  //const history = useNavigate();
   
   const logout = async () => {
     const data = await startLogout();
-    
-    console.log(data);
-
-    history('/login')
   };
   
   return (
     <div>
-      <button onClick={logout}>Logout</button>
-      <Link to='/login'>login</Link>
-      <Link to='/register'>signup</Link>
+      <header>
+        {
+          uname ?
+          <div>
+            <p>{uname}</p>
+            <button onClick={logout}>Logout</button>
+          </div> :
+          <div>
+            <Link to='/login'>login</Link>
+            <Link to='/register'>signup</Link>
+          </div>
+        }
+      </header>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  uname: state.auth.uname
+});
 
 const mapDispatchToProps = (dispatch) => ({
   startLogout: () => dispatch(startLogout())
 });
 
-export default connect(undefined, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
