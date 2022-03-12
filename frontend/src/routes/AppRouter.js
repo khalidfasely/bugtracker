@@ -1,14 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import SignRoute from "./SignRoute";
+import Header from "../components/Header";
+import Projects from "../components/Projects";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import NotFound from "../components/NotFound";
 import Register from "../components/Register";
-import SignRoute from "./SignRoute";
 
 const AppRoute = () => (
     <Router>
         <div>
+          <Header />
+          <Projects />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={
