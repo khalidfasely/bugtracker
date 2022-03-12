@@ -14,6 +14,19 @@ class Project(models.Model):
     def __str__(self):
         return f'{self.name} ** {self.id}'
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "time": self.time.strftime("%b %d %Y, %I:%M %p"),
+            "user": {
+                "id": self.user.id,
+                "username": self.user.username
+            },
+            "admins": [admin.username for admin in self.admins.all()],
+            "users_with": [user.username for user in self.users_with.all()]
+        }
+
 class Classification(models.Model):
     id = models.AutoField(primary_key=True)
     description = models.CharField(max_length=25)

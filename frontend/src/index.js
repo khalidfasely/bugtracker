@@ -6,20 +6,27 @@ import AppRouter from './routes/AppRouter';
 import reportWebVitals from './reportWebVitals';
 import configeStore from './store/configureStore';
 import { startSetUser } from './actions/auth';
+import { startSetProjects } from './actions/projects';
 
 const store = configeStore();
 
 const renderApp = () => {
   //Set user before render the app
   store.dispatch(startSetUser()).then(() => {
-    ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <AppRouter />
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-  )
+
+    //Set project before render the app
+    store.dispatch(startSetProjects()).then(() => {
+
+      //Render the app
+      ReactDOM.render(
+        <React.StrictMode>
+          <Provider store={store}>
+            <AppRouter />
+          </Provider>
+        </React.StrictMode>,
+        document.getElementById('root')
+      );
+    });
 })};
 
 renderApp();

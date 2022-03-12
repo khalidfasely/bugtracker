@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startRegister } from '../actions/auth';
+import { startSetProjects } from '../actions/projects';
 
-const Register = ({ startRegister }) => {
+const Register = ({ startRegister, startSetProjects }) => {
     const history = useNavigate();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -46,6 +47,9 @@ const Register = ({ startRegister }) => {
             setPassword('');
             setConfirmation('');
 
+            // Reset the projects after register and login
+            startSetProjects();
+
             history('/');
         };
     };
@@ -56,6 +60,7 @@ const Register = ({ startRegister }) => {
                 {error && <p>{error}</p>}
                 <input
                     type='text'
+                    autoFocus
                     placeholder='Username'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -86,7 +91,8 @@ const Register = ({ startRegister }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    startRegister: (newUserData) => dispatch(startRegister(newUserData))
+    startRegister: (newUserData) => dispatch(startRegister(newUserData)),
+    startSetProjects: () => dispatch(startSetProjects())
 });
 
 export default connect(undefined, mapDispatchToProps)(Register);

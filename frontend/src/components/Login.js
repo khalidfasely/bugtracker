@@ -3,8 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { startLogin } from '../actions/auth';
+import { startSetProjects } from '../actions/projects';
 
-const Login = ({ startLogin }) => {
+const Login = ({ startLogin, startSetProjects }) => {
     const history = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -30,6 +31,9 @@ const Login = ({ startLogin }) => {
             setUsername('');
             setPassword('');
 
+            // Reset the projects after login
+            startSetProjects();
+
             history('/');
         };
     };
@@ -40,13 +44,14 @@ const Login = ({ startLogin }) => {
             {error && <p>{error}</p>}
                 <input
                     type='text'
-                    placeholder='username'
+                    autoFocus
+                    placeholder='Username'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <input
                     type='password'
-                    placeholder='password'
+                    placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
@@ -58,7 +63,8 @@ const Login = ({ startLogin }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    startLogin: ({ username, password }) => dispatch(startLogin({ username, password }))
+    startLogin: ({ username, password }) => dispatch(startLogin({ username, password })),
+    startSetProjects: () => dispatch(startSetProjects())
 });
 
 export default connect(undefined, mapDispatchToProps)(Login);

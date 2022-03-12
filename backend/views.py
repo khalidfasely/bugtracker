@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 
-from .models import User
+from .models import Project, User
 
 # Create your views here.
 
@@ -103,3 +103,22 @@ def register(request):
         
 
     return JsonResponse({"message": "The method must be POST"}, status=400)
+
+def projects(request):
+    # Current user logged in
+    current_user = request.user.username
+
+    # Set projects variable
+    projects = []
+
+    # Get all projects from db
+    all_projects = Project.objects.all()
+
+    # Loop for all projects in db
+    for project in all_projects:
+
+        # Append projects that current user is member on it
+        if current_user in project.serialize()["users_with"]:
+            projects.append(project)
+
+    return JsonResponse({"projects": [ project.serialize() for project in projects ]}, status=201)
