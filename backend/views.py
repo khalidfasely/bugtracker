@@ -122,3 +122,9 @@ def projects(request):
             projects.append(project)
 
     return JsonResponse({"projects": [ project.serialize() for project in projects ]}, status=201)
+
+def project(request, pid):
+    # Get current project requested
+    project = Project.objects.filter(pk=pid).first()
+
+    return JsonResponse({"project": project.serialize()}, status=201)

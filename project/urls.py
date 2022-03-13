@@ -23,4 +23,6 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name='index.html')),
     path('<str>', TemplateView.as_view(template_name='index.html')),
+    #path('project/<int>', TemplateView.as_view(template_name='index.html')),
+    path('<str>/<int>', TemplateView.as_view(template_name='index.html')),
 ]

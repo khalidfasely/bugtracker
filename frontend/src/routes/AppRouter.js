@@ -2,12 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import SignRoute from "./SignRoute";
+import PrivateRoute from "./PrivateRoute";
 import Header from "../components/Header";
 import Projects from "../components/Projects";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import NotFound from "../components/NotFound";
 import Register from "../components/Register";
+import Project from "../components/Project";
 
 const AppRoute = () => (
     <Router>
@@ -26,6 +28,12 @@ const AppRoute = () => (
                 <SignRoute>
                   <Register />
                 </SignRoute>
+              }
+            />
+            <Route path="/project/:pid" element={
+                <PrivateRoute>
+                  <Project />
+                </PrivateRoute>
               }
             />
             <Route path="*" element={<NotFound />} />
