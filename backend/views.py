@@ -127,4 +127,8 @@ def project(request, pid):
     # Get current project requested
     project = Project.objects.filter(pk=pid).first()
 
+    # Check if project is in db
+    if project is None:
+        return JsonResponse({"message": "Project Not Found!"}, status=201)
+
     return JsonResponse({"project": project.serialize()}, status=201)

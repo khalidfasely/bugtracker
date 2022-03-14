@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+//import { useParams } from 'react-router-dom';
 
 import './styles/index.css';
 
@@ -9,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import configeStore from './store/configureStore';
 import { startSetUser } from './actions/auth';
 import { startSetProjects } from './actions/projects';
+import { startSetProject } from './actions/project';
 
 const store = configeStore();
 
@@ -16,18 +18,23 @@ const renderApp = () => {
   //Set user before render the app
   store.dispatch(startSetUser()).then(() => {
 
-    //Set project before render the app
+    //Set projects before render the app
     store.dispatch(startSetProjects()).then(() => {
+      //const params = useParams();
 
-      //Render the app
-      ReactDOM.render(
-        <React.StrictMode>
-          <Provider store={store}>
-            <AppRouter />
-          </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-      );
+      //Set project before render the app
+      store.dispatch(startSetProject(1)).then(() => {
+
+        //Render the app
+        ReactDOM.render(
+          <React.StrictMode>
+            <Provider store={store}>
+              <AppRouter />
+            </Provider>
+          </React.StrictMode>,
+          document.getElementById('root')
+        );
+      });
     });
 })};
 
