@@ -124,11 +124,24 @@ def projects(request):
     return JsonResponse({"projects": [ project.serialize() for project in projects ]}, status=201)
 
 def project(request, pid):
+    # default project
+    def_project = {
+        "user": "default",
+        "name": "default",
+        "time": "default",
+        "admins": [],
+        "users_with": [],
+        "id": "default"
+    }
+
     # Get current project requested
     project = Project.objects.filter(pk=pid).first()
 
     # Check if project is in db
     if project is None:
         return JsonResponse({"message": "Project Not Found!"}, status=201)
+
+    if request.user.username not in [user.username for user in project.users_with.all()]:
+        return JsonResponse({"project": def_project}, status=201)
 
     return JsonResponse({"project": project.serialize()}, status=201)
