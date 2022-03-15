@@ -33,7 +33,7 @@ const Project = ({ startSetProject }) => {
     }, [params])
 
     if (notFound) {
-        return <div>Project Not Found!</div>;
+        return <div>Project Not Found! -- {notFound}</div>;
     }
 
     return (

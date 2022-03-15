@@ -25,7 +25,7 @@ const Bug = ({ startSetBug }) => {
 
 
     if (notFound) {
-        return <div>Bug Not Found!</div>;
+        return <div>Bug Not Found! -- {notFound}</div>;
     };
 
     return (
