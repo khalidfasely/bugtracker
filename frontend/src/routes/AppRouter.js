@@ -10,6 +10,7 @@ import Login from "../components/Login";
 import NotFound from "../components/NotFound";
 import Register from "../components/Register";
 import Project from "../components/Project";
+import Bug from "../components/Bug";
 
 const AppRoute = () => (
     <Router>
@@ -36,6 +37,7 @@ const AppRoute = () => (
                 </PrivateRoute>
               }
             />
+            <Route path="/project/:pid/bug/:bid" element={<Bug />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 
-from .models import Project, User
+from .models import Bugs, Project, User
 
 # Create your views here.
 
@@ -137,11 +137,35 @@ def project(request, pid):
     # Get current project requested
     project = Project.objects.filter(pk=pid).first()
 
+    # Get bugs on this project
+    bugs = Bugs.objects.filter(on_project=project).all()
+
     # Check if project is in db
     if project is None:
         return JsonResponse({"message": "Project Not Found!"}, status=201)
 
+    # Check if user logged in who's request the data
     if request.user.username not in [user.username for user in project.users_with.all()]:
-        return JsonResponse({"project": def_project}, status=201)
+        return JsonResponse({"project": def_project, "bugs": []}, status=201)
 
-    return JsonResponse({"project": project.serialize()}, status=201)
+    # Return project data
+    return JsonResponse({"project": project.serialize(), "bugs": [bug.serialize() for bug in bugs]}, status=201)
+
+def bug(request, pid, bid):
+    # Get the bug
+    bug = Bugs.objects.filter(pk=bid).first()
+
+    # Check if bug exist in db
+    if bug is None:
+        return JsonResponse({"message": "This bug doesn't exist!"}, status=201)
+
+    # Check if the bug on the project
+    if bug.on_project.id != pid:
+        return JsonResponse({"message": "Wrong request!"}, status=201)
+
+    # Check if user logged in who's request the data
+    if request.user.username not in [user.username for user in bug.on_project.users_with.all()]:
+        return JsonResponse({"message": "User not allow to see this bug!"}, status=201)
+
+    # Return bug data
+    return JsonResponse({"bug": bug.serialize()}, status=201)

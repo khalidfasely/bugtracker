@@ -5,7 +5,8 @@ export default (state = projectItemReducerDefaultState, action) => {
         case 'SET_PROJECT':
             return {
                 ...state,
-                project: action.project
+                project: action.project,
+                bugs: action.bugs
             }
 
         default:

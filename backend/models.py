@@ -49,6 +49,23 @@ class Bugs(models.Model):
     def __str__(self):
         return f'{self.user} ** {self.title}'
 
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "classification": self.classification.description,
+            "active": self.active,
+            "on_project": self.on_project.id,
+            "time": self.time.strftime("%b %d %Y, %I:%M %p"),
+            "user": {
+                "id": self.user.id,
+                "username": self.user.username
+            },
+            "admins": [admin.username for admin in self.admins.all()],
+            "users_with": [user.username for user in self.users_with.all()]
+        }
+
 class Comments(models.Model):
     id = models.AutoField(primary_key=True)
     content = models.CharField(max_length=255)
