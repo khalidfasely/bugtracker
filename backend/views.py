@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 
-from .models import Bugs, Project, User
+from .models import Bugs, Comments, Project, User
 
 # Create your views here.
 
@@ -155,6 +155,9 @@ def bug(request, pid, bid):
     # Get the bug
     bug = Bugs.objects.filter(pk=bid).first()
 
+    # Get comments on this bug
+    comments = Comments.objects.filter(on_bug=bug).all()
+
     # Check if bug exist in db
     if bug is None:
         return JsonResponse({"message": "This bug doesn't exist!"}, status=201)
@@ -168,4 +171,4 @@ def bug(request, pid, bid):
         return JsonResponse({"message": "User not allow to see this bug!"}, status=201)
 
     # Return bug data
-    return JsonResponse({"bug": bug.serialize()}, status=201)
+    return JsonResponse({"bug": bug.serialize(), "comments": [comment.serialize() for comment in comments]}, status=201)

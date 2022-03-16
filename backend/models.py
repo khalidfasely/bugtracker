@@ -75,3 +75,15 @@ class Comments(models.Model):
 
     def __str__(self):
         return f'{self.user} ** {self.on_bug.id}'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "user": {
+                "id": self.user.id,
+                "username": self.user.username
+            },
+            "on_bug": self.on_bug.id,
+            "time": self.time.strftime("%b %d %Y, %I:%M %p")
+        }

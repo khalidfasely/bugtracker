@@ -5,7 +5,8 @@ export default (state = bugItemReducerDefaultState, action) => {
         case 'SET_BUG':
             return {
                 ...state,
-                bug: action.bug
+                bug: action.bug,
+                comments: action.comments
             }
 
         default:
