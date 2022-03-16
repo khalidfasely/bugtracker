@@ -11,6 +11,7 @@ import NotFound from "../components/NotFound";
 import Register from "../components/Register";
 import Project from "../components/Project";
 import Bug from "../components/Bug";
+import NewProject from "../components/NewProject";
 
 const AppRoute = () => (
     <Router>
@@ -37,7 +38,14 @@ const AppRoute = () => (
                 </PrivateRoute>
               }
             />
+            {/*make it private*/}
             <Route path="/project/:pid/bug/:bid" element={<Bug />} />
+            <Route path="/new-project" element={
+                <PrivateRoute>
+                  <NewProject />
+                </PrivateRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
