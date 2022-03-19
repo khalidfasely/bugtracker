@@ -182,11 +182,35 @@ def new_project(request):
         if not request.user.username:
             return JsonResponse({"message": "No user logged in!"}, status=201)
 
-        data = request.get('body')
+        # recieve data from frontend
+        data = json.loads(request.body)
 
-        
+        project_name = data.get('name')
+        users = data.get('users')
+        admins = data.get('admins')
 
-        return JsonResponse({}, status=201)
+        # try to create new project
+        try:
+
+            # create new project
+            new_project = Project.objects.create(user=request.user, name=project_name)
+            
+            #add admins
+            for admin in admins:
+                new_project.admins.add(User.objects.get(username=admin))
+
+            #add users
+            for user in users:
+                new_project.users_with.add(User.objects.get(username=user))
+
+            #saved the project
+            new_project.save()
+
+        #catch errors
+        except:
+            return JsonResponse({"message": "Something wrong with the data sent!"}, status=201)
+
+        return JsonResponse({"message": "Saved correctly!"}, status=201)
     
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)

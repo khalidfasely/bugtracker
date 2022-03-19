@@ -88,7 +88,19 @@ const NewProject = ({ uname }) => {
         if (correctProjectName) {
             setErrorName('Project\'s name must be bigger than 15 characters!');
         } else {
-            console.log('try to create!')
+            let arrUsers = selectedUsers.map(user => user.value);
+            let arrAdmins = selectedAdmins.map(admin => admin.value);
+            fetch('/api/new-project', {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: projectName,
+                    users: arrUsers,
+                    admins: arrAdmins
+                })
+            })
+            .then(res => res.json())
+            .then(result => console.log(result))
+            .catch(er => console.error(er));
         }
         //console.log(projectName, selectedUsers, selectedAdmins);
     };
