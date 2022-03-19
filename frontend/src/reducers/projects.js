@@ -7,6 +7,15 @@ export default (state = projectsReducerDefaultState, action) => {
                 ...state,
                 projects: action.projects
             }
+        
+        case 'NEW_PROJECT':
+            return {
+                ...state,
+                projects: [
+                    action.project,
+                    ...state.projects
+                ]
+            }
 
         default:
             return state;

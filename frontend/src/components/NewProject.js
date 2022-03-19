@@ -2,8 +2,13 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { useNavigate } from 'react-router-dom';
 
-const NewProject = ({ uname }) => {
+import { startSetNewProject } from "../actions/newProject";
+
+const NewProject = ({ uname, startSetNewProject }) => {
+    const history = useNavigate();
+
     const [projectName, setProjectName] = useState('');
     const [errorName, setErrorName] = useState('');
     const [selectedUsers, setSelectedUsers] = useState([{ value: uname, label: uname, isFixed: true}]);
@@ -90,19 +95,8 @@ const NewProject = ({ uname }) => {
         } else {
             let arrUsers = selectedUsers.map(user => user.value);
             let arrAdmins = selectedAdmins.map(admin => admin.value);
-            fetch('/api/new-project', {
-                method: 'POST',
-                body: JSON.stringify({
-                    name: projectName,
-                    users: arrUsers,
-                    admins: arrAdmins
-                })
-            })
-            .then(res => res.json())
-            .then(result => console.log(result))
-            .catch(er => console.error(er));
-        }
-        //console.log(projectName, selectedUsers, selectedAdmins);
+            startSetNewProject({ projectName, arrUsers, arrAdmins}).then(result => history(`/project/${result.project.id}`));
+        };
     };
 
     return (
@@ -114,6 +108,7 @@ const NewProject = ({ uname }) => {
                     placeholder="Project's Name"
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
+                    autoFocus
                 />
                 {errorSelect && <p>{errorSelect}</p>}
                 <Select
@@ -127,7 +122,6 @@ const NewProject = ({ uname }) => {
                     placeholder='Select Users'
                     noOptionsMessage={() => 'No other user!'}
                     isMulti
-                    autoFocus
                     isSearchable
                 />
                 <Select
@@ -142,15 +136,6 @@ const NewProject = ({ uname }) => {
                     noOptionsMessage={() => 'No other user!'}
                     isMulti
                     isSearchable
-                    //components={makeAnimated()}
-                    //theme={customTheme}
-                    //defaultValue={selectedAdmins}
-                    //onChange={setSelectedAdmins}
-                    //options={selectedUsers}
-                    //placeholder='Select Admins'
-                    //noOptionsMessage={() => 'No other user!'}
-                    //isMulti
-                    //isSearchable
                 />
                 <button>Create.</button>
             </form>
@@ -162,4 +147,8 @@ const mapStateToProps = (state) => ({
     uname: state.auth.uname
 });
 
-export default connect(mapStateToProps)(NewProject);
+const mapDispatchToProps = (dispatch) => ({
+    startSetNewProject: (project) => dispatch(startSetNewProject(project))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewProject);

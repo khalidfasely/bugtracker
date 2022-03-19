@@ -1,6 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
 
 const Projects = ({ uname, projects }) => {
     return (

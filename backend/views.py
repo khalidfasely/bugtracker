@@ -112,7 +112,7 @@ def projects(request):
     projects = []
 
     # Get all projects from db
-    all_projects = Project.objects.all()
+    all_projects = Project.objects.order_by("-time").all()
 
     # Loop for all projects in db
     for project in all_projects:
@@ -210,7 +210,7 @@ def new_project(request):
         except:
             return JsonResponse({"message": "Something wrong with the data sent!"}, status=201)
 
-        return JsonResponse({"message": "Saved correctly!"}, status=201)
+        return JsonResponse({"message": "Saved correctly!", "project": new_project.serialize()}, status=201)
     
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)

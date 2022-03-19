@@ -4,7 +4,6 @@ import ProjectData from "./ProjectData";
 import BugsList from "./BugsList";
 
 const ProjectItem = ({uname, projectItem, bugs}) => {
-    console.log(projectItem, bugs);
     return (
         <>
             {

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Comment from "./Comment";
 
 const BugItem = ({uname, bug, comments}) => {
-    console.log(bug, comments);
     return (
         <>
             {
