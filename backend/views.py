@@ -172,3 +172,21 @@ def bug(request, pid, bid):
 
     # Return bug data
     return JsonResponse({"bug": bug.serialize(), "comments": [comment.serialize() for comment in comments]}, status=201)
+
+@csrf_exempt
+def new_project(request):
+    # Check method
+    if request.method == 'POST':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        data = request.get('body')
+
+        
+
+        return JsonResponse({}, status=201)
+    
+    # If method not POST
+    return JsonResponse({"message": "Method should be POST!"}, status=201)

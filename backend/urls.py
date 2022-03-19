@@ -10,4 +10,5 @@ urlpatterns = [
     path("projects", views.projects, name="projects_route"),
     path("project/<int:pid>", views.project, name="project_route"),
     path("project/<int:pid>/bug/<int:bid>", views.bug, name="bug_route"),
+    path("new-project", views.new_project, name="new_project_route"),
 ]
