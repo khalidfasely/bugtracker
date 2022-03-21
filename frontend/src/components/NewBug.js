@@ -69,7 +69,7 @@ const NewBug = ({ uname, users }) => {
                 <input placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
                 <textarea placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
                 <div>
-                    <input id='active' type='checkbox' name='active' value={isActive} onChange={(e) => setIsActive(e.target.checked)} checked={isActive} />
+                    <input id='active' type='checkbox' name='active' onChange={(e) => setIsActive(e.target.checked)} checked={isActive} />
                     <label htmlFor="active">Active</label>
                 </div>
                 <div>
