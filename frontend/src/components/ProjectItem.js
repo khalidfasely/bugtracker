@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ProjectData from "./ProjectData";
 import BugsList from "./BugsList";
+import NewBug from "./NewBug";
 
 const ProjectItem = ({uname, projectItem, bugs}) => {
     return (
@@ -10,11 +11,14 @@ const ProjectItem = ({uname, projectItem, bugs}) => {
                 projectItem?.users_with?.includes(uname) ?
                 <div>
                     **** project <br /><ProjectData projectItem={projectItem} />
-                    **** bugs <br />{ bugs?.map(bug => (
-                        <Link to={`/project/${bug.on_project}/bug/${bug.id}`}>
-                            <BugsList bug={bug} />
-                        </Link>)
+                    **** new bug <br /><NewBug users={projectItem.users_with} />
+                    **** bugs <br /><div>
+                        { bugs?.map(bug => (
+                            <Link to={`/project/${bug.on_project}/bug/${bug.id}`}>
+                                <BugsList bug={bug} />
+                            </Link>)
                         )}
+                    </div>
                 </div> :
                 <div>Not able to see this project! <Link to="/new">Create one!</Link></div>
             }
