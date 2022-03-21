@@ -173,6 +173,12 @@ def bug(request, pid, bid):
     # Return bug data
     return JsonResponse({"bug": bug.serialize(), "comments": [comment.serialize() for comment in comments]}, status=201)
 
+def get_users(request):
+    #get all users
+    users = User.objects.all()
+
+    return JsonResponse({"users": [user.username for user in users]}, status=201)
+
 @csrf_exempt
 def new_project(request):
     # Check method

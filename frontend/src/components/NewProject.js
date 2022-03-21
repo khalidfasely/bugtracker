@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { useNavigate } from 'react-router-dom';
 
 import { startSetNewProject } from "../actions/newProject";
+import { startSetUsers } from "../actions/users";
 
-const NewProject = ({ uname, startSetNewProject }) => {
+const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
     const history = useNavigate();
 
     const [projectName, setProjectName] = useState('');
@@ -15,10 +16,12 @@ const NewProject = ({ uname, startSetNewProject }) => {
     const [selectedAdmins, setSelectedAdmins] = useState([{ value: uname, label: uname, isFixed: true}]);
     const [errorSelect, setErrorSelect] = useState('');
 
-    const options = [
-        { value: 'user2', label: 'User 2'},
-        { value: 'user3', label: 'User 3'},
-    ];
+    useEffect(() => {
+        startSetUsers();
+    }, [])
+
+    let options = users?.map(user => ({ value: user, label: user }));
+
 
     const customTheme = (theme) => ({
         ...theme,
@@ -144,11 +147,13 @@ const NewProject = ({ uname, startSetNewProject }) => {
 };
 
 const mapStateToProps = (state) => ({
-    uname: state.auth.uname
+    uname: state.auth.uname,
+    users: state.users
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startSetNewProject: (project) => dispatch(startSetNewProject(project))
+    startSetNewProject: (project) => dispatch(startSetNewProject(project)),
+    startSetUsers: () => dispatch(startSetUsers())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewProject);
