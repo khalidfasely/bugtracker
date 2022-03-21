@@ -22,7 +22,6 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
 
     let options = users?.map(user => ({ value: user, label: user }));
 
-
     const customTheme = (theme) => ({
         ...theme,
         colors: {

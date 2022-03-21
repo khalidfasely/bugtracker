@@ -35,7 +35,7 @@ const Bug = ({ startSetBug }) => {
             {
                 ableToSee ?
                 <div><BugItem /></div> :
-                <div>You're not able to see this project</div>
+                <div>You're not able to see this bug</div>
             }
         </div>
     );

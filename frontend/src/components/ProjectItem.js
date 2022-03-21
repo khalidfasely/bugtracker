@@ -10,7 +10,11 @@ const ProjectItem = ({uname, projectItem, bugs}) => {
                 projectItem?.users_with?.includes(uname) ?
                 <div>
                     **** project <br /><ProjectData projectItem={projectItem} />
-                    **** bugs <br />{ bugs?.map(bug => <Link to={`/project/${bug.on_project}/bug/${bug.id}`}><BugsList bug={bug} /></Link>) }
+                    **** bugs <br />{ bugs?.map(bug => (
+                        <Link to={`/project/${bug.on_project}/bug/${bug.id}`}>
+                            <BugsList bug={bug} />
+                        </Link>)
+                        )}
                 </div> :
                 <div>Not able to see this project! <Link to="/new">Create one!</Link></div>
             }

@@ -7,6 +7,7 @@ import { startSetProjects } from '../actions/projects';
 const Header = ({ uname, startLogout, startSetProjects }) => {
     return (
         <header>
+            <Link to='/'>Bug Tracker</Link>
             {
                 uname ?
                 <div>
