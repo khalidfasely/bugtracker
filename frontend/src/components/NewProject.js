@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
 import { useNavigate } from 'react-router-dom';
 
 import { startSetNewProject } from "../actions/newProject";
 import { startSetUsers } from "../actions/users";
+import SelectUsers from "./SelectUsers";
 
 const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
     const history = useNavigate();
@@ -19,51 +18,6 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
     useEffect(() => {
         startSetUsers();
     }, [])
-
-    let options = users?.map(user => ({ value: user, label: user }));
-
-    const customTheme = (theme) => ({
-        ...theme,
-        colors: {
-            ...theme.colors,
-            primary25: 'orange',
-            primary: 'red'
-        }
-    });
-
-    const onChangeUsers = (selectedUsers, { action, removedValue }) => {
-        switch (action) {
-            case "remove-value":
-            case "pop-value":
-                if (removedValue.isFixed) {
-                  return;
-                }
-                break;
-            case "clear":
-                selectedUsers = selectedUsers.filter(v => v.isFixed);
-                break;
-            default:
-                break;
-        };
-        setSelectedUsers(selectedUsers);
-    };
-
-    const onChangeAdmins = (selectedAdmins, { action, removedValue }) => {
-        switch (action) {
-            case "remove-value":
-            case "pop-value":
-                if (removedValue.isFixed) {
-                  return;
-                }
-                break;
-            case "clear":
-                selectedAdmins = selectedAdmins.filter(v => v.isFixed);
-                break;
-            default:
-                break;
-        };
-        setSelectedAdmins(selectedAdmins);
-    };
 
     const incorrectUsers = (users, admins) => {
         let arrUsers = users.map(user => user.value);
@@ -112,32 +66,11 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
                     onChange={(e) => setProjectName(e.target.value)}
                     autoFocus
                 />
-                {errorSelect && <p>{errorSelect}</p>}
-                <Select
-                    components={makeAnimated()}
-                    value={selectedUsers}
-                    theme={customTheme}
-                    defaultValue={selectedUsers}
-                    onChange={onChangeUsers}
-                    options={options}
-                    isClearable={!options && options.some(option => option.isFixed)}
-                    placeholder='Select Users'
-                    noOptionsMessage={() => 'No other user!'}
-                    isMulti
-                    isSearchable
-                />
-                <Select
-                    components={makeAnimated()}
-                    value={selectedAdmins}
-                    theme={customTheme}
-                    defaultValue={selectedAdmins}
-                    onChange={onChangeAdmins}
-                    options={selectedUsers}
-                    isClearable={!options && options.some(option => option.isFixed)}
-                    placeholder='Select Admins'
-                    noOptionsMessage={() => 'No other user!'}
-                    isMulti
-                    isSearchable
+                <SelectUsers
+                    users={users}
+                    selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers}
+                    selectedAdmins={selectedAdmins} setSelectedAdmins={setSelectedAdmins}
+                    errorSelect={errorSelect}
                 />
                 <button>Create.</button>
             </form>
