@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 
-from .models import Bugs, Comments, Project, User
+from .models import Bugs, Classification, Comments, Project, User
 
 # Create your views here.
 
@@ -217,6 +217,58 @@ def new_project(request):
             return JsonResponse({"message": "Something wrong with the data sent!"}, status=201)
 
         return JsonResponse({"message": "Saved correctly!", "project": new_project.serialize()}, status=201)
+    
+    # If method not POST
+    return JsonResponse({"message": "Method should be POST!"}, status=201)
+
+@csrf_exempt
+def new_bug(request, on_project):
+    # check request method
+    if request.method == 'POST':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        # recieve data from frontend
+        data = json.loads(request.body)
+
+        title = data.get('title')
+        description = data.get('description')
+        is_active = data.get('isActive')
+        classification = data.get('classification')
+        users = data.get('users')
+        admins = data.get('admins')
+
+        #try to create new bug
+        try:
+
+            #create new bug
+            new_bug = Bugs.objects.create(
+                title=title,
+                description=description,
+                user=request.user,
+                on_project=Project.objects.get(pk=on_project),
+                active=is_active,
+                classification=Classification.objects.get(description=classification)
+            )
+
+            #add admins
+            for admin in admins:
+                new_bug.admins.add(User.objects.get(username=admin))
+
+            #add users
+            for user in users:
+                new_bug.users_with.add(User.objects.get(username=user))
+
+            #save bug
+            new_bug.save()
+
+        #catch errors
+        except:
+            return JsonResponse({"message": "Something wrong with the data sent!"}, status=201)
+
+        return JsonResponse({"bug": new_bug.serialize()}, status=201)
     
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)
