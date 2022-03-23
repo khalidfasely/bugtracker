@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import { startSetNewBug } from "../actions/project";
 
 import Select from "./SelectUsers";
 
-const NewBug = ({ uname, users, on_project }) => {
+const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
     const [title, setTitle] = useState('');
     const [errorTitle, setErrorTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -53,20 +54,18 @@ const NewBug = ({ uname, users, on_project }) => {
             let arrUsers = selectedUsers.map(user => user.value);
             let arrAdmins = selectedAdmins.map(admin => admin.value);
 
-            fetch(`/api/project/${on_project}/new-bug`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    title,
-                    description,
-                    isActive,
-                    classification,
-                    users: arrUsers,
-                    admins: arrAdmins
-                })
-            })
-            .then(res => res.json())
-            .then(result => console.log(result))
-            .catch(er => console.error(er));
+            startSetNewBug(on_project, {
+                title,
+                description,
+                isActive,
+                classification,
+                users: arrUsers,
+                admins: arrAdmins
+            }).then(result => {
+                if (result.message) {
+                    setErrorTitle(result.message);
+                }
+            });
         };
     };
 
@@ -123,4 +122,8 @@ const mapStateToProps = (state) => ({
     uname: state.auth.uname
 });
 
-export default connect(mapStateToProps)(NewBug);
+const mapDispatchToProps = (dispatch) => ({
+    startSetNewBug: (on_project, bugData) => dispatch(startSetNewBug(on_project, bugData))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewBug);

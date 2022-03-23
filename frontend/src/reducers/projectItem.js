@@ -9,6 +9,15 @@ export default (state = projectItemReducerDefaultState, action) => {
                 bugs: action.bugs
             }
 
+        case 'NEW_BUG':
+            return {
+                ...state,
+                bugs: [
+                    ...state.bugs,
+                    action.bug
+                ]
+            }
+
         default:
             return state;
     };

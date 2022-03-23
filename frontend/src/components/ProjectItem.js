@@ -14,7 +14,7 @@ const ProjectItem = ({uname, projectItem, bugs}) => {
                     **** new bug <br /><NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     **** bugs <br /><div>
                         { bugs?.map(bug => (
-                            <Link to={`/project/${bug.on_project}/bug/${bug.id}`}>
+                            <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                 <BugsList bug={bug} />
                             </Link>)
                         )}
