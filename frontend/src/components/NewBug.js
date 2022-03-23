@@ -64,6 +64,12 @@ const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
             }).then(result => {
                 if (result.message) {
                     setErrorTitle(result.message);
+                    return;
+                }
+
+                if (result.bug) {
+                    setTitle('');
+                    setDescription('');
                 }
             });
         };
