@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { connect } from "react-redux";
+import { startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId }) => {
+const NewComment = ({ bugId, startSetNewComment }) => {
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
 
@@ -14,15 +16,7 @@ const NewComment = ({ bugId }) => {
             return;
         };
 
-        fetch(`/api/bug/${bugId}/new-comment`, {
-            method: 'POST',
-            body: JSON.stringify({
-                content: comment
-            })
-        })
-        .then(res => res.json())
-        .then(result => console.log(result))
-        .catch(er => console.error(er));
+        startSetNewComment(bugId, comment);
 
         setComment('');
     };
@@ -42,4 +36,8 @@ const NewComment = ({ bugId }) => {
     );
 };
 
-export default NewComment;
+const mapDispatchToProps = (dispatch) => ({
+    startSetNewComment: (bugId, comment) => dispatch(startSetNewComment(bugId, comment))
+});
+
+export default connect(undefined, mapDispatchToProps)(NewComment);

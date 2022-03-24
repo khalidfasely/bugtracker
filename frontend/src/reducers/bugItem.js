@@ -9,6 +9,15 @@ export default (state = bugItemReducerDefaultState, action) => {
                 comments: action.comments
             }
 
+        case 'NEW_COMMENT':
+            return {
+                ...state,
+                comments: [
+                    ...state.comments,
+                    action.comment
+                ]
+            }
+
         default:
             return state;
     };
