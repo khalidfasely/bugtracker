@@ -272,3 +272,35 @@ def new_bug(request, on_project):
     
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)
+
+@csrf_exempt
+def new_comment(request, on_bug):
+    # check request method
+    if request.method == 'POST':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        # recieve data from frontend
+        data = json.loads(request.body)
+
+        content = data.get('content')
+
+        #try to create new comment
+        try:
+
+            #create new comment
+            new_comment = Comments.objects.create(user=request.user, on_bug=Bugs.objects.get(pk=on_bug), content=content)
+
+            #save comment to the db
+            new_comment.save()
+
+        #catch errors
+        except:
+            return JsonResponse({"message": "Something wrong with the data sent!"}, status=201)
+
+        return JsonResponse({"comment": new_comment.serialize()}, status=201)
+
+    # If method not POST
+    return JsonResponse({"message": "Method should be POST!"}, status=201)

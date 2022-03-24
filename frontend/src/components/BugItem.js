@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Comment from "./Comment";
 import BugData from "./BugData";
+import NewComment from "./NewComment";
 
 const BugItem = ({uname, bug, comments}) => {
     return (
@@ -11,7 +12,7 @@ const BugItem = ({uname, bug, comments}) => {
                 bug?.users_with?.includes(uname) ?
                 <div>
                     **** bug <br /><BugData bug={bug} />
-                    **** New comment <div>form</div>
+                    **** New comment <br /><NewComment bugId={bug.id} />
                     **** comments {comments?.map(comment => <Comment comment={comment} />)}
                 </div> :
                 <div>Not able to see this bug! <Link to="/new">Create one!</Link></div>
