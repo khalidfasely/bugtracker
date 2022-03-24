@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId, uname, startSetNewComment }) => {
-    const [comment, setComment] = useState('');
+const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, setIsEdit }) => {
+    const [comment, setComment] = useState(commentEdit ? commentEdit : '');
     const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
@@ -16,6 +17,13 @@ const NewComment = ({ bugId, uname, startSetNewComment }) => {
             setError('Comment must be 25 character or more!');
             return;
         };
+
+        if (commentEdit) {
+            console.log('edited', comment);
+            //startSetEditComment(comment);
+            setIsEdit(false);
+            return;
+        }
 
         startSetNewComment(bugId, comment);
 
@@ -35,7 +43,11 @@ const NewComment = ({ bugId, uname, startSetNewComment }) => {
                     maxLength={255}
                     value={comment} onChange={(e) => setComment(e.target.value)}
                 />
-                <button>Add</button>
+                {
+                    commentEdit ?
+                    <button>Edit</button> :
+                    <button>Add</button>
+                }
             </form>
         </div>
     );

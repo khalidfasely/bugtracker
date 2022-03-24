@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { startSetNewBug } from "../actions/project";
+import { Link } from "react-router-dom";
 
 import Select from "./SelectUsers";
+import { startSetNewBug } from "../actions/project";
 
 const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
     const [title, setTitle] = useState('');
