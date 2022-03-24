@@ -75,6 +75,10 @@ const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
         };
     };
 
+    if (!uname) {
+        return <div><Link to='/login'>Login</Link> or <Link to='/register'>Sign In</Link> to Add a Bug!</div>;
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>

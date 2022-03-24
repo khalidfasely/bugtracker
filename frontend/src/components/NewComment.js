@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId, startSetNewComment }) => {
+const NewComment = ({ bugId, uname, startSetNewComment }) => {
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
 
@@ -21,6 +22,10 @@ const NewComment = ({ bugId, startSetNewComment }) => {
         setComment('');
     };
 
+    if (!uname) {
+        return <div><Link to='/login'>Login</Link> or <Link to='/register'>Sign In</Link> to Add a Comment!</div>;
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -36,8 +41,12 @@ const NewComment = ({ bugId, startSetNewComment }) => {
     );
 };
 
+const mapStateToProps = (state) => ({
+    uname: state.auth.uname
+});
+
 const mapDispatchToProps = (dispatch) => ({
     startSetNewComment: (bugId, comment) => dispatch(startSetNewComment(bugId, comment))
 });
 
-export default connect(undefined, mapDispatchToProps)(NewComment);
+export default connect(mapStateToProps, mapDispatchToProps)(NewComment);

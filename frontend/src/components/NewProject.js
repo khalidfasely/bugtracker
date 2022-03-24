@@ -55,6 +55,10 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
         };
     };
 
+    if (!uname) {
+        return <div><Link to='/login'>Login</Link> or <Link to='/register'>Sign In</Link> to Add a Project!</div>;
+    }
+
     return (
         <div>
             <form onSubmit={tryCreateProject}>
