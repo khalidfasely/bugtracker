@@ -343,3 +343,26 @@ def edit_comment(request, commentId):
 
     # If method not PUT
     return JsonResponse({"message": "Method should be PUT!"}, status=201)
+
+@csrf_exempt
+def delete_comment(request, commentId):
+    #try get comment from db
+    try:
+        comment = Comments.objects.get(pk=commentId)
+    
+    #catch errors
+    except:
+        return JsonResponse({"message": "Maybe you try delete a comment that doesn't exist!"}, status=201)
+    
+    # Check if user logged in
+    if not request.user.username:
+        return JsonResponse({"message": "No user logged in!"}, status=201)
+
+    #Check if user have access to edit this comment
+    if comment.user != request.user:
+        return JsonResponse({"message": "User not allow to delete this comment!"}, status=201)
+
+    #delete comment
+    comment.delete()
+
+    return JsonResponse({ "message": "Delete Successfully" }, status=201)
