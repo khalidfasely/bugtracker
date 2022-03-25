@@ -9,7 +9,9 @@ const Register = ({ startRegister, startSetProjects }) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [shownPd, setShownPd] = useState(false);
     const [confirmation, setConfirmation] = useState('');
+    const [shownCfr, setShownCfr] = useState(false);
     const [error, setError] = useState('');
 
     const onFormSubmit = async (e) => {
@@ -72,17 +74,27 @@ const Register = ({ startRegister, startSetProjects }) => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    type='password'
+                    type={shownPd ? 'text' : 'password'}
                     placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {
+                    shownPd ?
+                    <button type="button" onClick={() => setShownPd(false)}>Hide password!</button> :
+                    <button type="button" onClick={() => setShownPd(true)}>Show password!</button>
+                }
                 <input
-                    type='password'
+                    type={shownCfr ? 'text' : 'password'}
                     placeholder='Confirmation'
                     value={confirmation}
                     onChange={(e) => setConfirmation(e.target.value)}
                 />
+                {
+                    shownCfr ?
+                    <button type="button" onClick={() => setShownCfr(false)}>Hide confirmation!</button> :
+                    <button type="button" onClick={() => setShownCfr(true)}>Show confirmation!</button>
+                }
                 <button>Register</button>
             </form>
             <p>Already have an account? Login in <Link to='/login'>here</Link>.</p>

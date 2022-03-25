@@ -9,6 +9,7 @@ const Login = ({ startLogin, startSetProjects }) => {
     const history = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [shownPd, setShownPd] = useState(false);
     const [error, setError] = useState('');
 
     const onFormSubmit = async (e) => {
@@ -50,13 +51,19 @@ const Login = ({ startLogin, startSetProjects }) => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
                 <input
-                    type='password'
+                    type={shownPd ? 'text' : 'password'}
                     placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {
+                    shownPd ?
+                    <button type="button" onClick={() => setShownPd(false)}>Hide password!</button> :
+                    <button type="button" onClick={() => setShownPd(true)}>Show password!</button>
+                }
                 <button>Login</button>
             </form>
+            
             <p>Haven't an account? Create one <Link to='/register'>here</Link>.</p>
         </div>
     );

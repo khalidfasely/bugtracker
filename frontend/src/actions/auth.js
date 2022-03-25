@@ -58,7 +58,6 @@ export const register = ({ uname, uid }) => ({
 export const startRegister = ({ username, email, password, confirmation }) => {
     return (dispatch) => {
         return registerApi({ username, email, password, confirmation }).then((result) => {
-            console.log(result);
             if (!result.user) {
                 return result;
             };
