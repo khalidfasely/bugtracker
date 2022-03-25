@@ -2,9 +2,9 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { startSetNewComment } from "../actions/bug";
+import { startSetEditComment, startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, setIsEdit }) => {
+const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, setIsEdit, startSetEditComment }) => {
     const [comment, setComment] = useState(commentEdit ? commentEdit : '');
     const [error, setError] = useState('');
 
@@ -13,24 +13,15 @@ const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, 
 
         setError('');
 
-        if (comment.replace(/\s/g, '') < 25) {
-            setError('Comment must be 25 character or more!');
+        const availableComment = comment.replace(/\s/g, '').length >= 15;
+
+        if (!availableComment) {
+            setError('Comment must be 15 character or more!');
             return;
         };
 
         if (commentEdit) {
-            console.log('edited', comment);
-            //startSetEditComment(comment);
-            fetch(`/api/edit-comment/${commentId}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    content: comment
-                })
-            })
-            .then(res => res.json())
-            .then(result => console.log(result))
-            .catch(er => console.error(er));
-            setIsEdit(false);
+            startSetEditComment(commentId, comment).then(() => setIsEdit(false));
             return;
         }
 
@@ -67,7 +58,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startSetNewComment: (bugId, comment) => dispatch(startSetNewComment(bugId, comment))
+    startSetNewComment: (bugId, comment) => dispatch(startSetNewComment(bugId, comment)),
+    startSetEditComment: (cid, comment) => dispatch(startSetEditComment(cid, comment))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewComment);

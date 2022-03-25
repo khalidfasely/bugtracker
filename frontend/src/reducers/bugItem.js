@@ -18,6 +18,15 @@ export default (state = bugItemReducerDefaultState, action) => {
                 ]
             }
 
+        case 'EDIT_COMMENT':
+            return {
+                ...state,
+                comments: state.comments.map(comment => {
+                    if (comment.id === action.cid) return action.comment;
+                    return comment;
+                })
+            }
+
         default:
             return state;
     };
