@@ -6,7 +6,7 @@ const Comment = ({ comment, uname }) => {
     const [isEdit, setIsEdit] = useState(false);
     
     if (isEdit) {
-      return <NewComment commentEdit={comment.content} setIsEdit={setIsEdit} />
+      return <NewComment commentEdit={comment.content} commentId={comment.id} setIsEdit={setIsEdit} />
     };
     
     return (

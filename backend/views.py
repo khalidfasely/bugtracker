@@ -304,3 +304,42 @@ def new_comment(request, on_bug):
 
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)
+
+@csrf_exempt
+def edit_comment(request, commentId):
+    #check request method
+    if request.method == 'PUT':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        #try find the comment in db
+        try:
+            comment = Comments.objects.get(pk=commentId)
+        
+        #catch errors (if no comment in db)
+        except:
+            return JsonResponse({"message": "No Comment in database!"}, status=201)
+
+        #Check if user have access to edit this comment
+        if comment.user != request.user:
+            return JsonResponse({"message": "User not allow to edit this comment!"}, status=201)
+
+        # recieve data from frontend
+        data = json.loads(request.body)
+
+        new_content = data.get('content')
+
+        #try update comment
+        try:
+            Comments.objects.filter(pk=commentId).update(content=new_content)
+        
+        #catch errors
+        except:
+            return JsonResponse({"message": "Cannot save the updates!"}, status=201)
+
+        return JsonResponse({"comment": Comments.objects.get(pk=commentId).serialize()}, status=201)
+
+    # If method not PUT
+    return JsonResponse({"message": "Method should be PUT!"}, status=201)

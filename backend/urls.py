@@ -14,4 +14,5 @@ urlpatterns = [
     path("new-project", views.new_project, name="new_project_route"),
     path("project/<int:on_project>/new-bug", views.new_bug, name="new_bug_route"),
     path("bug/<int:on_bug>/new-comment", views.new_comment, name="new_comment_route"),
+    path("edit-comment/<int:commentId>", views.edit_comment, name="edit_comment_route"),
 ]

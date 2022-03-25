@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, setIsEdit }) => {
+const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, setIsEdit }) => {
     const [comment, setComment] = useState(commentEdit ? commentEdit : '');
     const [error, setError] = useState('');
 
@@ -21,6 +21,15 @@ const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, setIsEdit }
         if (commentEdit) {
             console.log('edited', comment);
             //startSetEditComment(comment);
+            fetch(`/api/edit-comment/${commentId}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    content: comment
+                })
+            })
+            .then(res => res.json())
+            .then(result => console.log(result))
+            .catch(er => console.error(er));
             setIsEdit(false);
             return;
         }
