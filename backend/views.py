@@ -222,6 +222,29 @@ def new_project(request):
     return JsonResponse({"message": "Method should be POST!"}, status=201)
 
 @csrf_exempt
+def delete_project(request, projectId):
+    #try get project from db
+    try:
+        project = Project.objects.get(pk=projectId)
+    
+    #catch errors
+    except:
+        return JsonResponse({"message": "Maybe you try delete a project that doesn't exist!"}, status=201)
+    
+    # Check if user logged in
+    if not request.user.username:
+        return JsonResponse({"message": "No user logged in!"}, status=201)
+
+    #Check if user have access to delete this project
+    if project.user != request.user:
+        return JsonResponse({"message": "User not allow to delete this project!"}, status=201)
+
+    #delete project
+    project.delete()
+
+    return JsonResponse({ "message": "Delete Successfully" }, status=201)
+
+@csrf_exempt
 def new_bug(request, on_project):
     # check request method
     if request.method == 'POST':
@@ -358,7 +381,7 @@ def delete_comment(request, commentId):
     if not request.user.username:
         return JsonResponse({"message": "No user logged in!"}, status=201)
 
-    #Check if user have access to edit this comment
+    #Check if user have access to delete this comment
     if comment.user != request.user:
         return JsonResponse({"message": "User not allow to delete this comment!"}, status=201)
 
