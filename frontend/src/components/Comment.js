@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 import Modal from 'react-modal';
 
 import NewComment from "./NewComment";
+import { startSetDeleteComment } from "../actions/bug";
 
-const Comment = ({ comment, uname }) => {
+const Comment = ({ comment, uname, startSetDeleteComment }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [delModalOpen, setDelModalOpen] = useState(false);
 
     const deleteComment = () => {
-      fetch(`/api/delete-comment/${comment.id}`)
-      .then(res => res.json())
-      .then(result => console.log(result))
-      .catch(er => console.error(er));
-      setDelModalOpen(false);
+      startSetDeleteComment(comment.id).then(() => {
+        setDelModalOpen(false);
+      });
     };
     
     if (isEdit) {
@@ -45,4 +44,8 @@ const mapStateToProps = (state) => ({
   uname: state.auth.uname
 });
 
-export default connect(mapStateToProps)(Comment);
+const mapDispatchToProps = (dispatch) => ({
+  startSetDeleteComment: (cid) => dispatch(startSetDeleteComment(cid))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);

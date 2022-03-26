@@ -1,4 +1,5 @@
 import bugApi from "../api/bug";
+import delCommentApi from "../api/delComment";
 import editCommentApi from "../api/editComment";
 import newCommentApi from "../api/newComment";
 
@@ -44,6 +45,25 @@ export const startSetEditComment = (cid, newCommentContent) => {
             if (result.comment) {
                 dispatch(setEditComment(cid, result.comment));
             };
+            return result;
+        });
+    };
+};
+
+export const setDeleteComment = (cid) => ({
+    type: "DELETE_COMMENT",
+    cid
+});
+
+export const startSetDeleteComment = (cid) => {
+    return (dispatch) => {
+        return delCommentApi(cid).then(result => {
+            //If not deleted from db
+            if (result.message !== "Delete Successfully") {
+                return result;
+            }
+
+            dispatch(setDeleteComment(cid));
             return result;
         });
     };

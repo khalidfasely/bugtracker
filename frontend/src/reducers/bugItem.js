@@ -27,6 +27,12 @@ export default (state = bugItemReducerDefaultState, action) => {
                 })
             }
 
+        case "DELETE_COMMENT":
+            return {
+                ...state,
+                comments: state.comments.filter(comment => comment.id !== action.cid)
+            }
+
         default:
             return state;
     };
