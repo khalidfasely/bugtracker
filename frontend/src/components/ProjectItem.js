@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 
@@ -6,18 +6,18 @@ import ProjectData from "./ProjectData";
 import BugsList from "./BugsList";
 import NewBug from "./NewBug";
 import { useState } from "react";
+import { startSetDelProject } from "../actions/delProject";
 
-const ProjectItem = ({uname, projectItem, bugs}) => {
+const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
+    const history = useNavigate();
+
     const [delModalOpen, setDelModalOpen] = useState(false);
 
     const deleteProject = () => {
-        console.log('deleting!');
-        fetch(`/api/delete-project/${projectItem.id}`)
-        .then(res => res.json())
-        .then(result => console.log(result))
-        .catch(er => console.error(er));
-
-        setDelModalOpen(false);
+        startSetDelProject(projectItem.id).then(result => {
+            history('/');
+            setDelModalOpen(false);
+        });
     }
 
     return (
@@ -36,8 +36,8 @@ const ProjectItem = ({uname, projectItem, bugs}) => {
                     }
                     **** new bug <br /><NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     **** bugs <br /><div>
-                        { bugs.map(bug => (
-                            <Link to={`/project/${bug.on_project}/bug/${bug.id}`}>
+                        { bugs?.map(bug => (
+                            <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                 <BugsList bug={bug} />
                             </Link>)
                         )}
@@ -61,4 +61,8 @@ const mapStateToProps = (state) => ({
     bugs: state.projectItem.bugs
 });
 
-export default connect(mapStateToProps)(ProjectItem);
+const mapDispatchToProps = (dispatch) => ({
+    startSetDelProject: (pid) => dispatch(startSetDelProject(pid))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectItem);

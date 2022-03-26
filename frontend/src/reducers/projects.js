@@ -16,6 +16,12 @@ export default (state = projectsReducerDefaultState, action) => {
                     ...state.projects
                 ]
             }
+        
+        case 'DELETE_PROJECT':
+            return {
+                ...state,
+                projects: state.projects.filter(project => project.id !== action.pid)
+            };
 
         default:
             return state;
