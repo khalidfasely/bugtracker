@@ -354,6 +354,29 @@ def new_bug(request, on_project):
     return JsonResponse({"message": "Method should be POST!"}, status=201)
 
 @csrf_exempt
+def delete_bug(request, bugId):
+    #try get bug from db
+    try:
+        bug = Bugs.objects.get(pk=bugId)
+    
+    #catch errors
+    except:
+        return JsonResponse({"message": "Maybe you try delete a bug that doesn't exist!"}, status=201)
+    
+    # Check if user logged in
+    if not request.user.username:
+        return JsonResponse({"message": "No user logged in!"}, status=201)
+
+    #Check if user have access to delete this bug
+    if bug.user != request.user:
+        return JsonResponse({"message": "User not allow to delete this bug!"}, status=201)
+
+    #delete bug
+    bug.delete()
+
+    return JsonResponse({ "message": "Delete Successfully" }, status=201)
+
+@csrf_exempt
 def new_comment(request, on_bug):
     # check request method
     if request.method == 'POST':

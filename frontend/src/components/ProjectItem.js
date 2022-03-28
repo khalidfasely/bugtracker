@@ -52,7 +52,8 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                 onRequestClose={() => setDelModalOpen(false)}
             >
                 Delete
-            <button onClick={deleteProject}>Delete</button></Modal>
+                <button onClick={deleteProject}>Delete</button>
+            </Modal>
             <Modal
                 isOpen={editModalOpen}
                 onRequestClose={() => setEditModalOpen(false)}

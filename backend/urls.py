@@ -17,6 +17,7 @@ urlpatterns = [
     path("delete-project/<int:projectId>", views.delete_project, name="delete_project_route"),
 
     path("project/<int:on_project>/new-bug", views.new_bug, name="new_bug_route"),
+    path("delete-bug/<int:bugId>", views.delete_bug, name="delete_project_route"),
 
     path("bug/<int:on_bug>/new-comment", views.new_comment, name="new_comment_route"),
     path("edit-comment/<int:commentId>", views.edit_comment, name="edit_comment_route"),

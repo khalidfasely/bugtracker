@@ -72,17 +72,6 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
             if (isEdit) {
                 startSetEditProject(projectItemEdit.id, { name: projectName, users: arrUsers, admins: arrAdmins })
                 .then(result => setEditModalOpen(false));
-                //fetch(`/api/edit-project/${projectItemEdit.id}`, {
-                //    method: 'PUT',
-                //    body: JSON.stringify({
-                //        name: projectName,
-                //        users: arrUsers,
-                //        admins: arrAdmins
-                //    })
-                //})
-                //.then(res => res.json())
-                //.then(result => console.log(result))
-                //.catch(er => console.error(er));
                 return;
             }
 
