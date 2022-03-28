@@ -1,3 +1,4 @@
+import delBugApi from "../api/delBug";
 import newBugApi from "../api/newBug";
 import projectApi from "../api/project";
 
@@ -27,6 +28,20 @@ export const startSetNewBug = (on_project, bugData) => {
             if (result.bug) {
                 dispatch(setNewBug(result.bug));
             }
+            return result;
+        });
+    };
+};
+
+export const setDeleteBug = (bid) => ({
+    type: 'DELETE_BUG',
+    bid
+});
+
+export const startSetDeleteBug = (bid) => {
+    return (dispatch) => {
+        return delBugApi(bid).then(result => {
+            dispatch(setDeleteBug(bid));
             return result;
         });
     };

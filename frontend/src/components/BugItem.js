@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Comment from "./Comment";
@@ -6,17 +6,18 @@ import BugData from "./BugData";
 import NewComment from "./NewComment";
 import Modal from "react-modal";
 import { useState } from "react";
+import { startSetDeleteBug } from "../actions/project";
 
-const BugItem = ({uname, bug, comments}) => {
+const BugItem = ({uname, bug, comments, startSetDeleteBug}) => {
+    const history = useNavigate();
+
     const [delModalOpen, setDelModalOpen] = useState(false);
 
     const deleteBug = () => {
-        fetch(`/api/delete-bug/${bug.id}`)
-        .then(res => res.json())
-        .then(result => console.log(result))
-        .catch(er => console.error(er));
-
-        setDelModalOpen(false);
+        startSetDeleteBug(bug.id).then(() => {
+            history(`/project/${bug.on_project}`);
+            setDelModalOpen(false);
+        });
     };
 
     return (
@@ -53,4 +54,8 @@ const mapStateToProps = (state) => ({
     comments: state.bugItem.comments
 });
 
-export default connect(mapStateToProps)(BugItem);
+const mapDispatchToProps = (dispatch) => ({
+    startSetDeleteBug: (bid) => dispatch(startSetDeleteBug(bid))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BugItem);
