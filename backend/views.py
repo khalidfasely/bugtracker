@@ -273,7 +273,7 @@ def edit_project(request, projectId):
         except:
             return JsonResponse({"message": "Cannot save the updates!"}, status=201)
 
-        return JsonResponse({"comment": Project.objects.get(pk=projectId).serialize()}, status=201)
+        return JsonResponse({"project": Project.objects.get(pk=projectId).serialize()}, status=201)
 
     # If method not PUT
     return JsonResponse({"message": "Method should be PUT!"}, status=201)

@@ -18,6 +18,12 @@ export default (state = projectItemReducerDefaultState, action) => {
                 ]
             }
 
+        case 'EDIT_PROJECT':
+            return {
+                ...state,
+                project: action.project
+            };
+
         default:
             return state;
     };

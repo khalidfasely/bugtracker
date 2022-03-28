@@ -6,7 +6,7 @@ export default (state = projectsReducerDefaultState, action) => {
             return {
                 ...state,
                 projects: action.projects
-            }
+            };
         
         case 'NEW_PROJECT':
             return {
@@ -15,7 +15,7 @@ export default (state = projectsReducerDefaultState, action) => {
                     action.project,
                     ...state.projects
                 ]
-            }
+            };
         
         case 'DELETE_PROJECT':
             return {

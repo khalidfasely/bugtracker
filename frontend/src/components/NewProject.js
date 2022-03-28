@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate, Link } from 'react-router-dom';
+import { startSetEditProject } from "../actions/editProject";
 
 import { startSetNewProject } from "../actions/newProject";
 import { startSetUsers } from "../actions/users";
 import SelectUsers from "./SelectUsers";
 
 const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
-        isEdit, projectItemEdit, setEditModalOpen
+        isEdit, projectItemEdit, setEditModalOpen, startSetEditProject
     }) => {
     const history = useNavigate();
 
@@ -69,19 +70,19 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
             let arrAdmins = selectedAdmins.map(admin => admin.value);
 
             if (isEdit) {
-                console.log('Edited', arrAdmins, arrUsers);
-                fetch(`/api/edit-project/${projectItemEdit.id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify({
-                        name: projectName,
-                        users: arrUsers,
-                        admins: arrAdmins
-                    })
-                })
-                .then(res => res.json())
-                .then(result => console.log(result))
-                .catch(er => console.error(er));
-                setEditModalOpen(false);
+                startSetEditProject(projectItemEdit.id, { name: projectName, users: arrUsers, admins: arrAdmins })
+                .then(result => setEditModalOpen(false));
+                //fetch(`/api/edit-project/${projectItemEdit.id}`, {
+                //    method: 'PUT',
+                //    body: JSON.stringify({
+                //        name: projectName,
+                //        users: arrUsers,
+                //        admins: arrAdmins
+                //    })
+                //})
+                //.then(res => res.json())
+                //.then(result => console.log(result))
+                //.catch(er => console.error(er));
                 return;
             }
 
@@ -127,7 +128,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     startSetNewProject: (project) => dispatch(startSetNewProject(project)),
-    startSetUsers: () => dispatch(startSetUsers())
+    startSetEditProject: (pid, updates) => dispatch(startSetEditProject(pid, updates)),
+    startSetUsers: () => dispatch(startSetUsers()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewProject);
