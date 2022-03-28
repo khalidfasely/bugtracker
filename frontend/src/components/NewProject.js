@@ -6,13 +6,29 @@ import { startSetNewProject } from "../actions/newProject";
 import { startSetUsers } from "../actions/users";
 import SelectUsers from "./SelectUsers";
 
-const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
+const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
+        isEdit, projectItemEdit, setEditModalOpen
+    }) => {
     const history = useNavigate();
 
-    const [projectName, setProjectName] = useState('');
+    // change list string to list object for edit project
+    let editUsers = [];
+    let editAdmins = [];
+
+    if (isEdit) {
+        editAdmins = projectItemEdit.admins.map(admin => (
+            admin === uname ? {value: admin, label: admin, isFixed: true} : {value: admin, label: admin}
+        ));
+
+        editUsers = projectItemEdit.users_with.map(user => (
+            user === uname ? {value: user, label: user, isFixed: true} : {value: user, label: user}
+        ));
+    };
+
+    const [projectName, setProjectName] = useState(isEdit ? projectItemEdit.name : '');
     const [errorName, setErrorName] = useState('');
-    const [selectedUsers, setSelectedUsers] = useState([{ value: uname, label: uname, isFixed: true}]);
-    const [selectedAdmins, setSelectedAdmins] = useState([{ value: uname, label: uname, isFixed: true}]);
+    const [selectedUsers, setSelectedUsers] = useState(isEdit ? editUsers : [{ value: uname, label: uname, isFixed: true}]);
+    const [selectedAdmins, setSelectedAdmins] = useState(isEdit ? editAdmins : [{ value: uname, label: uname, isFixed: true}]);
     const [errorSelect, setErrorSelect] = useState('');
 
     useEffect(() => {
@@ -51,6 +67,24 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
         } else {
             let arrUsers = selectedUsers.map(user => user.value);
             let arrAdmins = selectedAdmins.map(admin => admin.value);
+
+            if (isEdit) {
+                console.log('Edited', arrAdmins, arrUsers);
+                fetch(`/api/edit-project/${projectItemEdit.id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        name: projectName,
+                        users: arrUsers,
+                        admins: arrAdmins
+                    })
+                })
+                .then(res => res.json())
+                .then(result => console.log(result))
+                .catch(er => console.error(er));
+                setEditModalOpen(false);
+                return;
+            }
+
             startSetNewProject({ projectName, arrUsers, arrAdmins}).then(result => history(`/project/${result.project.id}`));
         };
     };
@@ -76,7 +110,11 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers }) => {
                     selectedAdmins={selectedAdmins} setSelectedAdmins={setSelectedAdmins}
                     errorSelect={errorSelect}
                 />
-                <button>Create.</button>
+                {
+                    isEdit ?
+                    <button>Edit</button> :
+                    <button>Create.</button>
+                }
             </form>
         </div>
     );

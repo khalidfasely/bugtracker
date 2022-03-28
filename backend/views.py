@@ -222,6 +222,63 @@ def new_project(request):
     return JsonResponse({"message": "Method should be POST!"}, status=201)
 
 @csrf_exempt
+def edit_project(request, projectId):
+    #check request method
+    if request.method == 'PUT':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        #try find the comment in db
+        try:
+            project = Project.objects.get(pk=projectId)
+        
+        #catch errors (if no comment in db)
+        except:
+            return JsonResponse({"message": "No Project in database!"}, status=201)
+
+        #Check if user have access to edit this comment
+        if project.user != request.user:
+            return JsonResponse({"message": "User not allow to edit this project!"}, status=201)
+
+        # recieve data from frontend
+        data = json.loads(request.body)
+
+        new_name = data.get('name')
+        new_users = data.get('users')
+        new_admins = data.get('admins')
+
+        #try update project
+        try:
+            Project.objects.filter(pk=projectId).update(name=new_name)
+
+            #empty the admins list
+            for admin in Project.objects.get(pk=projectId).admins.all():
+                Project.objects.get(pk=projectId).admins.remove(admin)
+
+            #empty the users list
+            for user in Project.objects.get(pk=projectId).users_with.all():
+                Project.objects.get(pk=projectId).users_with.remove(user)
+
+            #add admins
+            for admin in new_admins:
+                Project.objects.get(pk=projectId).admins.add(User.objects.get(username=admin))
+
+            #add users
+            for user in new_users:
+                Project.objects.get(pk=projectId).users_with.add(User.objects.get(username=user))
+        
+        #catch errors
+        except:
+            return JsonResponse({"message": "Cannot save the updates!"}, status=201)
+
+        return JsonResponse({"comment": Project.objects.get(pk=projectId).serialize()}, status=201)
+
+    # If method not PUT
+    return JsonResponse({"message": "Method should be PUT!"}, status=201)
+
+@csrf_exempt
 def delete_project(request, projectId):
     #try get project from db
     try:

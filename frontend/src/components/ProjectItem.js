@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import ProjectData from "./ProjectData";
 import BugsList from "./BugsList";
 import NewBug from "./NewBug";
+import NewProject from "./NewProject";
 import { useState } from "react";
 import { startSetDelProject } from "../actions/delProject";
 
@@ -12,6 +13,7 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
     const history = useNavigate();
 
     const [delModalOpen, setDelModalOpen] = useState(false);
+    const [editModalOpen, setEditModalOpen] = useState(false);
 
     const deleteProject = () => {
         startSetDelProject(projectItem.id).then(result => {
@@ -30,7 +32,7 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                     {
                         uname === projectItem.user.username &&
                         <div>
-                            <button>Edit</button>
+                            <button onClick={() => setEditModalOpen(true)}>Edit</button>
                             <button onClick={() => setDelModalOpen(true)}>Delete</button>
                         </div>
                     }
@@ -51,6 +53,12 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
             >
                 Delete
             <button onClick={deleteProject}>Delete</button></Modal>
+            <Modal
+                isOpen={editModalOpen}
+                onRequestClose={() => setEditModalOpen(false)}
+            >
+                <NewProject isEdit={true} projectItemEdit={projectItem} setEditModalOpen={setEditModalOpen} />
+            </Modal>
         </div>
     );
 }
