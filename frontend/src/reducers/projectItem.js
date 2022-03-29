@@ -18,12 +18,6 @@ export default (state = projectItemReducerDefaultState, action) => {
                 ]
             }
 
-        case 'DELETE_BUG':
-            return {
-                ...state,
-                bugs: state.bugs.filter(bug => bug.id !== action.bid)
-            }
-
         case 'EDIT_PROJECT':
             return {
                 ...state,

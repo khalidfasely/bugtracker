@@ -9,6 +9,18 @@ export default (state = bugItemReducerDefaultState, action) => {
                 comments: action.comments
             }
 
+        case 'EDIT_BUG':
+            return {
+                ...state,
+                bug: action.bug
+            }
+
+        case 'DELETE_BUG':
+            return {
+                ...state,
+                bug: {}
+            }
+
         case 'NEW_COMMENT':
             return {
                 ...state,

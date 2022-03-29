@@ -1,4 +1,5 @@
 import delBugApi from "../api/delBug";
+import editBugApi from "../api/editBug";
 import newBugApi from "../api/newBug";
 import projectApi from "../api/project";
 
@@ -28,6 +29,24 @@ export const startSetNewBug = (on_project, bugData) => {
             if (result.bug) {
                 dispatch(setNewBug(result.bug));
             }
+            return result;
+        });
+    };
+};
+
+export const setEditBug = (bid, bug) => ({
+    type: 'EDIT_BUG',
+    bid,
+    bug
+});
+
+export const startSetEditBug = (bid, updates) => {
+    return (dispatch) => {
+        return editBugApi(bid, updates).then(result => {
+            if (result.bug) {
+                dispatch(setEditBug(bid, result.bug));
+            };
+
             return result;
         });
     };

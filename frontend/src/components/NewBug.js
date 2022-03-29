@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Select from "./SelectUsers";
-import { startSetNewBug } from "../actions/project";
+import { startSetEditBug, startSetNewBug } from "../actions/project";
 
 const NewBug = ({
     uname, users, on_project, startSetNewBug,
-    isEdit, bug, setEditModalOpen
+    isEdit, bug, setEditModalOpen, startSetEditBug
 }) => {
 
     // change list string to list object for edit project
@@ -75,21 +75,31 @@ const NewBug = ({
 
             if (isEdit) {
                 console.log('Edited', title, description, selectedAdmins, selectedUsers, isActive, classification);
-                fetch(`/api/edit-bug/${bug.id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify({
-                        title,
-                        description,
-                        users: arrUsers,
-                        admins: arrAdmins,
-                        active: isActive,
-                        classification
-                    })
+                startSetEditBug(bug.id, {
+                    title,
+                    description,
+                    users: arrUsers,
+                    admins: arrAdmins,
+                    active: isActive,
+                    classification
                 })
-                .then(res => res.json())
-                .then(result => console.log(result))
-                .catch(er => console.error(er));
-                setEditModalOpen(false);
+                .then(() => setEditModalOpen(false));
+                
+                //fetch(`/api/edit-bug/${bug.id}`, {
+                //    method: 'PUT',
+                //    body: JSON.stringify({
+                //        title,
+                //        description,
+                //        users: arrUsers,
+                //        admins: arrAdmins,
+                //        active: isActive,
+                //        classification
+                //    })
+                //})
+                //.then(res => res.json())
+                //.then(result => console.log(result))
+                //.catch(er => console.error(er));
+                //setEditModalOpen(false);
                 return;
             }
 
@@ -161,7 +171,11 @@ const NewBug = ({
                     selectedAdmins={selectedAdmins} setSelectedAdmins={setSelectedAdmins}
                     errorSelect={errorSelect}
                 />
-                <button>Add</button>
+                {
+                    isEdit ?
+                    <button>Edit</button> :
+                    <button>Add</button>
+                }
             </form>
         </div>
     );
@@ -172,7 +186,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startSetNewBug: (on_project, bugData) => dispatch(startSetNewBug(on_project, bugData))
+    startSetNewBug: (on_project, bugData) => dispatch(startSetNewBug(on_project, bugData)),
+    startSetEditBug: (bid, updates) => dispatch(startSetEditBug(bid, updates))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewBug);
