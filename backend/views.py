@@ -25,6 +25,11 @@ def user(request):
 
     return JsonResponse({"message": "No User!"}, status=201)    
 
+def select_users(request, project_id):
+    #get users_with from project with specific project_id
+    project = Project.objects.get(pk=project_id)
+
+    return JsonResponse({'users': project.serialize()['users_with']}, status=201)
 
 @csrf_exempt
 def login_route(request):

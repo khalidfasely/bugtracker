@@ -1,19 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Select from "./SelectUsers";
 import { startSetNewBug } from "../actions/project";
 
-const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
-    const [title, setTitle] = useState('');
+const NewBug = ({
+    uname, users, on_project, startSetNewBug,
+    isEdit, bug, setEditModalOpen
+}) => {
+
+    // change list string to list object for edit project
+    let editUsers = [];
+    let editAdmins = [];
+
+    if (isEdit) {
+        editAdmins = bug.admins.map(admin => (
+            admin === uname ? {value: admin, label: admin, isFixed: true} : {value: admin, label: admin}
+        ));
+
+        editUsers = bug.users_with.map(user => (
+            user === uname ? {value: user, label: user, isFixed: true} : {value: user, label: user}
+        ));
+    };
+
+    const [title, setTitle] = useState(isEdit ? bug.title : '');
     const [errorTitle, setErrorTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [description, setDescription] = useState(isEdit ? bug.description : '');
     const [errorDescription, setErrorDescription] = useState('');
-    const [classification, setClassification] = useState('high');
-    const [isActive, setIsActive] = useState(true);
-    const [selectedUsers, setSelectedUsers] = useState([{ value: uname, label: uname, isFixed: true}]);
-    const [selectedAdmins, setSelectedAdmins] = useState([{ value: uname, label: uname, isFixed: true}]);
+    const [classification, setClassification] = useState(isEdit ? bug.classification : 'high');
+    const [isActive, setIsActive] = useState(isEdit ? bug.active : true);
+    const [selectedUsers, setSelectedUsers] = useState(isEdit ? editUsers : [{ value: uname, label: uname, isFixed: true}]);
+    const [selectedAdmins, setSelectedAdmins] = useState(isEdit ? editAdmins : [{ value: uname, label: uname, isFixed: true}]);
     const [errorSelect, setErrorSelect] = useState('');
 
     const incorrectUsers = (users, admins) => {
@@ -54,6 +72,12 @@ const NewBug = ({ uname, users, on_project, startSetNewBug }) => {
         if (availableTitle && availableDescription) {
             let arrUsers = selectedUsers.map(user => user.value);
             let arrAdmins = selectedAdmins.map(admin => admin.value);
+
+            if (isEdit) {
+                console.log('Edited', title, description, selectedAdmins, selectedUsers, isActive, classification);
+                setEditModalOpen(false);
+                return;
+            }
 
             startSetNewBug(on_project, {
                 title,

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -59,7 +58,7 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
                 defaultValue={selectedUsers}
                 onChange={onChangeUsers}
                 options={options}
-                isClearable={!options && options.some(option => option.isFixed)}
+                isClearable={!options && options?.some(option => option?.isFixed)}
                 placeholder='Select Users'
                 noOptionsMessage={() => 'No other user!'}
                 isMulti
@@ -72,7 +71,7 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
                 defaultValue={selectedAdmins}
                 onChange={onChangeAdmins}
                 options={selectedUsers}
-                isClearable={!options && options.some(option => option.isFixed)}
+                isClearable={!options && options?.some(option => option?.isFixed)}
                 placeholder='Select Admins'
                 noOptionsMessage={() => 'No other user!'}
                 isMulti

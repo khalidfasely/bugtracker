@@ -10,7 +10,9 @@ urlpatterns = [
     path("projects", views.projects, name="projects_route"),
     path("project/<int:pid>", views.project, name="project_route"),
     path("project/<int:pid>/bug/<int:bid>", views.bug, name="bug_route"),
+
     path("get_users", views.get_users, name="get_users_route"),
+    path("select_users/<int:project_id>", views.select_users, name="select_users_route"),
 
     path("new-project", views.new_project, name="new_project_route"),
     path("edit-project/<int:projectId>", views.edit_project, name="edit_project_route"),
