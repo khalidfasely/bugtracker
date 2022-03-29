@@ -19,6 +19,7 @@ const BugItem = ({
     const [delModalOpen, setDelModalOpen] = useState(false);
     const [editModalOpen, setEditModalOpen] = useState(false);
 
+    // Set select users
     useEffect(() => startSetSelectUsers(bug.on_project), []);
 
     const deleteBug = () => {

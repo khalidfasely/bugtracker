@@ -235,15 +235,15 @@ def edit_project(request, projectId):
         if not request.user.username:
             return JsonResponse({"message": "No user logged in!"}, status=201)
 
-        #try find the comment in db
+        #try find the project in db
         try:
             project = Project.objects.get(pk=projectId)
         
-        #catch errors (if no comment in db)
+        #catch errors (if no project in db)
         except:
             return JsonResponse({"message": "No Project in database!"}, status=201)
 
-        #Check if user have access to edit this comment
+        #Check if user have access to edit this project
         if project.user != request.user:
             return JsonResponse({"message": "User not allow to edit this project!"}, status=201)
 
@@ -357,6 +357,66 @@ def new_bug(request, on_project):
     
     # If method not POST
     return JsonResponse({"message": "Method should be POST!"}, status=201)
+
+@csrf_exempt
+def edit_bug(request, bugId):
+    #check request method
+    if request.method == 'PUT':
+
+        # Check if user logged in
+        if not request.user.username:
+            return JsonResponse({"message": "No user logged in!"}, status=201)
+
+        #try find the bug in db
+        try:
+            bug = Bugs.objects.get(pk=bugId)
+        
+        #catch errors (if no bug in db)
+        except:
+            return JsonResponse({"message": "No Bug in database!"}, status=201)
+
+        #Check if user have access to edit this bug
+        if bug.user != request.user:
+            return JsonResponse({"message": "User not allow to edit this bug!"}, status=201)
+
+        # recieve data from frontend
+        data = json.loads(request.body)
+
+        new_title = data.get('title')
+        new_description = data.get('description')
+        active = data.get('active')
+        new_classification = data.get('classification')
+        new_users = data.get('users')
+        new_admins = data.get('admins')
+
+        #try update bug
+        try:
+            Bugs.objects.filter(pk=bugId).update(title=new_title, description=new_description, active=active, classification=Classification.objects.get(description=new_classification))
+
+            #empty the admins list
+            for admin in Bugs.objects.get(pk=bugId).admins.all():
+                Bugs.objects.get(pk=bugId).admins.remove(admin)
+
+            #empty the users list
+            for user in Bugs.objects.get(pk=bugId).users_with.all():
+                Bugs.objects.get(pk=bugId).users_with.remove(user)
+
+            #add admins
+            for admin in new_admins:
+                Bugs.objects.get(pk=bugId).admins.add(User.objects.get(username=admin))
+
+            #add users
+            for user in new_users:
+                Bugs.objects.get(pk=bugId).users_with.add(User.objects.get(username=user))
+        
+        #catch errors
+        except:
+            return JsonResponse({"message": "Cannot save the updates!"}, status=201)
+
+        return JsonResponse({"bug": Bugs.objects.get(pk=bugId).serialize()}, status=201)
+
+    # If method not PUT
+    return JsonResponse({"message": "Method should be PUT!"}, status=201)
 
 @csrf_exempt
 def delete_bug(request, bugId):

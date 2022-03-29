@@ -75,6 +75,20 @@ const NewBug = ({
 
             if (isEdit) {
                 console.log('Edited', title, description, selectedAdmins, selectedUsers, isActive, classification);
+                fetch(`/api/edit-bug/${bug.id}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        users: arrUsers,
+                        admins: arrAdmins,
+                        active: isActive,
+                        classification
+                    })
+                })
+                .then(res => res.json())
+                .then(result => console.log(result))
+                .catch(er => console.error(er));
                 setEditModalOpen(false);
                 return;
             }
