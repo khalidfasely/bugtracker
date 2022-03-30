@@ -27,11 +27,17 @@ class Project(models.Model):
             "users_with": [user.username for user in self.users_with.all()]
         }
 
+    def is_valid(self):
+        return self.name and self.user and self.admins.count() > 0 and self.users_with.count() > 0
+
 class Classification(models.Model):
     id = models.AutoField(primary_key=True)
     description = models.CharField(max_length=25)
 
     def __str__(self):
+        return self.description
+    
+    def is_valid(self):
         return self.description
 
 class Bugs(models.Model):
@@ -66,6 +72,9 @@ class Bugs(models.Model):
             "users_with": [user.username for user in self.users_with.all()]
         }
 
+    def is_valid(self):
+        return self.title and self.description and self.on_project and self.user and self.classification and self.active and self.admins.count() > 0 and self.users_with.count() > 0
+
 class Comments(models.Model):
     id = models.AutoField(primary_key=True)
     content = models.CharField(max_length=255)
@@ -87,3 +96,6 @@ class Comments(models.Model):
             "on_bug": self.on_bug.id,
             "time": self.time.strftime("%b %d %Y, %I:%M %p")
         }
+
+    def is_valid(self):
+        return self.content and self.user and self.on_bug

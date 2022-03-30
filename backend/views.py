@@ -27,7 +27,12 @@ def user(request):
 
 def select_users(request, project_id):
     #get users_with from project with specific project_id
-    project = Project.objects.get(pk=project_id)
+    try:
+        project = Project.objects.get(pk=project_id)
+
+    #catch errors
+    except:
+        return JsonResponse({"message": "Something goes wrong!"}, status=201)
 
     return JsonResponse({'users': project.serialize()['users_with']}, status=201)
 
@@ -258,21 +263,24 @@ def edit_project(request, projectId):
         try:
             Project.objects.filter(pk=projectId).update(name=new_name)
 
+            admins = Project.objects.get(pk=projectId).admins
+            users_with = Project.objects.get(pk=projectId).users_with
+
             #empty the admins list
-            for admin in Project.objects.get(pk=projectId).admins.all():
-                Project.objects.get(pk=projectId).admins.remove(admin)
+            for admin in admins.all():
+                admins.remove(admin)
 
             #empty the users list
-            for user in Project.objects.get(pk=projectId).users_with.all():
-                Project.objects.get(pk=projectId).users_with.remove(user)
+            for user in users_with.all():
+                users_with.remove(user)
 
             #add admins
             for admin in new_admins:
-                Project.objects.get(pk=projectId).admins.add(User.objects.get(username=admin))
+                admins.add(User.objects.get(username=admin))
 
             #add users
             for user in new_users:
-                Project.objects.get(pk=projectId).users_with.add(User.objects.get(username=user))
+                users_with.add(User.objects.get(username=user))
         
         #catch errors
         except:
@@ -393,21 +401,24 @@ def edit_bug(request, bugId):
         try:
             Bugs.objects.filter(pk=bugId).update(title=new_title, description=new_description, active=active, classification=Classification.objects.get(description=new_classification))
 
+            admins = Bugs.objects.get(pk=bugId).admins
+            users_with = Bugs.objects.get(pk=bugId).users_with
+
             #empty the admins list
-            for admin in Bugs.objects.get(pk=bugId).admins.all():
-                Bugs.objects.get(pk=bugId).admins.remove(admin)
+            for admin in admins.all():
+                admins.remove(admin)
 
             #empty the users list
-            for user in Bugs.objects.get(pk=bugId).users_with.all():
-                Bugs.objects.get(pk=bugId).users_with.remove(user)
+            for user in users_with.all():
+                users_with.remove(user)
 
             #add admins
             for admin in new_admins:
-                Bugs.objects.get(pk=bugId).admins.add(User.objects.get(username=admin))
+                admins.add(User.objects.get(username=admin))
 
             #add users
             for user in new_users:
-                Bugs.objects.get(pk=bugId).users_with.add(User.objects.get(username=user))
+                users_with.add(User.objects.get(username=user))
         
         #catch errors
         except:

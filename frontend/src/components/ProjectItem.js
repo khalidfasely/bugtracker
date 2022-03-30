@@ -27,8 +27,8 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
             {
                 projectItem?.users_with?.includes(uname) ?
                 <div>
-                    **** project <br /><ProjectData projectItem={projectItem} />
-                    **** interact with project <br />
+                    <ProjectData projectItem={projectItem} />
+                    <hr />
                     {
                         uname === projectItem.user.username &&
                         <div>
@@ -36,8 +36,10 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                             <button onClick={() => setDelModalOpen(true)}>Delete</button>
                         </div>
                     }
-                    **** new bug <br /><NewBug users={projectItem.users_with} on_project={projectItem.id} />
-                    **** bugs <br /><div>
+                    <hr />
+                    <NewBug users={projectItem.users_with} on_project={projectItem.id} />
+                    <hr />
+                    <div>
                         { bugs?.map(bug => (
                             <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                 <BugsList bug={bug} />
@@ -45,7 +47,7 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                         )}
                     </div>
                 </div> :
-                <div>Not able to see this project! <Link to="/new">Create one!</Link></div>
+                <div>Not able to see this project! <Link to="/new-project">Create one!</Link></div>
             }
             <Modal
                 isOpen={delModalOpen}

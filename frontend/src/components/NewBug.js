@@ -74,7 +74,6 @@ const NewBug = ({
             let arrAdmins = selectedAdmins.map(admin => admin.value);
 
             if (isEdit) {
-                console.log('Edited', title, description, selectedAdmins, selectedUsers, isActive, classification);
                 startSetEditBug(bug.id, {
                     title,
                     description,
@@ -84,22 +83,6 @@ const NewBug = ({
                     classification
                 })
                 .then(() => setEditModalOpen(false));
-                
-                //fetch(`/api/edit-bug/${bug.id}`, {
-                //    method: 'PUT',
-                //    body: JSON.stringify({
-                //        title,
-                //        description,
-                //        users: arrUsers,
-                //        admins: arrAdmins,
-                //        active: isActive,
-                //        classification
-                //    })
-                //})
-                //.then(res => res.json())
-                //.then(result => console.log(result))
-                //.catch(er => console.error(er));
-                //setEditModalOpen(false);
                 return;
             }
 

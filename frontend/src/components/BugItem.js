@@ -34,18 +34,21 @@ const BugItem = ({
             {
                 bug?.users_with?.includes(uname) ?
                 <div>
-                    **** bug <br /><BugData bug={bug} />
-                    **** {
+                    <BugData bug={bug} />
+                    <hr />
+                    {
                         uname===bug.user.username &&
                         <div>
                             <button onClick={() => setDelModalOpen(true)}>Delete</button>
                             <button onClick={() => setEditModalOpen(true)}>Edit</button>
                         </div>
                     }
-                    **** New comment <br /><NewComment bugId={bug.id} />
-                    **** comments {comments?.map(comment => <Comment comment={comment} />)}
+                    <hr />
+                    <NewComment bugId={bug.id} />
+                    <hr />
+                    {comments?.map(comment => <Comment comment={comment} />)}
                 </div> :
-                <div>Not able to see this bug! <Link to="/new">Create one!</Link></div>
+                <div>Not able to see this bug! <Link to={`/project/${bug.on_project}`}>Create one!</Link></div>
             }
             <Modal
                 isOpen={delModalOpen}
