@@ -3,6 +3,7 @@ import json
 from django.http import JsonResponse
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
+from django.contrib.auth import get_user_model
 
 from .views import login_route, logout_route, register, get_users, select_users, bug, new_bug, edit_bug, delete_bug, new_comment, edit_comment, delete_comment, projects, project, new_project, edit_project, delete_project
 # Create your tests here.
@@ -303,6 +304,12 @@ class TestsWithoutData(TestCase):
         self.assertEqual(response.content, expected_res)
 
 class TestsWithPostPutData(TestCase):
+    def test_get_login_route(self):
+        c = Client()
+        response = c.get(reverse('login_route'))
+        expected_res = b'{"message": "The method must be POST"}'
+        self.assertEqual(response.content, expected_res)
+
     def test_post_login_route_with_data(self):
         c = Client()
         jsondata=json.dumps({'username': 'Admin', 'password': '0000'})
@@ -316,16 +323,110 @@ class TestsWithPostPutData(TestCase):
         expected_res = b'{"message": "No data send with the request."}'
         self.assertEqual(response.content, expected_res)
 
-    #def test_post_register_route_with_data(self):
-    #    c = Client()
-    #    #csrf_client = Client(enforce_csrf_checks=True)
-    #    jsondata=json.dumps({'username': '', 'email': 'email@c.om', 'password': '0000', 'confirmation': '0000'})
-    #    response = c.post(reverse('register_route'), content_type=jsondata)###
-    #    expected_res = b'{"message": "Invalid username and/or password."}'
-    #    self.assertEqual(response.content, expected_res)
+    def test_get_register_route(self):
+        c = Client()
+        response = c.get(reverse('register_route'))
+        expected_res = b'{"message": "The method must be POST"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_register_route_with_data(self):
+        c = Client()
+        #csrf_client = Client(enforce_csrf_checks=True)
+        jsondata=json.dumps({'username': 'Admin', 'email': 'email@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), jsondata, content_type="application/x-www-form-urlencoded")### solution from https://medium.com/@fro_g/making-post-requests-work-with-django-tests-3d9ad539e11f
+        expected_res = b'{"message": "Register correctly.", "user": {"username": "Admin", "uid": "112"}}'
+        #expected_res = b'{"message": "Register correctly.", "user": {"username"[21 chars]1"}}'
+        self.assertEqual(response.content, expected_res)
+
+        # Post request with existing username
+        jsondata=json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), jsondata, content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Username already taken."}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_register_route_with_different_pswrd(self):
+        c = Client()
+        jsondata=json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '55'})
+        response = c.post(reverse('register_route'), jsondata, content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Passwords must match"}'
+        self.assertEqual(response.content, expected_res)
 
     def test_post_register_route_without_data(self):
         c = Client()
         response = c.post(reverse('register_route'))
         expected_res = b'{"message": "No data send with the request."}'
         self.assertEqual(response.content, expected_res)
+
+    def test_get_new_project_route(self):
+        c = Client()
+        response = c.get(reverse('new_project_route'))
+        expected_res = b'{"message": "Method should be POST!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_project_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.post(reverse('new_project_route'))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_project_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.post(reverse('new_project_route'), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Something wrong with the data sent!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """def test_post_new_project_route_with_user_logged_in_and_data(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with data
+        project_data = json.dumps({'name': 'Project', 'users': ['1', 'admin'], 'admins': ['1', 'admin']})
+        response = c.post(reverse('new_project_route'), project_data, content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Saved correctly!", "project": "project"}'
+        self.assertEqual(response.content, expected_res)"""
+
+    def test_get_edit_project_route(self):
+        c = Client()
+        response = c.get(reverse('edit_project_route', args=[1]))
+        expected_res = b'{"message": "Method should be PUT!"}'
+        self.assertEqual(response.content, expected_res)
+
+        response = c.post(reverse('edit_project_route', args=[1]))
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_project_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.put(reverse('edit_project_route', args=[1]))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_project_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.put(reverse('edit_project_route', args=[1]), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "No Project in database!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right edited data for project"""
+
+    def test_get_delete_project_route(self):
+        c = Client()
+        response = c.get(reverse('delete_project_route', args=[1]))
+        expected_res = b'{"message": "Maybe you try delete a project that doesn\'t exist!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right id project in db"""
