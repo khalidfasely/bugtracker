@@ -334,7 +334,7 @@ class TestsWithPostPutData(TestCase):
         #csrf_client = Client(enforce_csrf_checks=True)
         jsondata=json.dumps({'username': 'Admin', 'email': 'email@c.om', 'password': '0000', 'confirmation': '0000'})
         response = c.post(reverse('register_route'), jsondata, content_type="application/x-www-form-urlencoded")### solution from https://medium.com/@fro_g/making-post-requests-work-with-django-tests-3d9ad539e11f
-        expected_res = b'{"message": "Register correctly.", "user": {"username": "Admin", "uid": "112"}}'
+        expected_res = b'{"message": "Register correctly.", "user": {"username": "Admin", "uid": "114"}}'
         #expected_res = b'{"message": "Register correctly.", "user": {"username"[21 chars]1"}}'
         self.assertEqual(response.content, expected_res)
 
@@ -430,3 +430,151 @@ class TestsWithPostPutData(TestCase):
         self.assertEqual(response.content, expected_res)
 
     """Misses test with the right id project in db"""
+
+    def test_get_new_bug_route(self):
+        c = Client()
+        response = c.get(reverse('new_bug_route', args=[1]))
+        expected_res = b'{"message": "Method should be POST!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_bug_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.post(reverse('new_bug_route', args=[1]))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_bug_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.post(reverse('new_bug_route', args=[1]), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Something wrong with the data sent!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """def test_post_new_bug_route_with_user_logged_in_and_data(self): // change project to bug
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with data
+        project_data = json.dumps({'name': 'Project', 'users': ['1', 'admin'], 'admins': ['1', 'admin']})
+        response = c.post(reverse('new_project_route'), project_data, content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Saved correctly!", "project": "project"}'
+        self.assertEqual(response.content, expected_res)"""
+
+    def test_get_edit_bug_route(self):
+        c = Client()
+        response = c.get(reverse('edit_bug_route', args=[1]))
+        expected_res = b'{"message": "Method should be PUT!"}'
+        self.assertEqual(response.content, expected_res)
+
+        response = c.post(reverse('edit_bug_route', args=[1]))
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_bug_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.put(reverse('edit_bug_route', args=[1]))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_bug_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.put(reverse('edit_bug_route', args=[1]), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "No Bug in database!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right edited data for bug"""
+
+    def test_get_delete_bug_route(self):
+        c = Client()
+        response = c.get(reverse('delete_bug_route', args=[1]))
+        expected_res = b'{"message": "Maybe you try delete a bug that doesn\'t exist!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right id bug in db"""
+
+    def test_get_new_comment_route(self):
+        c = Client()
+        response = c.get(reverse('new_comment_route', args=[1]))
+        expected_res = b'{"message": "Method should be POST!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_comment_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.post(reverse('new_comment_route', args=[1]))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_post_new_comment_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.post(reverse('new_comment_route', args=[1]), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Something wrong with the data sent!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """def test_post_new_comment_route_with_user_logged_in_and_data(self): // change project to comment
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with data
+        project_data = json.dumps({'name': 'Project', 'users': ['1', 'admin'], 'admins': ['1', 'admin']})
+        response = c.post(reverse('new_project_route'), project_data, content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "Saved correctly!", "project": "project"}'
+        self.assertEqual(response.content, expected_res)"""
+
+    def test_get_edit_comment_route(self):
+        c = Client()
+        response = c.get(reverse('edit_comment_route', args=[1]))
+        expected_res = b'{"message": "Method should be PUT!"}'
+        self.assertEqual(response.content, expected_res)
+
+        response = c.post(reverse('edit_comment_route', args=[1]))
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_comment_route_with_no_user_logged_in(self):
+        c = Client()
+        response = c.put(reverse('edit_comment_route', args=[1]))
+        expected_res = b'{"message": "No user logged in!"}'
+        self.assertEqual(response.content, expected_res)
+
+    def test_put_edit_comment_route_with_user_logged_in(self):
+        c = Client()
+
+        #Create account and login
+        data = json.dumps({'username': 'Admin', 'email': 'emailzlkes@c.om', 'password': '0000', 'confirmation': '0000'})
+        response = c.post(reverse('register_route'), data, content_type="application/x-www-form-urlencoded")
+
+        #with no data
+        response = c.put(reverse('edit_comment_route', args=[1]), content_type="application/x-www-form-urlencoded")
+        expected_res = b'{"message": "No Comment in database!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right edited data for comment"""
+
+    def test_get_delete_comment_route(self):
+        c = Client()
+        response = c.get(reverse('delete_comment_route', args=[1]))
+        expected_res = b'{"message": "Maybe you try delete a comment that doesn\'t exist!"}'
+        self.assertEqual(response.content, expected_res)
+
+    """Misses test with the right id comment in db"""
