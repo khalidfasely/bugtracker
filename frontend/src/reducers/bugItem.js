@@ -1,4 +1,7 @@
-const bugItemReducerDefaultState = {}
+const bugItemReducerDefaultState = {
+    bug: {},
+    comments: []
+}
 
 export default (state = bugItemReducerDefaultState, action) => {
     switch (action.type) {
@@ -18,7 +21,8 @@ export default (state = bugItemReducerDefaultState, action) => {
         case 'DELETE_BUG':
             return {
                 ...state,
-                bug: {}
+                bug: {},
+                comments: []
             }
 
         case 'NEW_COMMENT':

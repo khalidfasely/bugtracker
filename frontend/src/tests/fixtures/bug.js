@@ -11,5 +11,5 @@ export default {
     users_with: ['admin', '1'],
     admins: ['admin', '1'],
     time: 'now',
-    comments: [comments[1]]
+    comments: [comments[0]]
 }

@@ -1,4 +1,6 @@
-const projectsReducerDefaultState = {}
+const projectsReducerDefaultState = {
+    projects: []
+}
 
 export default (state = projectsReducerDefaultState, action) => {
     switch (action.type) {
