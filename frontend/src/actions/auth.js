@@ -3,7 +3,7 @@ import logoutApi from '../api/logout';
 import registerApi from '../api/register';
 import userApi from '../api/user';
 
-export const setUser = ({ uname, uid }) => ({
+export const setUser = ({ uname, uid } = {}) => ({
     type: 'SET_USER',
     uname,
     uid
@@ -26,7 +26,7 @@ export const startSetUser = () => {
     };
 };
 
-export const login = ({ uname, uid }) => ({
+export const login = ({ uname, uid } = {}) => ({
     type: 'LOGIN',
     uname,
     uid
@@ -49,7 +49,7 @@ export const startLogin = ({ username, password }) => {
     };
 };
 
-export const register = ({ uname, uid }) => ({
+export const register = ({ uname, uid } = {}) => ({
     type: 'REGISTER',
     uname,
     uid
