@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import Modal from "react-modal";
 
 import Comment from "./Comment";
 import BugData from "./BugData";
-import NewBug from "./NewBug";
 import NewComment from "./NewComment";
 import { startSetDeleteBug } from "../actions/project";
 import { startSetSelectUsers } from '../actions/selectUsers';
+import BugDelModal from "./BugDelModal";
+import BugEditModal from "./BugEditModal";
 
 const BugItem = ({
         uname, bug, comments, startSetDeleteBug,
@@ -50,19 +50,17 @@ const BugItem = ({
                 </div> :
                 <div>Not able to see this bug! <Link to={`/project/${bug.on_project}`}>Create one!</Link></div>
             }
-            <Modal
-                isOpen={delModalOpen}
-                onRequestClose={() => setDelModalOpen(false)}
-            >
-                If you delete this bug there is no way to return it!
-                <button onClick={deleteBug}>Delete</button>
-            </Modal>
-            <Modal
-                isOpen={editModalOpen}
-                onRequestClose={() => setEditModalOpen(false)}
-            >
-                <NewBug users={users} isEdit={true} bug={bug} setEditModalOpen={setEditModalOpen} />
-            </Modal>
+            <BugDelModal
+                delModalOpen={delModalOpen}
+                setDelModalOpen={setDelModalOpen}
+                deleteBug={deleteBug}
+            />
+            <BugEditModal
+                editModalOpen={editModalOpen}
+                setEditModalOpen={setEditModalOpen}
+                users={users}
+                bug={bug}
+            />
         </>
     );
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import Modal from 'react-modal';
 
 import NewComment from "./NewComment";
 import { startSetDeleteComment } from "../actions/bug";
+import CommentDelModal from "./CommentDelModal";
 
 const Comment = ({ comment, uname, startSetDeleteComment }) => {
     const [isEdit, setIsEdit] = useState(false);
@@ -32,10 +32,11 @@ const Comment = ({ comment, uname, startSetDeleteComment }) => {
               <button onClick={() => setDelModalOpen(true)}>Delete</button>
             </div>
           }
-          <Modal
-            isOpen={delModalOpen}
-            onRequestClose={() => setDelModalOpen(false)}
-          >Alright<button onClick={deleteComment}>Delete</button></Modal>
+          <CommentDelModal
+            delModalOpen={delModalOpen}
+            setDelModalOpen={setDelModalOpen}
+            deleteComment={deleteComment}
+          />
         </div>
     );
 };

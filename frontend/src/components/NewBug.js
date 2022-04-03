@@ -102,6 +102,8 @@ const NewBug = ({
                 if (result.bug) {
                     setTitle('');
                     setDescription('');
+                    setSelectedUsers([{ value: uname, label: uname, isFixed: true}]);
+                    setSelectedAdmins([{ value: uname, label: uname, isFixed: true}]);
                 }
             });
         };

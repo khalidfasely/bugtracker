@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import Modal from "react-modal";
 
 import ProjectData from "./ProjectData";
 import BugsList from "./BugsList";
 import NewBug from "./NewBug";
-import NewProject from "./NewProject";
 import { useState } from "react";
 import { startSetDelProject } from "../actions/delProject";
+import ProjectDelModal from "./ProjectDelModal";
+import ProjectEditModal from "./ProjectEditModal";
 
 const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
     const history = useNavigate();
@@ -49,19 +49,16 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                 </div> :
                 <div>Not able to see this project! <Link to="/new-project">Create one!</Link></div>
             }
-            <Modal
-                isOpen={delModalOpen}
-                onRequestClose={() => setDelModalOpen(false)}
-            >
-                Delete
-                <button onClick={deleteProject}>Delete</button>
-            </Modal>
-            <Modal
-                isOpen={editModalOpen}
-                onRequestClose={() => setEditModalOpen(false)}
-            >
-                <NewProject isEdit={true} projectItemEdit={projectItem} setEditModalOpen={setEditModalOpen} />
-            </Modal>
+            <ProjectDelModal
+                delModalOpen={delModalOpen}
+                setDelModalOpen={setDelModalOpen}
+                deleteProject={deleteProject}
+            />
+            <ProjectEditModal
+                editModalOpen={editModalOpen}
+                setEditModalOpen={setEditModalOpen}
+                projectItem={projectItem}
+            />
         </div>
     );
 }
