@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should edit button fire correctly 1`] = `
+<DocumentFragment>
+  <div>
+    NewComment
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Comment component correctly with user is the comment creator 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      1
+    </p>
+    <p>
+      Comment
+    </p>
+    <p>
+      1
+    </p>
+    <p>
+      now
+    </p>
+    <div>
+      <button
+        data-testid="edit_button"
+      >
+        Edit
+      </button>
+      <button>
+        Delete
+      </button>
+    </div>
+    <div>
+      CommentDelModal
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Comment component correctly with user not the comment creator 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      1
+    </p>
+    <p>
+      Comment
+    </p>
+    <p>
+      1
+    </p>
+    <p>
+      now
+    </p>
+    <div>
+      CommentDelModal
+    </div>
+  </div>
+</DocumentFragment>
+`;

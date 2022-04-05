@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Header component correctly 1`] = `
+<DocumentFragment>
+  <header>
+    <a>
+      <h1
+        data-testid="title_header"
+      >
+        Bug Tracker
+      </h1>
+    </a>
+    <div>
+      <a>
+        login
+      </a>
+      <a>
+        signup
+      </a>
+    </div>
+  </header>
+</DocumentFragment>
+`;
+
+exports[`Should render Header component with props correctly 1`] = `
+<DocumentFragment>
+  <header>
+    <a>
+      <h1
+        data-testid="title_header"
+      >
+        Bug Tracker
+      </h1>
+    </a>
+    <div>
+      <p>
+        User
+      </p>
+      <button>
+        Logout
+      </button>
+    </div>
+  </header>
+</DocumentFragment>
+`;

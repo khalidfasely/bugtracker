@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { startSetEditComment, startSetNewComment } from "../actions/bug";
 
-const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, setIsEdit, startSetEditComment }) => {
+export const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, setIsEdit, startSetEditComment }) => {
     const [comment, setComment] = useState(commentEdit ? commentEdit : '');
     const [error, setError] = useState('');
 
@@ -36,12 +36,13 @@ const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, commentId, 
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit} data-testid='comment_form'>
+                <p data-testid='comment_error'>{error ? error : null}</p>
                 <textarea
                     placeholder="Create A Comment on this Bug!"
                     maxLength={255}
                     value={comment} onChange={(e) => setComment(e.target.value)}
+                    data-testid='comment_input'
                 />
                 {
                     commentEdit ?

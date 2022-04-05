@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render NewComment component correctly with props to edit comment 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="comment_form"
+    >
+      <p
+        data-testid="comment_error"
+      />
+      <textarea
+        data-testid="comment_input"
+        maxlength="255"
+        placeholder="Create A Comment on this Bug!"
+      >
+        You can fix this bug by adding a default value!
+      </textarea>
+      <button>
+        Edit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render NewComment component correctly with props to new comment 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      data-testid="comment_form"
+    >
+      <p
+        data-testid="comment_error"
+      />
+      <textarea
+        data-testid="comment_input"
+        maxlength="255"
+        placeholder="Create A Comment on this Bug!"
+      />
+      <button>
+        Add
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render NewComment component correctly without props 1`] = `
+<DocumentFragment>
+  <div>
+    <a>
+      Login
+    </a>
+     or 
+    <a>
+      Sign In
+    </a>
+     to Add a Comment!
+  </div>
+</DocumentFragment>
+`;

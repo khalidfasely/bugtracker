@@ -5,7 +5,7 @@ const CommentDelModal = ({ delModalOpen, setDelModalOpen, deleteComment }) => (
       isOpen={delModalOpen}
       onRequestClose={() => setDelModalOpen(false)}
     >
-        Alright <button onClick={deleteComment}>Delete</button>
+        Alright <button onClick={deleteComment} data-testid='delete_button'>Delete</button>
     </Modal>
 );
 

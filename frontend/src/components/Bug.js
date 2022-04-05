@@ -5,7 +5,7 @@ import { startSetBug } from "../actions/bug";
 
 import BugItem from './BugItem';
 
-const Bug = ({ startSetBug }) => {
+export const Bug = ({ startSetBug }) => {
     const params = useParams();
 
     const [ableToSee, setAbleToSee] = useState(false);
@@ -20,7 +20,8 @@ const Bug = ({ startSetBug }) => {
                 setNotFound(result.message);
             };
         })
-        .then(() => setAbleToSee(true));
+        .then(() => setAbleToSee(true))
+        .catch(er => console.error(er));
     }, [params])
 
 
@@ -30,8 +31,6 @@ const Bug = ({ startSetBug }) => {
 
     return (
         <div>
-            <p>{params.bid}</p>
-            <p>{params.pid}</p>
             {
                 ableToSee ?
                 <div><BugItem /></div> :

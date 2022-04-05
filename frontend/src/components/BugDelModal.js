@@ -6,7 +6,7 @@ const BugDelModal = ({ delModalOpen, setDelModalOpen, deleteBug }) => (
         onRequestClose={() => setDelModalOpen(false)}
     >
         If you delete this bug there is no way to return it!
-        <button onClick={deleteBug}>Delete</button>
+        <button onClick={deleteBug} data-testid='delete_button'>Delete</button>
     </Modal>
 );
 

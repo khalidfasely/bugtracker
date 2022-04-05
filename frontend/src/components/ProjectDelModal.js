@@ -6,7 +6,7 @@ const ProjectDelModal = ({ delModalOpen, setDelModalOpen, deleteProject }) => (
         onRequestClose={() => setDelModalOpen(false)}
     >
         Delete
-        <button onClick={deleteProject}>Delete</button>
+        <button onClick={deleteProject} data-testid='delete_button'>Delete</button>
     </Modal>
 );
 

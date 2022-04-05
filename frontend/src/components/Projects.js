@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const Projects = ({ uname, projects }) => {
+export const Projects = ({ uname, projects }) => {
     return (
         <div>
 

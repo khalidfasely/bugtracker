@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BugItem component correctly with uname === bug.user 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <p>
+        1
+      </p>
+      <p>
+        admin
+      </p>
+      <p>
+        Bug title
+      </p>
+      <p>
+        Bug description
+      </p>
+      <p>
+        now
+      </p>
+      <p>
+        medium
+      </p>
+      <p>
+        true
+      </p>
+      <div>
+        <span>
+          admin 
+        </span>
+        <span>
+          1 
+        </span>
+      </div>
+      <br />
+      <div>
+        <span>
+          admin 
+        </span>
+        <span>
+          1 
+        </span>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <button>
+        Delete
+      </button>
+      <button>
+        Edit
+      </button>
+    </div>
+    <hr />
+    <div>
+      NewComment
+    </div>
+    <hr />
+    <div>
+      <div>
+        Comment
+      </div>
+    </div>
+    <div>
+      <div>
+        Comment
+      </div>
+    </div>
+  </div>
+  <div>
+    BugDelModal
+  </div>
+  <div>
+    BugEditModal
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BugItem component correctly with uname in the bug 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <p>
+        1
+      </p>
+      <p>
+        admin
+      </p>
+      <p>
+        Bug title
+      </p>
+      <p>
+        Bug description
+      </p>
+      <p>
+        now
+      </p>
+      <p>
+        medium
+      </p>
+      <p>
+        true
+      </p>
+      <div>
+        <span>
+          admin 
+        </span>
+        <span>
+          1 
+        </span>
+      </div>
+      <br />
+      <div>
+        <span>
+          admin 
+        </span>
+        <span>
+          1 
+        </span>
+      </div>
+    </div>
+    <hr />
+    <hr />
+    <div>
+      NewComment
+    </div>
+    <hr />
+    <div>
+      <div>
+        Comment
+      </div>
+    </div>
+    <div>
+      <div>
+        Comment
+      </div>
+    </div>
+  </div>
+  <div>
+    BugDelModal
+  </div>
+  <div>
+    BugEditModal
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BugItem component correctly with uname not in the bug 1`] = `
+<DocumentFragment>
+  <div>
+    Not able to see this bug! 
+    <a>
+      Create one!
+    </a>
+  </div>
+  <div>
+    BugDelModal
+  </div>
+  <div>
+    BugEditModal
+  </div>
+</DocumentFragment>
+`;

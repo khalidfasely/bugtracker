@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render ProjectItem component correctly with uname === project.user 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        <p>
+          1
+        </p>
+        <p>
+          Project one
+        </p>
+        <p>
+          now
+        </p>
+        <p>
+          1
+        </p>
+        <div>
+          <span>
+            1 
+          </span>
+        </div>
+        <br />
+        <div>
+          <span>
+            1 
+          </span>
+          <span>
+            admin 
+          </span>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <button>
+          Edit
+        </button>
+        <button>
+          Delete
+        </button>
+      </div>
+      <hr />
+      <div>
+        NewBug
+      </div>
+      <hr />
+      <div>
+        <a>
+          <div>
+            <p>
+              1
+            </p>
+            <p>
+              Bug title
+            </p>
+            <p>
+              medium
+            </p>
+            <p>
+              now
+            </p>
+            <p>
+              admin
+            </p>
+            <div>
+              <span>
+                admin 
+              </span>
+              <span>
+                1 
+              </span>
+            </div>
+            <br />
+            <div>
+              <span>
+                admin 
+              </span>
+              <span>
+                1 
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      ProjectDelModal
+    </div>
+    <div>
+      ProjectEditModal
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render ProjectItem component correctly with uname in the project 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        <p>
+          1
+        </p>
+        <p>
+          Project one
+        </p>
+        <p>
+          now
+        </p>
+        <p>
+          1
+        </p>
+        <div>
+          <span>
+            1 
+          </span>
+        </div>
+        <br />
+        <div>
+          <span>
+            1 
+          </span>
+          <span>
+            admin 
+          </span>
+        </div>
+      </div>
+      <hr />
+      <hr />
+      <div>
+        NewBug
+      </div>
+      <hr />
+      <div>
+        <a>
+          <div>
+            <p>
+              1
+            </p>
+            <p>
+              Bug title
+            </p>
+            <p>
+              medium
+            </p>
+            <p>
+              now
+            </p>
+            <p>
+              admin
+            </p>
+            <div>
+              <span>
+                admin 
+              </span>
+              <span>
+                1 
+              </span>
+            </div>
+            <br />
+            <div>
+              <span>
+                admin 
+              </span>
+              <span>
+                1 
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      ProjectDelModal
+    </div>
+    <div>
+      ProjectEditModal
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render ProjectItem component correctly with uname not in the project 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      Not able to see this project! 
+      <a>
+        Create one!
+      </a>
+    </div>
+    <div>
+      ProjectDelModal
+    </div>
+    <div>
+      ProjectEditModal
+    </div>
+  </div>
+</DocumentFragment>
+`;

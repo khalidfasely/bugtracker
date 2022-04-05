@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render ProjectData component with props 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      1
+    </p>
+    <p>
+      Project one
+    </p>
+    <p>
+      now
+    </p>
+    <p>
+      1
+    </p>
+    <div>
+      <span>
+        1 
+      </span>
+    </div>
+    <br />
+    <div>
+      <span>
+        1 
+      </span>
+      <span>
+        admin 
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render ProjectData component without props 1`] = `
+<DocumentFragment>
+  <div>
+    <p />
+    <p />
+    <p />
+    <p />
+    <div />
+    <br />
+    <div />
+  </div>
+</DocumentFragment>
+`;

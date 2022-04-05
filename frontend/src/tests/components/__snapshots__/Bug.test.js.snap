@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Bug component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      You're not able to see this bug
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Bug component correctly after waiting the bug to come from backend 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        BugItem
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

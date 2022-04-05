@@ -8,11 +8,11 @@ const BugData = ({ bug }) => (
         <p>{bug?.classification}</p>
         <p>{`${bug?.active}`}</p>
         <div>
-            {bug?.admins?.map(admin => <span>{admin} </span>)}
+            {bug?.admins?.map(admin => <span key={admin} >{admin} </span>)}
         </div>
         <br />
         <div>
-            {bug?.users_with?.map(user => <span>{user} </span>)}
+            {bug?.users_with?.map(user => <span key={user} >{user} </span>)}
         </div>
     </div>
 );

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BugDelModal component correctly 1`] = `
+<DocumentFragment>
+  If you delete this bug there is no way to return it!
+  <button
+    data-testid="delete_button"
+  >
+    Delete
+  </button>
+</DocumentFragment>
+`;

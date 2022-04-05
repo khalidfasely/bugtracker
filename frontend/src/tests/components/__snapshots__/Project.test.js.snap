@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Project component correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      You're not able to see this project
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Project component correctly after waiting the project to come from backend 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        ProjectItem
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

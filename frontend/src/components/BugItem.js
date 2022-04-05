@@ -10,7 +10,7 @@ import { startSetSelectUsers } from '../actions/selectUsers';
 import BugDelModal from "./BugDelModal";
 import BugEditModal from "./BugEditModal";
 
-const BugItem = ({
+export const BugItem = ({
         uname, bug, comments, startSetDeleteBug,
         users, startSetSelectUsers
     }) => {
@@ -46,7 +46,7 @@ const BugItem = ({
                     <hr />
                     <NewComment bugId={bug.id} />
                     <hr />
-                    {comments?.map(comment => <Comment comment={comment} />)}
+                    {comments?.map(comment => <div key={comment.id}><Comment comment={comment} /></div>)}
                 </div> :
                 <div>Not able to see this bug! <Link to={`/project/${bug.on_project}`}>Create one!</Link></div>
             }

@@ -9,7 +9,7 @@ import { startSetDelProject } from "../actions/delProject";
 import ProjectDelModal from "./ProjectDelModal";
 import ProjectEditModal from "./ProjectEditModal";
 
-const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
+export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
     const history = useNavigate();
 
     const [delModalOpen, setDelModalOpen] = useState(false);
@@ -41,7 +41,7 @@ const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                     <hr />
                     <div>
                         { bugs?.map(bug => (
-                            <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
+                            <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
                                 <BugsList bug={bug} />
                             </Link>)
                         )}

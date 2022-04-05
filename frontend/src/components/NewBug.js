@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Select from "./SelectUsers";
 import { startSetEditBug, startSetNewBug } from "../actions/project";
 
-const NewBug = ({
+export const NewBug = ({
     uname, users, on_project, startSetNewBug,
     isEdit, bug, setEditModalOpen, startSetEditBug
 }) => {
@@ -115,17 +115,34 @@ const NewBug = ({
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} data-testid='newbug_form'>
                 <div>
-                    {errorTitle && <p>{errorTitle}</p>}
-                    <input maxLength={120} placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
+                    <p data-testid='title_error'>{errorTitle ? errorTitle : null}</p>
+                    <input
+                        maxLength={120}
+                        placeholder="Title"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        data-testid='title_input'
+                    />
                 </div>
                 <div>
-                    {errorDescription && <p>{errorDescription}</p>}
-                    <textarea maxLength={255} placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+                    <p data-testid='description_error'>{errorDescription ? errorDescription : null}</p>
+                    <textarea
+                        maxLength={255}
+                        placeholder="Description"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        data-testid='description_input'
+                    />
                 </div>
                 <div>
-                    <input id='active' type='checkbox' name='active' onChange={(e) => setIsActive(e.target.checked)} checked={isActive} />
+                    <input
+                        id='active' type='checkbox' name='active'
+                        onChange={(e) => setIsActive(e.target.checked)}
+                        checked={isActive}
+                        data-testid='active_checkbox'
+                    />
                     <label htmlFor="active">Active</label>
                 </div>
                 <div>
@@ -133,6 +150,7 @@ const NewBug = ({
                         id='high' type='radio' name='classification' value='high'
                         onChange={(e) => setClassification(e.target.value)}
                         checked={classification === 'high'}
+                        data-testid='high_radio'
                     />
                     <label htmlFor="high">High</label>
 
@@ -140,6 +158,7 @@ const NewBug = ({
                         id='med' type='radio' name='classification' value='medium'
                         onChange={(e) => setClassification(e.target.value)}
                         checked={classification === 'medium'}
+                        data-testid='medium_radio'
                     />
                     <label htmlFor="med">Medium</label>
 
@@ -147,6 +166,7 @@ const NewBug = ({
                         id='low' type='radio' name='classification' value='low'
                         onChange={(e) => setClassification(e.target.value)}
                         checked={classification === 'low'}
+                        data-testid='low_radio'
                     />
                     <label htmlFor="low">Low</label>
                 </div>

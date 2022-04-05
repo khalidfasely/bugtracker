@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BugsList component with bug data 1`] = `
+<DocumentFragment>
+  <div>
+    <p>
+      1
+    </p>
+    <p>
+      Bug title
+    </p>
+    <p>
+      medium
+    </p>
+    <p>
+      now
+    </p>
+    <p>
+      admin
+    </p>
+    <div>
+      <span>
+        admin 
+      </span>
+      <span>
+        1 
+      </span>
+    </div>
+    <br />
+    <div>
+      <span>
+        admin 
+      </span>
+      <span>
+        1 
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render BugsList component without bug data 1`] = `
+<DocumentFragment>
+  <div>
+    <p />
+    <p />
+    <p />
+    <p />
+    <p />
+    <div />
+    <br />
+    <div />
+  </div>
+</DocumentFragment>
+`;

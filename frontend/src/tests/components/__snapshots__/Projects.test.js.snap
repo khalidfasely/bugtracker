@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Projects component with projects empty array 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        No projects. Create one 
+        <a>
+          here
+        </a>
+        .
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Projects component with props 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <div>
+        <div>
+          <a
+            class="nav-link"
+          >
+            <p />
+            <p>
+              now
+            </p>
+          </a>
+        </div>
+        <div>
+          Create new project 
+          <a>
+            here
+          </a>
+          .
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Projects component without props 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <a>
+        Login
+      </a>
+       or 
+      <a>
+        Register
+      </a>
+       to see your projects or create new ones!
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -7,7 +7,7 @@ import { startSetNewProject } from "../actions/newProject";
 import { startSetUsers } from "../actions/users";
 import SelectUsers from "./SelectUsers";
 
-const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
+export const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
         isEdit, projectItemEdit, setEditModalOpen, startSetEditProject
     }) => {
     const history = useNavigate();
@@ -71,11 +71,14 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
 
             if (isEdit) {
                 startSetEditProject(projectItemEdit.id, { name: projectName, users: arrUsers, admins: arrAdmins })
-                .then(result => setEditModalOpen(false));
+                .then(() => setEditModalOpen(false))
+                .catch(er => console.error(er));
                 return;
             }
 
-            startSetNewProject({ projectName, arrUsers, arrAdmins}).then(result => history(`/project/${result.project.id}`));
+            startSetNewProject({ projectName, arrUsers, arrAdmins})
+            .then(result => history(`/project/${result.project.id}`))
+            .catch(er => console.error(er));
         };
     };
 
@@ -85,14 +88,15 @@ const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
 
     return (
         <div>
-            <form onSubmit={tryCreateProject}>
-                {errorName && <p>{errorName}</p>}
+            <form onSubmit={tryCreateProject} data-testid='newproject_form'>
+                <p data-testid='name_error'>{errorName ? errorName : null}</p>
                 <input
                     name="name"
                     placeholder="Project's Name"
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
                     autoFocus
+                    data-testid='name_input'
                 />
                 <SelectUsers
                     users={users}

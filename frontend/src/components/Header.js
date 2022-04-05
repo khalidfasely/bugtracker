@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
 import { startSetProjects } from '../actions/projects';
 
-const Header = ({ uname, startLogout, startSetProjects }) => {
+export const Header = ({ uname, startLogout, startSetProjects }) => {
     return (
         <header>
-            <Link to='/'>Bug Tracker</Link>
+            <Link to='/'>
+                <h1 data-testid='title_header'>
+                    Bug Tracker
+                </h1>
+            </Link>
             {
                 uname ?
                 <div>

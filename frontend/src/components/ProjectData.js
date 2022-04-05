@@ -5,11 +5,11 @@ const ProjectData = ({ projectItem }) => (
         <p>{projectItem?.time}</p>
         <p>{projectItem?.user?.username}</p>
         <div>
-            {projectItem?.admins?.map(admin => <span>{admin} </span>)}
+            {projectItem?.admins?.map(admin => <span key={admin}>{admin} </span>)}
         </div>
         <br />
         <div>
-            {projectItem?.users_with?.map(user => <span>{user} </span>)}
+            {projectItem?.users_with?.map(user => <span key={user}>{user} </span>)}
         </div>
     </div>
 );

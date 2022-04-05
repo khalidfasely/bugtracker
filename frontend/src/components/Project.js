@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { startSetProject } from "../actions/project";
 import ProjectItem from "./ProjectItem";
 
-const Project = ({ startSetProject }) => {
+export const Project = ({ startSetProject }) => {
     const params = useParams();
     //const [project, setProject] = useState({name: "default", time: "default", id: "default", user: "default"});
     const [ableToSee, setAbleToSee] = useState(false);

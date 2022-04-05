@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render CommentDelModal correctly 1`] = `
+<DocumentFragment>
+  Alright 
+  <button
+    data-testid="delete_button"
+  >
+    Delete
+  </button>
+</DocumentFragment>
+`;

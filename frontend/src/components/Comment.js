@@ -5,7 +5,7 @@ import NewComment from "./NewComment";
 import { startSetDeleteComment } from "../actions/bug";
 import CommentDelModal from "./CommentDelModal";
 
-const Comment = ({ comment, uname, startSetDeleteComment }) => {
+export const Comment = ({ comment, uname, startSetDeleteComment }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [delModalOpen, setDelModalOpen] = useState(false);
 
@@ -28,7 +28,7 @@ const Comment = ({ comment, uname, startSetDeleteComment }) => {
           {
             uname === comment.user.username &&
             <div>
-              <button onClick={() => setIsEdit(true)}>Edit</button>
+              <button onClick={() => setIsEdit(true)} data-testid='edit_button' >Edit</button>
               <button onClick={() => setDelModalOpen(true)}>Delete</button>
             </div>
           }
