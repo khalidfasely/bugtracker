@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render SelectUsers components correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <select
+      data-testid="select"
+    >
+      <option
+        value="admin"
+      >
+        admin
+      </option>
+      <option
+        value="1"
+      >
+        1
+      </option>
+    </select>
+    <select
+      data-testid="select"
+    >
+      <option />
+    </select>
+  </div>
+</DocumentFragment>
+`;
