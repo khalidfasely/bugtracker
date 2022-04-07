@@ -1,0 +1,21 @@
+.register-container {
+    @extend .login-container;
+}
+
+.register {
+    @extend .login;
+
+    .register-form {
+        @extend .login-form;
+        margin-top: .5rem;
+
+        .register__button {
+            @extend .login__button;
+            background-color: lighten($blue, 25%);
+
+            &:hover {
+                background-color: lighten($blue, 20%);
+            }
+        }
+    }
+}

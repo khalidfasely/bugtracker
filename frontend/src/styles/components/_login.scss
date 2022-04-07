@@ -6,12 +6,12 @@
 }
 
 .login {
-    border: 1px solid #aaa;
+    //border: 1px solid #aaa;
     box-shadow: 2px 2px 15px #777;
     border-radius: 5px;
     min-height: 55vh;
     //max-height: 80vh;
-    min-width: 65vh;
+    min-width: 40vw;
     //max-width: 65vh;
     margin: auto;
     /*display: flex;
@@ -68,13 +68,13 @@
         }
 
         .show-pswrd {
-            width: 50%;
             align-self: self-end;
             background: none;
             border: none;
             color: $blue;
             font-size: small;
             padding: 0 0 1rem 0;
+            width: fit-content;
 
             &:disabled {
                 cursor: not-allowed;
@@ -86,6 +86,11 @@
     p {
         text-align: center;
         margin: 0 1rem;
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+        min-width: 50vw;
+        max-width: 92vw;
     }
 }
 
