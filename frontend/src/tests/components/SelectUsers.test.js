@@ -13,9 +13,9 @@ jest.mock("react-select", () => ({ options, value, onChange }) => {
     }
   
     return (
-      <select data-testid="select" value={value} onChange={handleChange}>
+      <select multiple={true} data-testid="select" value={value} onChange={handleChange}>
         {options.map(({ label, value }) => (
-          <option key={value} value={value}>
+          <option key={Math.random() * 10} value={value}>
             {label}
           </option>
         ))}

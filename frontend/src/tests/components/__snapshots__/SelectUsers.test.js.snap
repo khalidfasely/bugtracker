@@ -5,6 +5,7 @@ exports[`Should render SelectUsers components correctly 1`] = `
   <div>
     <select
       data-testid="select"
+      multiple=""
     >
       <option
         value="admin"
@@ -19,6 +20,7 @@ exports[`Should render SelectUsers components correctly 1`] = `
     </select>
     <select
       data-testid="select"
+      multiple=""
     >
       <option />
     </select>

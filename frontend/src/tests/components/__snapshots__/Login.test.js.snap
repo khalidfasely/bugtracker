@@ -19,6 +19,7 @@ exports[`Should render Login component correctly 1`] = `
         value=""
       />
       <button
+        disabled=""
         type="button"
       >
         Show password!

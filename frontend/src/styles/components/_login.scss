@@ -1,0 +1,91 @@
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 15px #777;
+    border-radius: 5px;
+    min-height: 55vh;
+    //max-height: 80vh;
+    min-width: 65vh;
+    //max-width: 65vh;
+    margin: auto;
+    /*display: flex;
+     flex-direction: column; */
+    /* justify-content: center; 
+    align-items: center;*/
+
+    /*div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }*/
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        margin: auto;
+        margin-top: 6vh;
+        margin-bottom: 6vh;
+
+        //p, input, button {
+        //    width: fit-content;
+        //}
+
+        .error_message {
+            color: $red;
+            font-size: 1.4rem;
+        }
+
+        input, button {
+            margin: 0.3rem 0;
+            padding: 0.8rem;
+            width: 100%;
+            font-size: initial;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .login__button {
+            background-color: lighten($green, 45%);
+            border: none;
+            font-weight: bold;
+            transition: .3s ease;
+            color: $grey;
+            border-radius: 50px;
+
+            &:hover {
+                background-color: lighten($green, 40%);
+            }
+        }
+
+        .show-pswrd {
+            width: 50%;
+            align-self: self-end;
+            background: none;
+            border: none;
+            color: $blue;
+            font-size: small;
+            padding: 0 0 1rem 0;
+
+            &:disabled {
+                cursor: not-allowed;
+                color: $grey;
+            }
+        }
+    }
+
+    p {
+        text-align: center;
+        margin: 0 1rem;
+    }
+}
+
