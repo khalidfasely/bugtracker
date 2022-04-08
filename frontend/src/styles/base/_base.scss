@@ -7,6 +7,32 @@
 html {
     font-size: 62.5%;
     /*background-color: lighten($main-color, 10%);*/
+
+    &::-webkit-scrollbar {
+        width: 1vw;
+
+        @media (max-width: $desktop-breakpoint) {
+            width: 1.5vw;
+        }
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: lighten(#444, 40%);
+        border-radius: 5px;
+    
+        &:hover {
+            background-color: lighten(#444, 30%);
+        }
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: none;//lighten(#444, 20%);
+        //transition: all 1s ease 0s;
+    
+        &:hover {
+            background-color: none;//lighten(#444, 10%);
+        }
+    }
 }
 
 .body-app {

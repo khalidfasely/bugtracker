@@ -8,6 +8,7 @@
     //position: fixed;
     //width: 150px;
     overflow-y: auto;
+    overflow-x: hidden;
     top: 0;
     bottom: 0;
 
@@ -15,6 +16,32 @@
         width: 180px;
         left: -180px;
         transition: all .5s ease;
+    }
+
+    &::-webkit-scrollbar {
+        width: .8vw;
+
+        @media (max-width: $desktop-breakpoint) {
+            width: 1vw;
+        }
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: lighten(#444, 40%);
+        border-radius: 5px;
+    
+        &:hover {
+            background-color: lighten(#444, 30%);
+        }
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: none;//lighten(#444, 20%);
+        //transition: all 1s ease 0s;
+    
+        &:hover {
+            background-color: none;//lighten(#444, 10%);
+        }
     }
 }
 
@@ -25,6 +52,7 @@
     padding: .4rem .8rem;
     position: fixed;
     left: 1vw;
+    top: 1vh;
     transition: all .5s ease;
 
     @media (max-width: $desktop-breakpoint) {
@@ -51,6 +79,7 @@
 
 .app {
     margin-left: 25.3vw;
+    margin-top: 5rem;
     //position: relative;
     @media (max-width: $desktop-breakpoint) {
         margin-left: 0;

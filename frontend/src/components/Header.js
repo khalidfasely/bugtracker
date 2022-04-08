@@ -10,26 +10,26 @@ export const Header = ({ uname, startLogout, startSetProjects }) => {
     useEffect(() => navSlide(), [])
     
     return (
-        <header>
+        <header className='header'>
             <div className='burger'>
                 <div className='line1'></div>
                 <div className='line2'></div>
                 <div className='line3'></div>
             </div>
             <Link to='/'>
-                <h1 data-testid='title_header'>
+                <h1 className="header-logo" data-testid='title_header'>
                     Bug Tracker
                 </h1>
             </Link>
             {
                 uname ?
-                <div>
-                    <p>{uname}</p>
-                    <button onClick={() => {startLogout().then(() => startSetProjects())}}>Logout</button>
+                <div className='header-buttons'>
+                    <p className='header-buttons__uname'>{uname}</p>
+                    <button className='header-buttons__button' onClick={() => {startLogout().then(() => startSetProjects())}}>Logout</button>
                 </div> :
-                <div>
-                    <Link to='/login'>login</Link>
-                    <Link to='/register'>signup</Link>
+                <div className='header-buttons'>
+                    <Link className='header-buttons__a login-link' to='/login'>login</Link>
+                    <Link className='header-buttons__a register-link' to='/register'>signup</Link>
                 </div>
             }
         </header>

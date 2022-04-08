@@ -1,0 +1,75 @@
+.header {
+    a {
+        text-decoration: none;
+    }
+
+    .header-logo {
+        user-select: none;
+        width: fit-content;
+        margin: auto;
+        color: $blue;
+        font-size: 2.8rem;
+        margin-top: 3rem;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .header-buttons__a {
+            width: 9rem;
+            height: 3rem;
+            //background-color: lighten($green, 35%);
+            border: none;
+            font-weight: bold;
+            transition: .3s ease;
+            color: #555;
+            border-radius: 50px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: .2rem .3rem;
+
+            //&:hover {
+            //    background-color: lighten($green, 30%);
+            //}
+        }
+
+        .header-buttons__button {
+            @extend .header-buttons__a;
+            background-color: lighten($red, 35%);
+
+            &:hover {
+                background-color: lighten($red, 30%);
+            }
+        }
+
+        .header-buttons__uname {
+            font-weight: bold;
+            margin: .2rem .3rem;
+        }
+
+        .login-link {
+            background-color: lighten($green, 35%);
+
+            &:hover {
+                background-color: lighten($green, 30%);
+            }
+        }
+
+        .register-link {
+            background-color: lighten($blue, 25%);
+
+            &:hover {
+                background-color: lighten($blue, 20%);
+            }
+        }
+
+        @media (max-width: $desktop-breakpoint) {
+            flex-direction: column;
+        }
+    }
+}
