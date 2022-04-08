@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { startLogout } from '../actions/auth';
 import { startSetProjects } from '../actions/projects';
+import navSlide from '../styles/stylesJS/navSlide';
 
 export const Header = ({ uname, startLogout, startSetProjects }) => {
+    useEffect(() => navSlide(), [])
+    
     return (
         <header>
+            <div className='burger'>
+                <div className='line1'></div>
+                <div className='line2'></div>
+                <div className='line3'></div>
+            </div>
             <Link to='/'>
                 <h1 data-testid='title_header'>
                     Bug Tracker

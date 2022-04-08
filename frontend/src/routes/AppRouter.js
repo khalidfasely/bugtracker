@@ -16,8 +16,11 @@ import NewProject from "../components/NewProject";
 const AppRoute = () => (
     <Router>
         <div>
-          <Header />
-          <Projects />
+          <div className='side-bar'>
+            <Header />
+            <Projects />
+          </div>
+          <div className='app'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={
@@ -48,6 +51,7 @@ const AppRoute = () => (
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </div>
     </Router>
 )

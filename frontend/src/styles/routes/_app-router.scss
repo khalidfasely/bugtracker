@@ -1,0 +1,58 @@
+.side-bar {
+    background-color: #eee;
+    width: 25vw;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    //z-index: 999;
+    //position: fixed;
+    //width: 150px;
+    overflow-y: auto;
+    top: 0;
+    bottom: 0;
+
+    @media (max-width: $desktop-breakpoint) {
+        width: 180px;
+        left: -180px;
+        transition: all .5s ease;
+    }
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+    //background: lawngreen;
+    padding: .4rem .8rem;
+    position: fixed;
+    left: 1vw;
+    transition: all .5s ease;
+
+    @media (max-width: $desktop-breakpoint) {
+        display: block;
+    }
+}
+
+.burger div{
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    margin: 4px 0;
+    transition: all .3s ease;
+}
+
+.open {
+    left: 0;
+    z-index: 999;
+
+    .burger {
+        left: 135px;
+    }
+}
+
+.app {
+    margin-left: 25.3vw;
+    //position: relative;
+    @media (max-width: $desktop-breakpoint) {
+        margin-left: 0;
+    }
+}
