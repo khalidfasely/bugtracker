@@ -8,7 +8,7 @@ export const PrivateRoute = ({
 }) => (
     IsAuthentication ?
     children :
-    <Navigate to="/" />
+    <Navigate to="/login" />
 );
 
 const mapStateToProps = (state) => ({

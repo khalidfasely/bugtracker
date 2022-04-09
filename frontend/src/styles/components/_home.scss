@@ -1,0 +1,22 @@
+.home-container {
+    width: 90%;
+    margin: 5rem auto;
+    text-align: center;
+
+    font-size: 2rem;
+
+    @media (max-width: $desktop-breakpoint) {
+        font-size: 1.7rem;
+    }
+
+    img {
+        width: 46vw;
+        margin-bottom: 3rem;
+    }
+
+    p a {
+        text-decoration: none;
+        font-weight: bold;
+        color: lighten($grey, 25%);
+    }
+}

@@ -1,9 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render Home component correctly 1`] = `
+exports[`Should render Home component correctly with uname 1`] = `
 <DocumentFragment>
-  <div>
-    Home!
+  <div
+    class="home-container"
+  >
+    <img
+      alt="bug tracker illustration"
+      src="bugtracker.svg"
+    />
+    <p>
+      Track all your bugs by create 
+      <a>
+        new project
+      </a>
+       by giving a name to it and add users you want them to see the project and the bugs inside this project.
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Should render Home component correctly without props 1`] = `
+<DocumentFragment>
+  <div
+    class="home-container"
+  >
+    <img
+      alt="bug tracker illustration"
+      src="bugtracker.svg"
+    />
+    <p>
+      To create new projects or see yours, You must 
+      <a>
+        Login
+      </a>
+       or 
+      <a>
+        Create an account
+      </a>
+      .
+    </p>
   </div>
 </DocumentFragment>
 `;
