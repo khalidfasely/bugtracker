@@ -4,7 +4,9 @@ exports[`Should render Projects component with projects empty array 1`] = `
 <DocumentFragment>
   <div>
     <div>
-      <div>
+      <div
+        class="projects__link-new"
+      >
         No projects. Create one 
         <a>
           here
@@ -21,17 +23,49 @@ exports[`Should render Projects component with props 1`] = `
   <div>
     <div>
       <div>
-        <div>
+        <div
+          class="projects__item"
+        >
           <a
             class="nav-link"
           >
-            <p />
-            <p>
-              now
-            </p>
+            <div
+              class="projects__item-content"
+            >
+              <p
+                class="projects__item-content__name"
+              >
+                <span
+                  class="mobile-screen"
+                >
+                  project2...
+                </span>
+                <span
+                  class="desktop-screen"
+                >
+                  project2...
+                </span>
+              </p>
+              <div
+                class="projects__item-content__us-ti"
+              >
+                <p
+                  class="projects__item-content__user"
+                >
+                  admin
+                </p>
+                <p
+                  class="projects__item-content__time"
+                >
+                  now
+                </p>
+              </div>
+            </div>
           </a>
         </div>
-        <div>
+        <div
+          class="projects__link-new"
+        >
           Create new project 
           <a>
             here
@@ -47,7 +81,9 @@ exports[`Should render Projects component with props 1`] = `
 exports[`Should render Projects component without props 1`] = `
 <DocumentFragment>
   <div>
-    <div>
+    <div
+      class="projects__anonymous"
+    >
       <a>
         Login
       </a>

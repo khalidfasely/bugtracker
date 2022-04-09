@@ -1,6 +1,7 @@
 export default [
     {
         id: 1,
+        name: "project1",
         user: {
             username: '1',
             id: 2
@@ -10,6 +11,7 @@ export default [
         time: 'now'
     }, {
         id: 2,
+        name: "project2",
         user: {
             username: 'admin',
             id: 1

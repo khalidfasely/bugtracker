@@ -2,15 +2,33 @@
 
 exports[`Should render Header component correctly 1`] = `
 <DocumentFragment>
-  <header>
+  <header
+    class="header"
+  >
+    <div
+      class="burger"
+    >
+      <div
+        class="line1"
+      />
+      <div
+        class="line2"
+      />
+      <div
+        class="line3"
+      />
+    </div>
     <a>
       <h1
+        class="header-logo"
         data-testid="title_header"
       >
         Bug Tracker
       </h1>
     </a>
-    <div>
+    <div
+      class="header-buttons"
+    >
       <a>
         login
       </a>
@@ -24,19 +42,41 @@ exports[`Should render Header component correctly 1`] = `
 
 exports[`Should render Header component with props correctly 1`] = `
 <DocumentFragment>
-  <header>
+  <header
+    class="header"
+  >
+    <div
+      class="burger"
+    >
+      <div
+        class="line1"
+      />
+      <div
+        class="line2"
+      />
+      <div
+        class="line3"
+      />
+    </div>
     <a>
       <h1
+        class="header-logo"
         data-testid="title_header"
       >
         Bug Tracker
       </h1>
     </a>
-    <div>
-      <p>
+    <div
+      class="header-buttons"
+    >
+      <p
+        class="header-buttons__uname"
+      >
         User
       </p>
-      <button>
+      <button
+        class="header-buttons__button"
+      >
         Logout
       </button>
     </div>

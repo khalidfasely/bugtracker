@@ -2,60 +2,73 @@
 
 exports[`Should render Register component correctly 1`] = `
 <DocumentFragment>
-  <div>
-    <form
-      data-testid="register_form"
+  <div
+    class="register-container"
+  >
+    <div
+      class="register"
     >
-      <p
-        data-testid="register_error"
-      />
-      <input
-        data-testid="username_input"
-        placeholder="Username"
-        type="text"
-        value=""
-      />
-      <input
-        data-testid="email_input"
-        placeholder="Email"
-        type="email"
-        value=""
-      />
-      <input
-        data-testid="password_input"
-        placeholder="Password"
-        type="password"
-        value=""
-      />
-      <button
-        type="button"
+      <form
+        class="register-form"
+        data-testid="register_form"
       >
-        Show password!
-      </button>
-      <input
-        data-testid="confirmation_input"
-        placeholder="Confirmation"
-        type="password"
-        value=""
-      />
-      <button
-        type="button"
-      >
-        Show confirmation!
-      </button>
-      <button
-        data-testid="register_button"
-      >
-        Register
-      </button>
-    </form>
-    <p>
-      Already have an account? Login in 
-      <a>
-        here
-      </a>
-      .
-    </p>
+        <p
+          class="error_message"
+          data-testid="register_error"
+        />
+        <input
+          data-testid="username_input"
+          placeholder="Username"
+          type="text"
+          value=""
+        />
+        <input
+          data-testid="email_input"
+          placeholder="Email"
+          type="email"
+          value=""
+        />
+        <input
+          data-testid="password_input"
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+        <button
+          class="show-pswrd"
+          disabled=""
+          type="button"
+        >
+          Show password!
+        </button>
+        <input
+          data-testid="confirmation_input"
+          placeholder="Confirmation"
+          type="password"
+          value=""
+        />
+        <button
+          class="show-pswrd"
+          disabled=""
+          type="button"
+        >
+          Show confirmation!
+        </button>
+        <button
+          class="register__button"
+          data-testid="register_button"
+        >
+          Register
+        </button>
+      </form>
+      <p>
+        Already have an account? Login in 
+        <a>
+          here
+        </a>
+        .
+      </p>
+    </div>
   </div>
 </DocumentFragment>
 `;
