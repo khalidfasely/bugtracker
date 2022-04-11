@@ -12,25 +12,30 @@
             outline-color: #4285f4;
         }
     }
+}
 
-    .buttons-container {
-        display: flex;
-        justify-content: end;
-        align-items: center;
+.error_message {
+    color: $red;
+    font-size: 1.4rem;
+}
 
-        button {
-            background: none;
-            border: none;
-            margin: .3rem 0;
-            padding: .5rem .8rem;
-            background-color: lighten($blue, 10%);
-            color: #eee;
-            border-radius: 3px;
-            transition: all .5s ease;
+.buttons-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
 
-            &:hover {
-                background-color: $blue;
-            }
+    button {
+        background: none;
+        border: none;
+        margin: .3rem 0;
+        padding: .5rem .8rem;
+        background-color: lighten($blue, 10%);
+        color: #eee;
+        border-radius: 3px;
+        transition: all .5s ease;
+
+        &:hover {
+            background-color: $blue;
         }
     }
 }

@@ -27,16 +27,16 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
             {
                 projectItem?.users_with?.includes(uname) ?
                 <div>
-                    <ProjectData projectItem={projectItem} />
-                    <hr />
-                    {
-                        uname === projectItem.user.username &&
-                        <div>
-                            <button onClick={() => setEditModalOpen(true)}>Edit</button>
-                            <button onClick={() => setDelModalOpen(true)}>Delete</button>
-                        </div>
-                    }
-                    <hr />
+                    <div className="project-infos">
+                        <ProjectData projectItem={projectItem} />
+                        {
+                            uname === projectItem.user.username &&
+                            <div className="project-buttons">
+                                <button onClick={() => setEditModalOpen(true)}>Edit</button>
+                                <button onClick={() => setDelModalOpen(true)}>Delete</button>
+                            </div>
+                        }
+                    </div>
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     <hr />
                     <div>

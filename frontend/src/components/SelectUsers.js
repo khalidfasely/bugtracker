@@ -50,7 +50,7 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
 
     return (
         <div>
-            {errorSelect && <p>{errorSelect}</p>}
+            {errorSelect && <p className="error_message">{errorSelect}</p>}
             <Select
                 className='select-users'
                 components={makeAnimated()}

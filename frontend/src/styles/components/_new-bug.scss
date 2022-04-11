@@ -1,0 +1,80 @@
+.bug-form-container {
+    width: 90%;
+    margin: 2rem auto;
+
+    .bug-form {
+        .bug-form__inputs {
+            display: flex;
+
+            .bug-form__inputs-left, .bug-form__inputs-right {
+                width: 50%;
+            }
+
+            .title-input-container {
+                width: 90%;
+
+                input {
+                    width: 100%;
+                    height: 3.5rem;
+                    margin: .3rem 0;
+                    padding: .1rem .5rem;
+                    
+                    &:focus {
+                        outline-color: #4285f4;
+                    }
+                }
+            }
+
+            .active-input-container {
+                display: flex;
+                align-items: center;
+                margin-left: .5rem;
+                margin-top: 1rem;
+
+                label {
+                    margin-left: .5rem;
+                }
+            }
+
+            .priority-inputs-container {
+                display: flex;
+                align-items: center;
+                margin-left: .5rem;
+                margin-top: 1rem;
+
+                label {
+                    margin-left: .2rem;
+                    margin-right: .8rem;
+                }
+
+                @media (max-width: $desktop-breakpoint) {
+                    flex-direction: column;
+                    align-items: baseline;
+                    margin-top: 1.8rem;
+                }
+            }
+
+            .description-input-container {
+                width: 100%;
+
+                textarea {
+                    font-size: 1.7rem;
+                    width: 100%;
+                    resize: vertical;
+                    height: 11rem;
+                    margin: .3rem 0;
+                    padding: .5rem;
+
+                    &:focus {
+                        outline-color: #4285f4;
+                    }
+
+                    @media (max-width: $desktop-breakpoint) {
+                        font-size: 1.6rem;
+                        height: 17rem;
+                    }
+                }
+            }
+        }
+    }
+}

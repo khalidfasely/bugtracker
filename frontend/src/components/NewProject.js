@@ -89,7 +89,7 @@ export const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
     return (
         <div className="project-form-container">
             <form onSubmit={tryCreateProject} data-testid='newproject_form'>
-                <p data-testid='name_error'>{errorName ? errorName : null}</p>
+                <p className="error_message" data-testid='name_error'>{errorName ? errorName : null}</p>
                 <input
                     className="project-form__input"
                     name="name"

@@ -1,15 +1,13 @@
 const ProjectData = ({ projectItem }) => (
-    <div>
-        <p>{projectItem?.id}</p>
-        <p>{projectItem?.name}</p>
-        <p>{projectItem?.time}</p>
-        <p>{projectItem?.user?.username}</p>
-        <div>
-            {projectItem?.admins?.map(admin => <span key={admin}>{admin} </span>)}
+    <div className="project-data">
+        <p className="project__name">{projectItem?.name}</p>
+        <p className="project__user"><span className="static-text">By: </span>{projectItem?.user?.username}</p>
+        <p className="project__time"><span className="static-text">On: </span>{projectItem?.time}</p>
+        <div className="project__users">
+            <span className="static-text">Users in: </span>{projectItem?.admins?.map(admin => <span key={admin}>{admin} </span>)}
         </div>
-        <br />
-        <div>
-            {projectItem?.users_with?.map(user => <span key={user}>{user} </span>)}
+        <div className="project__admins">
+            <span className="static-text">Admins in: </span>{projectItem?.users_with?.map(user => <span key={user}>{user} </span>)}
         </div>
     </div>
 );

@@ -1,0 +1,39 @@
+.project-infos {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+
+    .project-buttons {
+        //For small screens to move the edit button to the end
+        text-align: end;
+
+        button {
+            background: none;
+            border: none;
+            padding: .2rem .3rem;
+            margin: 0 .3rem;
+        }
+    }
+
+    .project-data {
+        .project__name {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .project__user {
+            font-size: 1.6rem;
+            color: lighten($blue, 15%);
+        }
+
+        .project__time {
+            font-size: 1.5rem;
+            color: #777;
+        }
+
+        .static-text {
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+    }
+}

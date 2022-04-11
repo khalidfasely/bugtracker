@@ -114,61 +114,73 @@ export const NewBug = ({
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} data-testid='newbug_form'>
-                <div>
-                    <p data-testid='title_error'>{errorTitle ? errorTitle : null}</p>
-                    <input
-                        maxLength={120}
-                        placeholder="Title"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                        data-testid='title_input'
-                    />
-                </div>
-                <div>
-                    <p data-testid='description_error'>{errorDescription ? errorDescription : null}</p>
-                    <textarea
-                        maxLength={255}
-                        placeholder="Description"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                        data-testid='description_input'
-                    />
-                </div>
-                <div>
-                    <input
-                        id='active' type='checkbox' name='active'
-                        onChange={(e) => setIsActive(e.target.checked)}
-                        checked={isActive}
-                        data-testid='active_checkbox'
-                    />
-                    <label htmlFor="active">Active</label>
-                </div>
-                <div>
-                    <input
-                        id='high' type='radio' name='classification' value='high'
-                        onChange={(e) => setClassification(e.target.value)}
-                        checked={classification === 'high'}
-                        data-testid='high_radio'
-                    />
-                    <label htmlFor="high">High</label>
+        <div className="bug-form-container">
+            <form className="bug-form" onSubmit={handleSubmit} data-testid='newbug_form'>
+                <div className="bug-form__inputs">
+                    <div className="bug-form__inputs-left">
+                        <div className="title-input-container">
+                            <p className="error_message" data-testid='title_error'>{errorTitle ? errorTitle : null}</p>
+                            <input
+                                maxLength={120}
+                                placeholder="Title"
+                                value={title}
+                                onChange={e => setTitle(e.target.value)}
+                                data-testid='title_input'
+                            />
+                        </div>
+                        <div className="active-input-container">
+                            <input
+                                id='active' type='checkbox' name='active'
+                                onChange={(e) => setIsActive(e.target.checked)}
+                                checked={isActive}
+                                data-testid='active_checkbox'
+                            />
+                            <label htmlFor="active">Active</label>
+                        </div>
+                        <div className="priority-inputs-container">
+                            <div>
+                                <input
+                                    id='high' type='radio' name='classification' value='high'
+                                    onChange={(e) => setClassification(e.target.value)}
+                                    checked={classification === 'high'}
+                                    data-testid='high_radio'
+                                />
+                                <label htmlFor="high">High</label>
+                            </div>
 
-                    <input
-                        id='med' type='radio' name='classification' value='medium'
-                        onChange={(e) => setClassification(e.target.value)}
-                        checked={classification === 'medium'}
-                        data-testid='medium_radio'
-                    />
-                    <label htmlFor="med">Medium</label>
+                            <div>
+                                <input
+                                    id='med' type='radio' name='classification' value='medium'
+                                    onChange={(e) => setClassification(e.target.value)}
+                                    checked={classification === 'medium'}
+                                    data-testid='medium_radio'
+                                />
+                                <label htmlFor="med">Medium</label>
+                            </div>
 
-                    <input
-                        id='low' type='radio' name='classification' value='low'
-                        onChange={(e) => setClassification(e.target.value)}
-                        checked={classification === 'low'}
-                        data-testid='low_radio'
-                    />
-                    <label htmlFor="low">Low</label>
+                            <div>
+                                <input
+                                    id='low' type='radio' name='classification' value='low'
+                                    onChange={(e) => setClassification(e.target.value)}
+                                    checked={classification === 'low'}
+                                    data-testid='low_radio'
+                                />
+                                <label htmlFor="low">Low</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bug-form__inputs-right">
+                        <div className="description-input-container">
+                            <p className="error_message" data-testid='description_error'>{errorDescription ? errorDescription : null}</p>
+                            <textarea
+                                maxLength={255}
+                                placeholder="Description"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                data-testid='description_input'
+                            />
+                        </div>
+                    </div>
                 </div>
                 <Select
                     users={users}
@@ -176,11 +188,13 @@ export const NewBug = ({
                     selectedAdmins={selectedAdmins} setSelectedAdmins={setSelectedAdmins}
                     errorSelect={errorSelect}
                 />
-                {
-                    isEdit ?
-                    <button>Edit</button> :
-                    <button>Add</button>
-                }
+                <div className="buttons-container">
+                    {
+                        isEdit ?
+                        <button>Edit</button> :
+                        <button>Add</button>
+                    }
+                </div>
             </form>
         </div>
     );
