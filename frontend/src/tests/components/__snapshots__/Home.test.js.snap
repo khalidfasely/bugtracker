@@ -10,11 +10,11 @@ exports[`Should render Home component correctly with uname 1`] = `
       src="bugtracker.svg"
     />
     <p>
-      Track all your bugs by create 
+      Track all your bugs by creating a 
       <a>
         new project
       </a>
-       by giving a name to it and add users you want them to see the project and the bugs inside this project.
+       by giving a name to it and adding users you want to see the project and the bugs inside this project.
     </p>
   </div>
 </DocumentFragment>

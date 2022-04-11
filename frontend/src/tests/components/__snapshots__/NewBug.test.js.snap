@@ -82,7 +82,7 @@ exports[`Should render NewBug component with new bug prop 1`] = `
       </div>
       <div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -183,7 +183,7 @@ exports[`Should render NewBug component with new bug prop 1`] = `
           </div>
         </div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -376,7 +376,7 @@ exports[`Should render NewBug component with new bug prop 2`] = `
       </div>
       <div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -508,7 +508,7 @@ exports[`Should render NewBug component with new bug prop 2`] = `
           </div>
         </div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"

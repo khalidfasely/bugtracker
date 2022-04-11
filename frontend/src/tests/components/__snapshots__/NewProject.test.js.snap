@@ -2,7 +2,9 @@
 
 exports[`Should render NewProject component correctly with edit project props 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="project-form-container"
+  >
     <form
       data-testid="newproject_form"
     >
@@ -10,14 +12,16 @@ exports[`Should render NewProject component correctly with edit project props 1`
         data-testid="name_error"
       />
       <input
+        class="project-form__input"
         data-testid="name_input"
+        maxlength="120"
         name="name"
         placeholder="Project's Name"
         value="Project one"
       />
       <div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -149,7 +153,7 @@ exports[`Should render NewProject component correctly with edit project props 1`
           </div>
         </div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -250,9 +254,13 @@ exports[`Should render NewProject component correctly with edit project props 1`
           </div>
         </div>
       </div>
-      <button>
-        Edit
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button>
+          Save
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
@@ -260,7 +268,9 @@ exports[`Should render NewProject component correctly with edit project props 1`
 
 exports[`Should render NewProject component correctly with new project props 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="project-form-container"
+  >
     <form
       data-testid="newproject_form"
     >
@@ -268,14 +278,16 @@ exports[`Should render NewProject component correctly with new project props 1`]
         data-testid="name_error"
       />
       <input
+        class="project-form__input"
         data-testid="name_input"
+        maxlength="120"
         name="name"
         placeholder="Project's Name"
         value=""
       />
       <div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -376,7 +388,7 @@ exports[`Should render NewProject component correctly with new project props 1`]
           </div>
         </div>
         <div
-          class=" css-b62m3t-container"
+          class="select-users css-b62m3t-container"
         >
           <span
             class="css-1f43avz-a11yText-A11yText"
@@ -477,9 +489,13 @@ exports[`Should render NewProject component correctly with new project props 1`]
           </div>
         </div>
       </div>
-      <button>
-        Create.
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button>
+          Create
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
