@@ -87,14 +87,16 @@ export const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
     }
 
     return (
-        <div>
+        <div className="project-form-container">
             <form onSubmit={tryCreateProject} data-testid='newproject_form'>
                 <p data-testid='name_error'>{errorName ? errorName : null}</p>
                 <input
+                    className="project-form__input"
                     name="name"
                     placeholder="Project's Name"
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
+                    maxLength={120}
                     autoFocus
                     data-testid='name_input'
                 />
@@ -104,11 +106,13 @@ export const NewProject = ({ uname, users, startSetNewProject, startSetUsers,
                     selectedAdmins={selectedAdmins} setSelectedAdmins={setSelectedAdmins}
                     errorSelect={errorSelect}
                 />
-                {
-                    isEdit ?
-                    <button>Edit</button> :
-                    <button>Create.</button>
-                }
+                <div className="buttons-container">
+                    {
+                        isEdit ?
+                        <button>Save</button> :
+                        <button>Create</button>
+                    }
+                </div>
             </form>
         </div>
     );

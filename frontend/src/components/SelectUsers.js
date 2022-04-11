@@ -9,8 +9,8 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
         ...theme,
         colors: {
             ...theme.colors,
-            primary25: 'orange',
-            primary: 'red'
+            primary25: '#bbb',
+            primary: '#4285f4'
         }
     });
 
@@ -52,6 +52,7 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
         <div>
             {errorSelect && <p>{errorSelect}</p>}
             <Select
+                className='select-users'
                 components={makeAnimated()}
                 value={selectedUsers}
                 theme={customTheme}
@@ -65,6 +66,7 @@ const SelectUsers = ({ users, selectedUsers, setSelectedUsers, selectedAdmins, s
                 isSearchable
             />
             <Select
+                className='select-users'
                 components={makeAnimated()}
                 value={selectedAdmins}
                 theme={customTheme}
