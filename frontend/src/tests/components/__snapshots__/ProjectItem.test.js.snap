@@ -4,44 +4,76 @@ exports[`Should render ProjectItem component correctly with uname === project.us
 <DocumentFragment>
   <div>
     <div>
-      <div>
-        <p>
-          1
-        </p>
-        <p>
-          Project one
-        </p>
-        <p>
-          now
-        </p>
-        <p>
-          1
-        </p>
-        <div>
-          <span>
-            1 
-          </span>
+      <div
+        class="project-infos"
+      >
+        <div
+          class="project-data"
+        >
+          <p
+            class="project__name"
+          >
+            Project one
+          </p>
+          <p
+            class="project__user"
+          >
+            <span
+              class="static-text"
+            >
+              By: 
+            </span>
+            1
+          </p>
+          <p
+            class="project__time"
+          >
+            <span
+              class="static-text"
+            >
+              On: 
+            </span>
+            now
+          </p>
+          <div
+            class="project__users"
+          >
+            <span
+              class="static-text"
+            >
+              Users in: 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+          <div
+            class="project__admins"
+          >
+            <span
+              class="static-text"
+            >
+              Admins in: 
+            </span>
+            <span>
+              1 
+            </span>
+            <span>
+              admin 
+            </span>
+          </div>
         </div>
-        <br />
-        <div>
-          <span>
-            1 
-          </span>
-          <span>
-            admin 
-          </span>
+        <div
+          class="project-buttons"
+        >
+          <button>
+            Edit
+          </button>
+          <button>
+            Delete
+          </button>
         </div>
       </div>
-      <hr />
-      <div>
-        <button>
-          Edit
-        </button>
-        <button>
-          Delete
-        </button>
-      </div>
-      <hr />
       <div>
         NewBug
       </div>
@@ -99,36 +131,66 @@ exports[`Should render ProjectItem component correctly with uname in the project
 <DocumentFragment>
   <div>
     <div>
-      <div>
-        <p>
-          1
-        </p>
-        <p>
-          Project one
-        </p>
-        <p>
-          now
-        </p>
-        <p>
-          1
-        </p>
-        <div>
-          <span>
-            1 
-          </span>
-        </div>
-        <br />
-        <div>
-          <span>
-            1 
-          </span>
-          <span>
-            admin 
-          </span>
+      <div
+        class="project-infos"
+      >
+        <div
+          class="project-data"
+        >
+          <p
+            class="project__name"
+          >
+            Project one
+          </p>
+          <p
+            class="project__user"
+          >
+            <span
+              class="static-text"
+            >
+              By: 
+            </span>
+            1
+          </p>
+          <p
+            class="project__time"
+          >
+            <span
+              class="static-text"
+            >
+              On: 
+            </span>
+            now
+          </p>
+          <div
+            class="project__users"
+          >
+            <span
+              class="static-text"
+            >
+              Users in: 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+          <div
+            class="project__admins"
+          >
+            <span
+              class="static-text"
+            >
+              Admins in: 
+            </span>
+            <span>
+              1 
+            </span>
+            <span>
+              admin 
+            </span>
+          </div>
         </div>
       </div>
-      <hr />
-      <hr />
       <div>
         NewBug
       </div>

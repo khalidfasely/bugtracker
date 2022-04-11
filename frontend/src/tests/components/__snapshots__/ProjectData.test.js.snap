@@ -2,26 +2,54 @@
 
 exports[`Should render ProjectData component with props 1`] = `
 <DocumentFragment>
-  <div>
-    <p>
-      1
-    </p>
-    <p>
+  <div
+    class="project-data"
+  >
+    <p
+      class="project__name"
+    >
       Project one
     </p>
-    <p>
-      now
-    </p>
-    <p>
+    <p
+      class="project__user"
+    >
+      <span
+        class="static-text"
+      >
+        By: 
+      </span>
       1
     </p>
-    <div>
+    <p
+      class="project__time"
+    >
+      <span
+        class="static-text"
+      >
+        On: 
+      </span>
+      now
+    </p>
+    <div
+      class="project__users"
+    >
+      <span
+        class="static-text"
+      >
+        Users in: 
+      </span>
       <span>
         1 
       </span>
     </div>
-    <br />
-    <div>
+    <div
+      class="project__admins"
+    >
+      <span
+        class="static-text"
+      >
+        Admins in: 
+      </span>
       <span>
         1 
       </span>
@@ -35,14 +63,48 @@ exports[`Should render ProjectData component with props 1`] = `
 
 exports[`Should render ProjectData component without props 1`] = `
 <DocumentFragment>
-  <div>
-    <p />
-    <p />
-    <p />
-    <p />
-    <div />
-    <br />
-    <div />
+  <div
+    class="project-data"
+  >
+    <p
+      class="project__name"
+    />
+    <p
+      class="project__user"
+    >
+      <span
+        class="static-text"
+      >
+        By: 
+      </span>
+    </p>
+    <p
+      class="project__time"
+    >
+      <span
+        class="static-text"
+      >
+        On: 
+      </span>
+    </p>
+    <div
+      class="project__users"
+    >
+      <span
+        class="static-text"
+      >
+        Users in: 
+      </span>
+    </div>
+    <div
+      class="project__admins"
+    >
+      <span
+        class="static-text"
+      >
+        Admins in: 
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;

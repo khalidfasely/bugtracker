@@ -9,6 +9,7 @@ exports[`Should render NewProject component correctly with edit project props 1`
       data-testid="newproject_form"
     >
       <p
+        class="error_message"
         data-testid="name_error"
       />
       <input
@@ -275,6 +276,7 @@ exports[`Should render NewProject component correctly with new project props 1`]
       data-testid="newproject_form"
     >
       <p
+        class="error_message"
         data-testid="name_error"
       />
       <input

@@ -2,83 +2,114 @@
 
 exports[`Should render NewBug component with new bug prop 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="bug-form-container"
+  >
     <form
+      class="bug-form"
       data-testid="newbug_form"
     >
-      <div>
-        <p
-          data-testid="title_error"
-        />
-        <input
-          data-testid="title_input"
-          maxlength="120"
-          placeholder="Title"
-          value=""
-        />
-      </div>
-      <div>
-        <p
-          data-testid="description_error"
-        />
-        <textarea
-          data-testid="description_input"
-          maxlength="255"
-          placeholder="Description"
-        />
-      </div>
-      <div>
-        <input
-          checked=""
-          data-testid="active_checkbox"
-          id="active"
-          name="active"
-          type="checkbox"
-        />
-        <label
-          for="active"
+      <div
+        class="bug-form__inputs"
+      >
+        <div
+          class="bug-form__inputs-left"
         >
-          Active
-        </label>
-      </div>
-      <div>
-        <input
-          checked=""
-          data-testid="high_radio"
-          id="high"
-          name="classification"
-          type="radio"
-          value="high"
-        />
-        <label
-          for="high"
+          <div
+            class="title-input-container"
+          >
+            <p
+              class="error_message"
+              data-testid="title_error"
+            />
+            <input
+              data-testid="title_input"
+              maxlength="120"
+              placeholder="Title"
+              value=""
+            />
+          </div>
+          <div
+            class="active-input-container"
+          >
+            <input
+              checked=""
+              data-testid="active_checkbox"
+              id="active"
+              name="active"
+              type="checkbox"
+            />
+            <label
+              for="active"
+            >
+              Active
+            </label>
+          </div>
+          <div
+            class="priority-inputs-container"
+          >
+            <div>
+              <input
+                checked=""
+                data-testid="high_radio"
+                id="high"
+                name="classification"
+                type="radio"
+                value="high"
+              />
+              <label
+                for="high"
+              >
+                High
+              </label>
+            </div>
+            <div>
+              <input
+                data-testid="medium_radio"
+                id="med"
+                name="classification"
+                type="radio"
+                value="medium"
+              />
+              <label
+                for="med"
+              >
+                Medium
+              </label>
+            </div>
+            <div>
+              <input
+                data-testid="low_radio"
+                id="low"
+                name="classification"
+                type="radio"
+                value="low"
+              />
+              <label
+                for="low"
+              >
+                Low
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bug-form__inputs-right"
         >
-          High
-        </label>
-        <input
-          data-testid="medium_radio"
-          id="med"
-          name="classification"
-          type="radio"
-          value="medium"
-        />
-        <label
-          for="med"
-        >
-          Medium
-        </label>
-        <input
-          data-testid="low_radio"
-          id="low"
-          name="classification"
-          type="radio"
-          value="low"
-        />
-        <label
-          for="low"
-        >
-          Low
-        </label>
+          <div
+            class="description-input-container"
+          >
+            <p
+              class="error_message"
+              data-testid="description_error"
+            />
+            <textarea
+              data-testid="description_input"
+              maxlength="255"
+              placeholder="Description"
+            />
+          </div>
+        </div>
       </div>
       <div>
         <div
@@ -284,9 +315,13 @@ exports[`Should render NewBug component with new bug prop 1`] = `
           </div>
         </div>
       </div>
-      <button>
-        Add
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button>
+          Add
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
@@ -294,85 +329,116 @@ exports[`Should render NewBug component with new bug prop 1`] = `
 
 exports[`Should render NewBug component with new bug prop 2`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="bug-form-container"
+  >
     <form
+      class="bug-form"
       data-testid="newbug_form"
     >
-      <div>
-        <p
-          data-testid="title_error"
-        />
-        <input
-          data-testid="title_input"
-          maxlength="120"
-          placeholder="Title"
-          value="Bug title"
-        />
-      </div>
-      <div>
-        <p
-          data-testid="description_error"
-        />
-        <textarea
-          data-testid="description_input"
-          maxlength="255"
-          placeholder="Description"
+      <div
+        class="bug-form__inputs"
+      >
+        <div
+          class="bug-form__inputs-left"
         >
-          Bug description
-        </textarea>
-      </div>
-      <div>
-        <input
-          checked=""
-          data-testid="active_checkbox"
-          id="active"
-          name="active"
-          type="checkbox"
-        />
-        <label
-          for="active"
+          <div
+            class="title-input-container"
+          >
+            <p
+              class="error_message"
+              data-testid="title_error"
+            />
+            <input
+              data-testid="title_input"
+              maxlength="120"
+              placeholder="Title"
+              value="Bug title"
+            />
+          </div>
+          <div
+            class="active-input-container"
+          >
+            <input
+              checked=""
+              data-testid="active_checkbox"
+              id="active"
+              name="active"
+              type="checkbox"
+            />
+            <label
+              for="active"
+            >
+              Active
+            </label>
+          </div>
+          <div
+            class="priority-inputs-container"
+          >
+            <div>
+              <input
+                data-testid="high_radio"
+                id="high"
+                name="classification"
+                type="radio"
+                value="high"
+              />
+              <label
+                for="high"
+              >
+                High
+              </label>
+            </div>
+            <div>
+              <input
+                checked=""
+                data-testid="medium_radio"
+                id="med"
+                name="classification"
+                type="radio"
+                value="medium"
+              />
+              <label
+                for="med"
+              >
+                Medium
+              </label>
+            </div>
+            <div>
+              <input
+                data-testid="low_radio"
+                id="low"
+                name="classification"
+                type="radio"
+                value="low"
+              />
+              <label
+                for="low"
+              >
+                Low
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bug-form__inputs-right"
         >
-          Active
-        </label>
-      </div>
-      <div>
-        <input
-          data-testid="high_radio"
-          id="high"
-          name="classification"
-          type="radio"
-          value="high"
-        />
-        <label
-          for="high"
-        >
-          High
-        </label>
-        <input
-          checked=""
-          data-testid="medium_radio"
-          id="med"
-          name="classification"
-          type="radio"
-          value="medium"
-        />
-        <label
-          for="med"
-        >
-          Medium
-        </label>
-        <input
-          data-testid="low_radio"
-          id="low"
-          name="classification"
-          type="radio"
-          value="low"
-        />
-        <label
-          for="low"
-        >
-          Low
-        </label>
+          <div
+            class="description-input-container"
+          >
+            <p
+              class="error_message"
+              data-testid="description_error"
+            />
+            <textarea
+              data-testid="description_input"
+              maxlength="255"
+              placeholder="Description"
+            >
+              Bug description
+            </textarea>
+          </div>
+        </div>
       </div>
       <div>
         <div
@@ -640,9 +706,13 @@ exports[`Should render NewBug component with new bug prop 2`] = `
           </div>
         </div>
       </div>
-      <button>
-        Edit
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button>
+          Edit
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
