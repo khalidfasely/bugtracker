@@ -39,14 +39,18 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                     </div>
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     <div className="bugs">
-                        <p>See all bugs:</p>
-                        { bugs?.map(bug => (
-                            <div className="bug-list-item-container">
-                                <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
-                                    <BugsList bug={bug} />
-                                </Link>
-                            </div>)
-                        )}
+                        <p>All bugs:</p>
+                        {
+                            bugs.length > 0 ?
+                            bugs?.map(bug => (
+                                <div className="bug-list-item-container">
+                                    <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
+                                        <BugsList bug={bug} />
+                                    </Link>
+                                </div>)
+                            ) :
+                            <div className="bugs-empty"><p>No bugs now!</p></div>
+                        }
                     </div>
                 </div> :
                 <div>Not able to see this project! <Link to="/new-project">Create one!</Link></div>

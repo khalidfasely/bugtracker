@@ -2,29 +2,70 @@
 
 exports[`Should render BugData component correctly with bug data 1`] = `
 <DocumentFragment>
-  <div>
-    <p>
-      1
-    </p>
-    <p>
-      admin
-    </p>
-    <p>
-      Bug title
-    </p>
-    <p>
-      Bug description
-    </p>
-    <p>
-      now
-    </p>
-    <p>
-      medium
-    </p>
-    <p>
-      true
-    </p>
+  <div
+    class="bug-data"
+  >
+    <div
+      class="bug-data__title-desc"
+    >
+      <div>
+        <div
+          class="active-point"
+        >
+          <abbr
+            title="Active"
+          >
+            <div
+              class="is-active active"
+            />
+          </abbr>
+        </div>
+        <abbr
+          title="Priority: medium"
+        >
+          <h3
+            class="bug__title medium"
+          >
+            Bug title
+          </h3>
+        </abbr>
+      </div>
+      <p
+        class="bug__description"
+      >
+        Bug description
+      </p>
+    </div>
+    <div
+      class="bug-data__user-time"
+    >
+      <p
+        class="bug__user"
+      >
+        <span
+          class="static-text"
+        >
+          By: 
+        </span>
+        admin
+      </p>
+      <p
+        class="bug__time"
+      >
+        <span
+          class="static-text"
+        >
+          On: 
+        </span>
+        now
+      </p>
+    </div>
     <div>
+      <span
+        class="static-text"
+      >
+        Users in: 
+      </span>
       <span>
         admin 
       </span>
@@ -32,8 +73,12 @@ exports[`Should render BugData component correctly with bug data 1`] = `
         1 
       </span>
     </div>
-    <br />
     <div>
+      <span
+        class="static-text"
+      >
+        Admins in: 
+      </span>
       <span>
         admin 
       </span>
@@ -47,19 +92,72 @@ exports[`Should render BugData component correctly with bug data 1`] = `
 
 exports[`Should render BugData component correctly without bug data 1`] = `
 <DocumentFragment>
-  <div>
-    <p />
-    <p />
-    <p />
-    <p />
-    <p />
-    <p />
-    <p>
-      undefined
-    </p>
-    <div />
-    <br />
-    <div />
+  <div
+    class="bug-data"
+  >
+    <div
+      class="bug-data__title-desc"
+    >
+      <div>
+        <div
+          class="active-point"
+        >
+          <abbr
+            title="Not Active"
+          >
+            <div
+              class="is-active not-active"
+            />
+          </abbr>
+        </div>
+        <abbr
+          title="Priority: undefined"
+        >
+          <h3
+            class="bug__title undefined"
+          />
+        </abbr>
+      </div>
+      <p
+        class="bug__description"
+      />
+    </div>
+    <div
+      class="bug-data__user-time"
+    >
+      <p
+        class="bug__user"
+      >
+        <span
+          class="static-text"
+        >
+          By: 
+        </span>
+      </p>
+      <p
+        class="bug__time"
+      >
+        <span
+          class="static-text"
+        >
+          On: 
+        </span>
+      </p>
+    </div>
+    <div>
+      <span
+        class="static-text"
+      >
+        Users in: 
+      </span>
+    </div>
+    <div>
+      <span
+        class="static-text"
+      >
+        Admins in: 
+      </span>
+    </div>
   </div>
 </DocumentFragment>
 `;

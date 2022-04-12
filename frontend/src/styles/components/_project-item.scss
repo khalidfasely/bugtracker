@@ -6,6 +6,7 @@
     .project-buttons {
         //For small screens to move the edit button to the end
         text-align: end;
+        width: 22rem;
 
         button {
             background: none;
@@ -19,6 +20,7 @@
         .project__name {
             font-size: 1.8rem;
             font-weight: bold;
+            word-break: break-all;
         }
 
         .project__user {

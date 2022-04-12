@@ -1,0 +1,87 @@
+.bug-infos {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+    
+    .bug-buttons {
+        //For small screens to move the edit button to the end
+        text-align: end;
+        width: 22rem;
+
+        button {
+            background: none;
+            border: none;
+            padding: .2rem .3rem;
+            margin: 0 .3rem;
+        }
+    }
+
+    .bug-data {
+        .bug-data__title-desc {
+            div {
+                display: flex;
+                align-items: baseline;
+
+                .high {
+                    color: $blue;
+                }
+                .medium {
+                    color: $green;
+                }
+                .low {
+                    color: $red;
+                }
+
+                .active-point {
+                    width: 3rem;
+
+                    @media (max-width: $desktop-breakpoint) {
+                        width: 2.5rem;
+                    }
+                }
+
+                .is-active {
+                    width: 11px;//100%
+                    height: 11px;
+                    //border-radius: 50px;
+                    border-radius: 50%;
+                    margin: 0 .5rem;
+                }
+        
+                .active {
+                    background-color: $green;
+                }
+        
+                .not-active {
+                    background-color: #888;
+                }
+            }
+        }
+
+        .bug__title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        .bug__description {
+            font-size: 1.5rem;
+            word-break: break-all;
+        }
+
+        .bug__user {
+            font-size: 1.6rem;
+            color: lighten($blue, 15%);
+        }
+
+        .bug__time {
+            font-size: 1.5rem;
+            color: #777;
+        }
+
+        .static-text {
+            font-size: 1.3rem;
+            color: #aaa;
+        }
+    }
+}

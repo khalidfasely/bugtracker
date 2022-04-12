@@ -30,23 +30,28 @@ export const BugItem = ({
     };
 
     return (
-        <>
+        <div>
             {
                 bug?.users_with?.includes(uname) ?
                 <div>
-                    <BugData bug={bug} />
-                    <hr />
-                    {
-                        uname===bug.user.username &&
-                        <div>
-                            <button onClick={() => setDelModalOpen(true)}>Delete</button>
-                            <button onClick={() => setEditModalOpen(true)}>Edit</button>
-                        </div>
-                    }
-                    <hr />
+                    <div className="bug-infos">
+                        <BugData bug={bug} />
+                        {
+                            uname===bug.user.username &&
+                            <div className="bug-buttons">
+                                <button onClick={() => setEditModalOpen(true)}>Edit</button>
+                                <button onClick={() => setDelModalOpen(true)}>Delete</button>
+                            </div>
+                        }
+                    </div>
                     <NewComment bugId={bug.id} />
-                    <hr />
-                    {comments?.map(comment => <div key={comment.id}><Comment comment={comment} /></div>)}
+                    {
+                        comments.length > 0 ?
+                        comments?.map(comment => (
+                            <div key={comment.id}><Comment comment={comment} /></div>
+                        )) :
+                        <div className="bug-empty"><p>No comments now!</p></div>
+                    }
                 </div> :
                 <div>Not able to see this bug! <Link to={`/project/${bug.on_project}`}>Create one!</Link></div>
             }
@@ -61,7 +66,7 @@ export const BugItem = ({
                 users={users}
                 bug={bug}
             />
-        </>
+        </div>
     );
 }
 

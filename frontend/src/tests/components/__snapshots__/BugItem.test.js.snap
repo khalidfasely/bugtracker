@@ -4,75 +4,125 @@ exports[`Should render BugItem component correctly with uname === bug.user 1`] =
 <DocumentFragment>
   <div>
     <div>
-      <p>
-        1
-      </p>
-      <p>
-        admin
-      </p>
-      <p>
-        Bug title
-      </p>
-      <p>
-        Bug description
-      </p>
-      <p>
-        now
-      </p>
-      <p>
-        medium
-      </p>
-      <p>
-        true
-      </p>
-      <div>
-        <span>
-          admin 
-        </span>
-        <span>
-          1 
-        </span>
+      <div
+        class="bug-infos"
+      >
+        <div
+          class="bug-data"
+        >
+          <div
+            class="bug-data__title-desc"
+          >
+            <div>
+              <div
+                class="active-point"
+              >
+                <abbr
+                  title="Active"
+                >
+                  <div
+                    class="is-active active"
+                  />
+                </abbr>
+              </div>
+              <abbr
+                title="Priority: medium"
+              >
+                <h3
+                  class="bug__title medium"
+                >
+                  Bug title
+                </h3>
+              </abbr>
+            </div>
+            <p
+              class="bug__description"
+            >
+              Bug description
+            </p>
+          </div>
+          <div
+            class="bug-data__user-time"
+          >
+            <p
+              class="bug__user"
+            >
+              <span
+                class="static-text"
+              >
+                By: 
+              </span>
+              admin
+            </p>
+            <p
+              class="bug__time"
+            >
+              <span
+                class="static-text"
+              >
+                On: 
+              </span>
+              now
+            </p>
+          </div>
+          <div>
+            <span
+              class="static-text"
+            >
+              Users in: 
+            </span>
+            <span>
+              admin 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+          <div>
+            <span
+              class="static-text"
+            >
+              Admins in: 
+            </span>
+            <span>
+              admin 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+        </div>
+        <div
+          class="bug-buttons"
+        >
+          <button>
+            Edit
+          </button>
+          <button>
+            Delete
+          </button>
+        </div>
       </div>
-      <br />
       <div>
-        <span>
-          admin 
-        </span>
-        <span>
-          1 
-        </span>
+        NewComment
       </div>
-    </div>
-    <hr />
-    <div>
-      <button>
-        Delete
-      </button>
-      <button>
-        Edit
-      </button>
-    </div>
-    <hr />
-    <div>
-      NewComment
-    </div>
-    <hr />
-    <div>
       <div>
-        Comment
+        <div>
+          Comment
+        </div>
+      </div>
+      <div>
+        <div>
+          Comment
+        </div>
       </div>
     </div>
     <div>
-      <div>
-        Comment
-      </div>
+      BugDelModal
     </div>
-  </div>
-  <div>
-    BugDelModal
-  </div>
-  <div>
-    BugEditModal
+    <div>
+      BugEditModal
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -81,67 +131,115 @@ exports[`Should render BugItem component correctly with uname in the bug 1`] = `
 <DocumentFragment>
   <div>
     <div>
-      <p>
-        1
-      </p>
-      <p>
-        admin
-      </p>
-      <p>
-        Bug title
-      </p>
-      <p>
-        Bug description
-      </p>
-      <p>
-        now
-      </p>
-      <p>
-        medium
-      </p>
-      <p>
-        true
-      </p>
-      <div>
-        <span>
-          admin 
-        </span>
-        <span>
-          1 
-        </span>
+      <div
+        class="bug-infos"
+      >
+        <div
+          class="bug-data"
+        >
+          <div
+            class="bug-data__title-desc"
+          >
+            <div>
+              <div
+                class="active-point"
+              >
+                <abbr
+                  title="Active"
+                >
+                  <div
+                    class="is-active active"
+                  />
+                </abbr>
+              </div>
+              <abbr
+                title="Priority: medium"
+              >
+                <h3
+                  class="bug__title medium"
+                >
+                  Bug title
+                </h3>
+              </abbr>
+            </div>
+            <p
+              class="bug__description"
+            >
+              Bug description
+            </p>
+          </div>
+          <div
+            class="bug-data__user-time"
+          >
+            <p
+              class="bug__user"
+            >
+              <span
+                class="static-text"
+              >
+                By: 
+              </span>
+              admin
+            </p>
+            <p
+              class="bug__time"
+            >
+              <span
+                class="static-text"
+              >
+                On: 
+              </span>
+              now
+            </p>
+          </div>
+          <div>
+            <span
+              class="static-text"
+            >
+              Users in: 
+            </span>
+            <span>
+              admin 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+          <div>
+            <span
+              class="static-text"
+            >
+              Admins in: 
+            </span>
+            <span>
+              admin 
+            </span>
+            <span>
+              1 
+            </span>
+          </div>
+        </div>
       </div>
-      <br />
       <div>
-        <span>
-          admin 
-        </span>
-        <span>
-          1 
-        </span>
+        NewComment
+      </div>
+      <div>
+        <div>
+          Comment
+        </div>
+      </div>
+      <div>
+        <div>
+          Comment
+        </div>
       </div>
     </div>
-    <hr />
-    <hr />
     <div>
-      NewComment
-    </div>
-    <hr />
-    <div>
-      <div>
-        Comment
-      </div>
+      BugDelModal
     </div>
     <div>
-      <div>
-        Comment
-      </div>
+      BugEditModal
     </div>
-  </div>
-  <div>
-    BugDelModal
-  </div>
-  <div>
-    BugEditModal
   </div>
 </DocumentFragment>
 `;
@@ -149,16 +247,18 @@ exports[`Should render BugItem component correctly with uname in the bug 1`] = `
 exports[`Should render BugItem component correctly with uname not in the bug 1`] = `
 <DocumentFragment>
   <div>
-    Not able to see this bug! 
-    <a>
-      Create one!
-    </a>
-  </div>
-  <div>
-    BugDelModal
-  </div>
-  <div>
-    BugEditModal
+    <div>
+      Not able to see this bug! 
+      <a>
+        Create one!
+      </a>
+    </div>
+    <div>
+      BugDelModal
+    </div>
+    <div>
+      BugEditModal
+    </div>
   </div>
 </DocumentFragment>
 `;

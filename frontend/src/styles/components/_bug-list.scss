@@ -61,4 +61,13 @@
     width: 90%;
     margin: auto;
     margin-bottom: 5rem;
+
+    .bugs-empty {
+        width: 100%;
+        border: 1px solid #555;
+        font-size: 1.7rem;
+        padding: 1rem 0;
+        margin: 2rem 0;
+        text-align: center;
+    }
 }
