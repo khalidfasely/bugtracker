@@ -38,12 +38,14 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                         }
                     </div>
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
-                    <hr />
-                    <div>
+                    <div className="bugs">
+                        <p>See all bugs:</p>
                         { bugs?.map(bug => (
-                            <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
-                                <BugsList bug={bug} />
-                            </Link>)
+                            <div className="bug-list-item-container">
+                                <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
+                                    <BugsList bug={bug} />
+                                </Link>
+                            </div>)
                         )}
                     </div>
                 </div> :

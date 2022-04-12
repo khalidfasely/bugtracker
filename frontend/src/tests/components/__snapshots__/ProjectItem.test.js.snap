@@ -77,44 +77,49 @@ exports[`Should render ProjectItem component correctly with uname === project.us
       <div>
         NewBug
       </div>
-      <hr />
-      <div>
-        <a>
-          <div>
-            <p>
-              1
-            </p>
-            <p>
-              Bug title
-            </p>
-            <p>
-              medium
-            </p>
-            <p>
-              now
-            </p>
-            <p>
-              admin
-            </p>
-            <div>
-              <span>
-                admin 
-              </span>
-              <span>
-                1 
-              </span>
+      <div
+        class="bugs"
+      >
+        <p>
+          See all bugs:
+        </p>
+        <div
+          class="bug-list-item-container"
+        >
+          <a>
+            <div
+              class="bug-list-item"
+            >
+              <div
+                class="bug-list-item__title-cls"
+              >
+                <h3>
+                  Bug title
+                </h3>
+                <p
+                  class="medium"
+                >
+                  medium
+                </p>
+              </div>
+              <p
+                class="bug-list-item__description"
+              >
+                Bug description...
+              </p>
+              <div
+                class="bug-list-item__user-time"
+              >
+                <p>
+                  admin
+                </p>
+                <p>
+                  now
+                </p>
+              </div>
             </div>
-            <br />
-            <div>
-              <span>
-                admin 
-              </span>
-              <span>
-                1 
-              </span>
-            </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <div>
@@ -194,44 +199,49 @@ exports[`Should render ProjectItem component correctly with uname in the project
       <div>
         NewBug
       </div>
-      <hr />
-      <div>
-        <a>
-          <div>
-            <p>
-              1
-            </p>
-            <p>
-              Bug title
-            </p>
-            <p>
-              medium
-            </p>
-            <p>
-              now
-            </p>
-            <p>
-              admin
-            </p>
-            <div>
-              <span>
-                admin 
-              </span>
-              <span>
-                1 
-              </span>
+      <div
+        class="bugs"
+      >
+        <p>
+          See all bugs:
+        </p>
+        <div
+          class="bug-list-item-container"
+        >
+          <a>
+            <div
+              class="bug-list-item"
+            >
+              <div
+                class="bug-list-item__title-cls"
+              >
+                <h3>
+                  Bug title
+                </h3>
+                <p
+                  class="medium"
+                >
+                  medium
+                </p>
+              </div>
+              <p
+                class="bug-list-item__description"
+              >
+                Bug description...
+              </p>
+              <div
+                class="bug-list-item__user-time"
+              >
+                <p>
+                  admin
+                </p>
+                <p>
+                  now
+                </p>
+              </div>
             </div>
-            <br />
-            <div>
-              <span>
-                admin 
-              </span>
-              <span>
-                1 
-              </span>
-            </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
     <div>

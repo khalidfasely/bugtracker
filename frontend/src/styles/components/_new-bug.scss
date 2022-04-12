@@ -18,7 +18,12 @@
                     height: 3.5rem;
                     margin: .3rem 0;
                     padding: .1rem .5rem;
+                    font-size: 1.7rem;
                     
+                    @media (max-width: $desktop-breakpoint) {
+                        font-size: 1.6rem;
+                    }
+
                     &:focus {
                         outline-color: #4285f4;
                     }
