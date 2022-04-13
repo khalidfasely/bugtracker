@@ -7,6 +7,7 @@ const BugEditModal = ({
     users, bug
 }) => (
     <Modal
+        className="edit-modal"
         isOpen={editModalOpen}
         onRequestClose={() => setEditModalOpen(false)}
     >

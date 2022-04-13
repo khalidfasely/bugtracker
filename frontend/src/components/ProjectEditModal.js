@@ -4,6 +4,7 @@ import NewProject from "./NewProject";
 
 const ProjectEditModal = ({ editModalOpen, setEditModalOpen, projectItem }) => (
     <Modal
+        className="edit-modal"
         isOpen={editModalOpen}
         onRequestClose={() => setEditModalOpen(false)}
     >
