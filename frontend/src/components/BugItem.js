@@ -44,14 +44,19 @@ export const BugItem = ({
                             </div>
                         }
                     </div>
-                    <NewComment bugId={bug.id} />
-                    {
-                        comments.length > 0 ?
-                        comments?.map(comment => (
-                            <div key={comment.id}><Comment comment={comment} /></div>
-                        )) :
-                        <div className="bug-empty"><p>No comments now!</p></div>
-                    }
+                    <div className="bug-comments">
+                        <h4>Comments:</h4>
+                        {
+                            comments.length > 0 ?
+                            <div className="comments-list"> {
+                                comments?.map(comment => (
+                                    <div key={comment.id}><Comment comment={comment} /></div>
+                                ))
+                            } </div> :
+                            <div className="bug-empty"><p>No comments now!</p></div>
+                        }
+                        <NewComment bugId={bug.id} />
+                    </div>
                 </div> :
                 <div>Not able to see this bug! <Link to={`/project/${bug.on_project}`}>Create one!</Link></div>
             }

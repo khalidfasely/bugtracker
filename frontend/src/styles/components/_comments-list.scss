@@ -1,0 +1,47 @@
+.comments-list {
+    width: 35rem;
+    margin: auto;
+
+    @media (max-width: $desktop-breakpoint) {
+        width: 29rem;
+    }
+}
+
+.comment {
+    //:not(:last-child) {
+        margin: 2rem 0px;
+        border-bottom: 1px solid grey;
+        padding: 1rem 0;
+    //}
+    .comment__user-btns {
+        display: flex;
+        justify-content: space-between;
+
+        .comment__user {
+            font-size: 1.7rem;
+            color: $blue;
+        }
+
+        .comment-buttons {
+            //For small screens to move the edit button to the end
+            text-align: end;
+            //width: 22rem;
+    
+            button {
+                background: none;
+                border: none;
+                padding: .2rem .3rem;
+                margin: 0 .3rem;
+            }
+        }
+    }
+    
+    .comment__content {
+        margin: .2rem;
+    }
+
+    .comment__time {
+        font-size: 1.5rem;
+        color: #888;
+    }
+}

@@ -16,22 +16,25 @@ export const Comment = ({ comment, uname, startSetDeleteComment }) => {
     };
     
     if (isEdit) {
-      return <NewComment commentEdit={comment.content} commentId={comment.id} setIsEdit={setIsEdit} />
+      return <div className="comment">
+        <NewComment commentEdit={comment.content} commentId={comment.id} setIsEdit={setIsEdit} />
+      </div>
     };
     
     return (
-        <div>
-          <p>{comment.id}</p>
-          <p>{comment.content}</p>
-          <p>{comment.user.username}</p>
-          <p>{comment.time}</p>
-          {
-            uname === comment.user.username &&
-            <div>
-              <button onClick={() => setIsEdit(true)} data-testid='edit_button' >Edit</button>
-              <button onClick={() => setDelModalOpen(true)}>Delete</button>
-            </div>
-          }
+        <div className="comment">
+          <div className="comment__user-btns">
+            <p className="comment__user">{comment.user.username}</p>
+            {
+              uname === comment.user.username &&
+              <div className="comment-buttons">
+                <button onClick={() => setIsEdit(true)} data-testid='edit_button' >Edit</button>
+                <button onClick={() => setDelModalOpen(true)}>Delete</button>
+              </div>
+            }
+          </div>
+          <p className="comment__content">{comment.content}</p>
+          <p className="comment__time">{comment.time}</p>
           <CommentDelModal
             delModalOpen={delModalOpen}
             setDelModalOpen={setDelModalOpen}

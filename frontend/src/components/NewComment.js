@@ -35,20 +35,22 @@ export const NewComment = ({ bugId, uname, startSetNewComment, commentEdit, comm
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} data-testid='comment_form'>
-                <p data-testid='comment_error'>{error ? error : null}</p>
+        <div className="comment-form-container">
+            <form className="comment-form" onSubmit={handleSubmit} data-testid='comment_form'>
+                <p className="error_message" data-testid='comment_error'>{error ? error : null}</p>
                 <textarea
                     placeholder="Create A Comment on this Bug!"
                     maxLength={255}
                     value={comment} onChange={(e) => setComment(e.target.value)}
                     data-testid='comment_input'
                 />
-                {
-                    commentEdit ?
-                    <button>Edit</button> :
-                    <button>Add</button>
-                }
+                <div className="buttons-container">
+                    {
+                        commentEdit ?
+                        <button disabled={!comment.replace(/\s/g, '')}>Save</button> :
+                        <button disabled={!comment.replace(/\s/g, '')}>Add</button>
+                    }
+                </div>
             </form>
         </div>
     );
