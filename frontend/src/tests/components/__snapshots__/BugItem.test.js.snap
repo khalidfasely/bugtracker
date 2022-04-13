@@ -103,17 +103,30 @@ exports[`Should render BugItem component correctly with uname === bug.user 1`] =
           </button>
         </div>
       </div>
-      <div>
-        NewComment
-      </div>
-      <div>
-        <div>
-          Comment
+      <div
+        class="bug-comments"
+      >
+        <h4>
+          Comments:
+        </h4>
+        <div
+          class="comments-list"
+        >
+           
+          <div>
+            <div>
+              Comment
+            </div>
+          </div>
+          <div>
+            <div>
+              Comment
+            </div>
+          </div>
+           
         </div>
-      </div>
-      <div>
         <div>
-          Comment
+          NewComment
         </div>
       </div>
     </div>
@@ -220,17 +233,30 @@ exports[`Should render BugItem component correctly with uname in the bug 1`] = `
           </div>
         </div>
       </div>
-      <div>
-        NewComment
-      </div>
-      <div>
-        <div>
-          Comment
+      <div
+        class="bug-comments"
+      >
+        <h4>
+          Comments:
+        </h4>
+        <div
+          class="comments-list"
+        >
+           
+          <div>
+            <div>
+              Comment
+            </div>
+          </div>
+          <div>
+            <div>
+              Comment
+            </div>
+          </div>
+           
         </div>
-      </div>
-      <div>
         <div>
-          Comment
+          NewComment
         </div>
       </div>
     </div>

@@ -43,8 +43,8 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                         {
                             bugs.length > 0 ?
                             bugs?.map(bug => (
-                                <div className="bug-list-item-container">
-                                    <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`} key={bug?.id}>
+                                <div className="bug-list-item-container" key={bug?.id}>
+                                    <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                         <BugsList bug={bug} />
                                     </Link>
                                 </div>)

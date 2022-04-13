@@ -2,37 +2,52 @@
 
 exports[`Should edit button fire correctly 1`] = `
 <DocumentFragment>
-  <div>
-    NewComment
+  <div
+    class="comment"
+  >
+    <div>
+      NewComment
+    </div>
   </div>
 </DocumentFragment>
 `;
 
 exports[`Should render Comment component correctly with user is the comment creator 1`] = `
 <DocumentFragment>
-  <div>
-    <p>
-      1
-    </p>
-    <p>
+  <div
+    class="comment"
+  >
+    <div
+      class="comment__user-btns"
+    >
+      <p
+        class="comment__user"
+      >
+        1
+      </p>
+      <div
+        class="comment-buttons"
+      >
+        <button
+          data-testid="edit_button"
+        >
+          Edit
+        </button>
+        <button>
+          Delete
+        </button>
+      </div>
+    </div>
+    <p
+      class="comment__content"
+    >
       Comment
     </p>
-    <p>
-      1
-    </p>
-    <p>
+    <p
+      class="comment__time"
+    >
       now
     </p>
-    <div>
-      <button
-        data-testid="edit_button"
-      >
-        Edit
-      </button>
-      <button>
-        Delete
-      </button>
-    </div>
     <div>
       CommentDelModal
     </div>
@@ -42,17 +57,26 @@ exports[`Should render Comment component correctly with user is the comment crea
 
 exports[`Should render Comment component correctly with user not the comment creator 1`] = `
 <DocumentFragment>
-  <div>
-    <p>
-      1
-    </p>
-    <p>
+  <div
+    class="comment"
+  >
+    <div
+      class="comment__user-btns"
+    >
+      <p
+        class="comment__user"
+      >
+        1
+      </p>
+    </div>
+    <p
+      class="comment__content"
+    >
       Comment
     </p>
-    <p>
-      1
-    </p>
-    <p>
+    <p
+      class="comment__time"
+    >
       now
     </p>
     <div>

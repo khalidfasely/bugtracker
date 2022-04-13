@@ -2,11 +2,15 @@
 
 exports[`Should render NewComment component correctly with props to edit comment 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="comment-form-container"
+  >
     <form
+      class="comment-form"
       data-testid="comment_form"
     >
       <p
+        class="error_message"
         data-testid="comment_error"
       />
       <textarea
@@ -16,9 +20,13 @@ exports[`Should render NewComment component correctly with props to edit comment
       >
         You can fix this bug by adding a default value!
       </textarea>
-      <button>
-        Edit
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button>
+          Save
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
@@ -26,11 +34,15 @@ exports[`Should render NewComment component correctly with props to edit comment
 
 exports[`Should render NewComment component correctly with props to new comment 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="comment-form-container"
+  >
     <form
+      class="comment-form"
       data-testid="comment_form"
     >
       <p
+        class="error_message"
         data-testid="comment_error"
       />
       <textarea
@@ -38,9 +50,15 @@ exports[`Should render NewComment component correctly with props to new comment 
         maxlength="255"
         placeholder="Create A Comment on this Bug!"
       />
-      <button>
-        Add
-      </button>
+      <div
+        class="buttons-container"
+      >
+        <button
+          disabled=""
+        >
+          Add
+        </button>
+      </div>
     </form>
   </div>
 </DocumentFragment>
