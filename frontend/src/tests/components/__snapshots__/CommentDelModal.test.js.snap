@@ -2,8 +2,13 @@
 
 exports[`Should render CommentDelModal correctly 1`] = `
 <DocumentFragment>
-  Alright 
+  <p
+    class="modal__paragraph"
+  >
+    If you delete this comment there is no way to return it!
+  </p>
   <button
+    class="modal__del-button"
     data-testid="delete_button"
   >
     Delete

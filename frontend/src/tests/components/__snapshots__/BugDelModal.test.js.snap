@@ -2,8 +2,13 @@
 
 exports[`Should render BugDelModal component correctly 1`] = `
 <DocumentFragment>
-  If you delete this bug there is no way to return it!
+  <p
+    class="modal__paragraph"
+  >
+    If you delete this bug there is no way to return it!
+  </p>
   <button
+    class="modal__del-button"
     data-testid="delete_button"
   >
     Delete

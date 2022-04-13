@@ -2,8 +2,13 @@
 
 exports[`Should render ProjectDelModal component correctly 1`] = `
 <DocumentFragment>
-  Delete
+  <p
+    class="modal__paragraph"
+  >
+    If you delete this project there is no way to return it!
+  </p>
   <button
+    class="modal__del-button"
     data-testid="delete_button"
   >
     Delete
