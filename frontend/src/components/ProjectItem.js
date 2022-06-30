@@ -46,7 +46,7 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                         <p>All bugs:</p>
                         {
                             bugs.length > 0 ?
-                            bugFilter(bugs)?.map(bug => (
+                            bugs?.map(bug => (
                                 <div className="bug-list-item-container" key={bug?.id}>
                                     <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                         <BugsList bug={bug} />
@@ -76,7 +76,7 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,
     projectItem: state.projectItem.project,
-    bugs: state.projectItem.bugs
+    bugs: bugFilter(state.projectItem.bugs)
 });
 
 const mapDispatchToProps = (dispatch) => ({
