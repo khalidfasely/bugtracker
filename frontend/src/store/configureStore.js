@@ -6,6 +6,7 @@ import projectItemReducer from '../reducers/projectItem';
 import bugItemReducer from '../reducers/bugItem';
 import usersReducer from '../reducers/users';
 import selectUsers from '../reducers/selectUsers';
+import bugFilter from '../reducers/bugFilter';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -18,6 +19,7 @@ export default () => {
             bugItem: bugItemReducer,
             users: usersReducer,
             selectUsers: selectUsers,
+            bugFilter: bugFilter,
         }),
         composeEnhancers(applyMiddleware(thunk))
     );

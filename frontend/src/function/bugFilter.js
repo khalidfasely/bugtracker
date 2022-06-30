@@ -1,4 +1,4 @@
-export default (bugs, text = '', sortBy = 'priority') => {
+export default (bugs, { text, sortBy }) => {
     //let highs = [];
     //let mediums = [];
     //let lows = [];
@@ -16,7 +16,7 @@ export default (bugs, text = '', sortBy = 'priority') => {
     //}
 
     return bugs.filter(bug => {
-        return bug.title.toLowerCase().includes(text.toLowerCase());
+        return bug.title.toLowerCase().includes(text?.toLowerCase());
     }).sort((a, b) => {
         if (sortBy === 'priority') {
             if (a.classification === 'high') {

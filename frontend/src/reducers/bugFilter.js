@@ -8,7 +8,7 @@ export default (state = bugFilterReducerDefaultState, action) => {
         case 'SET_TEXT':
             return {...state, text: action.text}
         case 'DEFAULT_SORT':
-            return {...state.sortBy, sortBy: ''}
+            return {...state, sortBy: ''}
         case 'SORT_BY_PRIORITY':
             return {...state, sortBy: 'priority'}
         default:

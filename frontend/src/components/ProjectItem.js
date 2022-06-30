@@ -9,6 +9,7 @@ import { startSetDelProject } from "../actions/delProject";
 import ProjectDelModal from "./ProjectDelModal";
 import ProjectEditModal from "./ProjectEditModal";
 import bugFilter from "../function/bugFilter";
+import BugFilter from "./BugFilter";
 
 export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
     const history = useNavigate();
@@ -42,7 +43,7 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     <hr/>
                     <div className="bugs">
-                        <div className="bugs-filter">bugs Filter</div>
+                        <BugFilter />
                         <p>All bugs:</p>
                         {
                             bugs.length > 0 ?
@@ -76,7 +77,7 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
 const mapStateToProps = (state) => ({
     uname: state.auth.uname,
     projectItem: state.projectItem.project,
-    bugs: bugFilter(state.projectItem.bugs)
+    bugs: bugFilter(state.projectItem.bugs, state.bugFilter)
 });
 
 const mapDispatchToProps = (dispatch) => ({
