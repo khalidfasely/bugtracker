@@ -8,6 +8,7 @@ import { useState } from "react";
 import { startSetDelProject } from "../actions/delProject";
 import ProjectDelModal from "./ProjectDelModal";
 import ProjectEditModal from "./ProjectEditModal";
+import bugFilter from "../function/bugFilter";
 
 export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
     const history = useNavigate();
@@ -37,12 +38,15 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                             </div>
                         }
                     </div>
+                    <hr/>
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
+                    <hr/>
                     <div className="bugs">
+                        <div className="bugs-filter">bugs Filter</div>
                         <p>All bugs:</p>
                         {
                             bugs.length > 0 ?
-                            bugs?.map(bug => (
+                            bugFilter(bugs)?.map(bug => (
                                 <div className="bug-list-item-container" key={bug?.id}>
                                     <Link to={`/project/${bug?.on_project}/bug/${bug?.id}`}>
                                         <BugsList bug={bug} />
