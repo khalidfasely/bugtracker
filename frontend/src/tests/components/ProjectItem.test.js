@@ -8,6 +8,7 @@ import bug from '../fixtures/bug';
 jest.mock('../../components/ProjectDelModal', () => () => <div>ProjectDelModal</div>);
 jest.mock('../../components/ProjectEditModal', () => () => <div>ProjectEditModal</div>);
 jest.mock('../../components/NewBug', () => () => <div>NewBug</div>);
+jest.mock('../../components/BugFilter', () => () => <div>BugFilter</div>);
 //jest.mock('../../components/BugsList', () => () => <div>BugsList</div>);
 
 let props;

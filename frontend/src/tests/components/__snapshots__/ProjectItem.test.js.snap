@@ -74,15 +74,20 @@ exports[`Should render ProjectItem component correctly with uname === project.us
           </button>
         </div>
       </div>
+      <hr />
       <div>
         NewBug
       </div>
+      <hr />
       <div
         class="bugs"
       >
         <p>
           All bugs:
         </p>
+        <div>
+          BugFilter
+        </div>
         <div
           class="bug-list-item-container"
         >
@@ -196,15 +201,20 @@ exports[`Should render ProjectItem component correctly with uname in the project
           </div>
         </div>
       </div>
+      <hr />
       <div>
         NewBug
       </div>
+      <hr />
       <div
         class="bugs"
       >
         <p>
           All bugs:
         </p>
+        <div>
+          BugFilter
+        </div>
         <div
           class="bug-list-item-container"
         >
