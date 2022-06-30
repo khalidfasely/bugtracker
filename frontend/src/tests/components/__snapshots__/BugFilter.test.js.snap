@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render BugFilter component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="bugs-filter"
+  >
+    <div
+      class="input-group__item"
+    >
+      <input
+        class="text-input"
+        data-testid="search_input"
+        placeholder="Search bugs"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="input-group__item"
+    >
+      <select
+        class="select"
+        data-testid="select_input"
+      >
+        <option
+          value=""
+        >
+          Date
+        </option>
+        <option
+          value="priority"
+        >
+          Priority
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;

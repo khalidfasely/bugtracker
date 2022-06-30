@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { setTextFilter, sortByDefault, sortByPriority } from "../actions/bugFilter";
 
-const BugFilter = ({ filters, setTextFilter, sortByDefault, sortByPriority }) => {
+export const BugFilter = ({ filters, setTextFilter, sortByDefault, sortByPriority }) => {
     const onSortByChange = (e) => {
         if (e.target.value === 'priority') {
             sortByPriority();
@@ -14,6 +14,7 @@ const BugFilter = ({ filters, setTextFilter, sortByDefault, sortByPriority }) =>
         <div className="bugs-filter">
             <div className="input-group__item">
                 <input
+                    data-testid='search_input'
                     type="text"
                     className="text-input"
                     placeholder="Search bugs"
@@ -23,6 +24,7 @@ const BugFilter = ({ filters, setTextFilter, sortByDefault, sortByPriority }) =>
             </div>
             <div className="input-group__item">
                 <select
+                    data-testid='select_input'
                     className="select"
                     value={filters.sortBy}
                     onChange={onSortByChange}
