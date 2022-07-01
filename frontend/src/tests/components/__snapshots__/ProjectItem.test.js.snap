@@ -82,9 +82,6 @@ exports[`Should render ProjectItem component correctly with uname === project.us
       <div
         class="bugs"
       >
-        <p>
-          All bugs:
-        </p>
         <div>
           BugFilter
         </div>
@@ -209,9 +206,6 @@ exports[`Should render ProjectItem component correctly with uname in the project
       <div
         class="bugs"
       >
-        <p>
-          All bugs:
-        </p>
         <div>
           BugFilter
         </div>

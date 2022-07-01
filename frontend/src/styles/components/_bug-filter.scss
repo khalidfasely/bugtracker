@@ -1,0 +1,19 @@
+.bugs-filter {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+
+    .input-group__item {
+        .text-input {
+            width: 15rem;
+            height: 3rem;
+            margin: 0 0.8rem;
+            padding: .7rem;
+        }
+    
+        .select {
+            width: 8rem;
+            height: 3rem;
+        }
+    }
+}

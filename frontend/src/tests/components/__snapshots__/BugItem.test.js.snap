@@ -103,6 +103,7 @@ exports[`Should render BugItem component correctly with uname === bug.user 1`] =
           </button>
         </div>
       </div>
+      <hr />
       <div
         class="bug-comments"
       >
@@ -233,6 +234,7 @@ exports[`Should render BugItem component correctly with uname in the bug 1`] = `
           </div>
         </div>
       </div>
+      <hr />
       <div
         class="bug-comments"
       >

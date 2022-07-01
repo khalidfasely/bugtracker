@@ -11,6 +11,7 @@ exports[`Should render BugFilter component correctly 1`] = `
       <input
         class="text-input"
         data-testid="search_input"
+        maxlength="35"
         placeholder="Search bugs"
         type="text"
         value=""

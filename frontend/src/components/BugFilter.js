@@ -19,6 +19,7 @@ export const BugFilter = ({ filters, setTextFilter, sortByDefault, sortByPriorit
                     className="text-input"
                     placeholder="Search bugs"
                     value={filters.text}
+                    maxLength={35}
                     onChange={(e) => setTextFilter(e.target.value)}
                 />
             </div>

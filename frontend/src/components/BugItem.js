@@ -44,6 +44,7 @@ export const BugItem = ({
                             </div>
                         }
                     </div>
+                    <hr/>
                     <div className="bug-comments">
                         <h4>Comments:</h4>
                         {

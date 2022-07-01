@@ -43,7 +43,7 @@ export const ProjectItem = ({uname, projectItem, bugs, startSetDelProject}) => {
                     <NewBug users={projectItem.users_with} on_project={projectItem.id} />
                     <hr/>
                     <div className="bugs">
-                        <p>All bugs:</p>
+                        {/* <p>All bugs:</p> */}
                         <BugFilter />
                         {
                             bugs.length > 0 ?
