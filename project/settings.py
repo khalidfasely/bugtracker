@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bugtracker2',
+        'NAME': os.environ.get('BUG_DB_NAME'),
         'USER': 'postgres',
-        'PASSWORD': 'databasepswrd',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': os.environ.get('BUG_DB_PASSWORD'),
+        'HOST': os.environ.get('BUG_DB_HOST'),
+        'PORT': os.environ.get('BUG_DB_PORT'),
     }
 }
 
