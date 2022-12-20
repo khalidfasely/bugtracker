@@ -30,8 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY_BUG')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lek-bug-tracker.herokuapp.com']
+ALLOWED_HOSTS = ['lek-bug-tracker.herokuapp.com', 'https://web-production-2e70.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = ['lek-bug-tracker.herokuapp.com', 'https://web-production-2e70.up.railway.app']
 
 # Application definition
 
