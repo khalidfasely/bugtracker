@@ -326,32 +326,25 @@ def new_bug(request, on_project):
         # recieve data from frontend
         data = json.loads(request.body)
 
-        title = data.get('title')
-        description = data.get('description')
-        is_active = data.get('isActive')
-        classification = data.get('classification')
-        users = data.get('users')
-        admins = data.get('admins')
-
         #try to create new bug
         try:
 
             #create new bug
             new_bug = Bugs.objects.create(
-                title=title,
-                description=description,
+                title=data.get('title'),
+                description=data.get('description'),
                 user=request.user,
                 on_project=Project.objects.get(pk=on_project),
-                active=is_active,
-                classification=Classification.objects.get(description=classification)
+                active=data.get('isActive'),
+                classification=Classification.objects.get(description=data.get('classification'))
             )
 
             #add admins
-            for admin in admins:
+            for admin in data.get('admins'):
                 new_bug.admins.add(User.objects.get(username=admin))
 
             #add users
-            for user in users:
+            for user in data.get('users'):
                 new_bug.users_with.add(User.objects.get(username=user))
 
             #save bug

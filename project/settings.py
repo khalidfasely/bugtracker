@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['lek-bug-tracker.herokuapp.com', 'https://web-production-2e70.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['lek-bug-tracker.herokuapp.com', 'https://web-production-2e70.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://lek-bug-tracker.herokuapp.com', 'https://web-production-2e70.up.railway.app']
 
 # Application definition
 
